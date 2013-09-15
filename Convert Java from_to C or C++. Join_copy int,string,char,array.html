@@ -1,0 +1,974 @@
+<html><!-- Do <span id="a196"> next --><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+
+
+
+<!--<title>Common C/C++ commands. Join/copy or convert to int,string,char,array</title>-->
+    <title>Convert Java from/to C or C++. Join/copy int,string,char,array</title>
+
+
+<meta name="description" content="A quick reference to many C/C++ commands, including initialization of strings, arrays, string arrays, and passing to functions.">
+
+<style>
+a:link, a:visited, {text-decoration: underline}
+a:hover {text-decoration: underline; color: #ffb000}
+</style>
+</head>
+
+
+<body style="font-family:arial; background: #c0c0c4; margin-color: #000000; margin:0px;" marginheight="0" marginwidth="0">
+
+
+
+<script language="JavaScript1.2"> 
+<!-- 
+if (screen.width > 920) //if screen width > 920
+            document.write("<img src=\"../../../banner.png\" usemap=\"#mapbanner\" border=0> <map name=\"mapbanner\"><area shape=\"rect\" coords=\"98,14,159,32\" href=\"/index.html\" alt=\"HOME\" title=\"HOME\"><area shape=\"rect\" coords=\"159,14,212,32\" href=\"../articles.html\" alt=\"UP\" title=\"UP\"><area shape=\"rect\" coords=\"212,14,282,32\" href=\"/forum\" alt=\"FORUM\" title=\"FORUM\"><area shape=\"rect\" coords=\"282,14,335,32\" href=\"/links/links.html\" alt=\"LINKS\" title=\"LINKS\"><area shape=\"rect\" coords=\"335,14,460,32\" href=\"/guestbook.php\" alt=\"GUESTBOOK\" title=\"GUESTBOOK\"><area shape=\"rect\" coords=\"115,32,245,87\" href=\"/gallery/gallery.html\" alt=\"Skytopia Gallery\" title=\"Skytopia Gallery\"><area shape=\"rect\" coords=\"245,32,371,87\" href=\"/games/games.html\" alt=\"Leisure Zone\" title=\"Leisure Zone\"><area shape=\"rect\" coords=\"371,32,545,87\" href=\"/project/project.html\" alt=\"Whirlpool of Knowledge\" title=\"Whirlpool of Knowledge\"><area shape=\"rect\" coords=\"582,0,892,84\" href=\"/index.html\" alt=\"Home\" title=\"Home\"></map>"); 
+else   document.write("<img src=\"../../bannersmall.png\" usemap=\"#mapbanners\" border=0>  <map name=\"mapbanners\"><area shape=\"rect\" coords=\"0,14,58,32\" href=\"/index.html\" alt=\"HOME\" title=\"HOME\"><area shape=\"rect\" coords=\"58,14,111,32\" href=\"articles.html\" alt=\"UP\" title=\"UP\"><area shape=\"rect\" coords=\"111,14,181,32\" href=\"/forum\" alt=\"FORUM\" title=\"FORUM\"><area shape=\"rect\" coords=\"181,14,234,32\" href=\"/links/links.html\" alt=\"LINKS\" title=\"LINKS\"><area shape=\"rect\" coords=\"234,14,359,32\" href=\"/guestbook.php\" alt=\"GUESTBOOK\" title=\"GUESTBOOK\"><area shape=\"rect\" coords=\"0,32,144,87\" href=\"/gallery/gallery.html\" alt=\"Skytopia Gallery\" title=\"Skytopia Gallery\"><area shape=\"rect\" coords=\"144,32,270,87\" href=\"/games/games.html\" alt=\"Leisure Zone\" title=\"Leisure Zone\"><area shape=\"rect\" coords=\"270,32,444,87\" href=\"/project/project.html\" alt=\"Whirlpool of Knowledge\" title=\"Whirlpool of Knowledge\"><area shape=\"rect\" coords=\"481,0,785,84\" href=\"/index.html\" alt=\"Home\" title=\"Home\"></map>"); 
+//--> 
+</script><img src="Convert%20Java%20from_to%20C%20or%20C++.%20Join_copy%20int,string,char,array_files/banner.png" usemap="#mapbanner" border="0"> <map name="mapbanner"><area shape="rect" coords="98,14,159,32" href="http://www.skytopia.com/index.html" alt="HOME" title="HOME"><area shape="rect" coords="159,14,212,32" href="http://www.skytopia.com/project/articles/articles.html" alt="UP" title="UP"><area shape="rect" coords="212,14,282,32" href="http://www.skytopia.com/forum" alt="FORUM" title="FORUM"><area shape="rect" coords="282,14,335,32" href="http://www.skytopia.com/links/links.html" alt="LINKS" title="LINKS"><area shape="rect" coords="335,14,460,32" href="http://www.skytopia.com/guestbook.php" alt="GUESTBOOK" title="GUESTBOOK"><area shape="rect" coords="115,32,245,87" href="http://www.skytopia.com/gallery/gallery.html" alt="Skytopia Gallery" title="Skytopia Gallery"><area shape="rect" coords="245,32,371,87" href="http://www.skytopia.com/games/games.html" alt="Leisure Zone" title="Leisure Zone"><area shape="rect" coords="371,32,545,87" href="http://www.skytopia.com/project/project.html" alt="Whirlpool of Knowledge" title="Whirlpool of Knowledge"><area shape="rect" coords="582,0,892,84" href="http://www.skytopia.com/index.html" alt="Home" title="Home"></map>
+
+
+
+<div style="margin-left:20">
+
+
+
+<a href="http://www.skytopia.com/index.html">Skytopia</a> &gt; <a href="http://www.skytopia.com/project/articles/articles.html">Articles</a> &gt; Quick reference to the most common commands used in C/C++ and Java<small>   &nbsp; &nbsp;(article <a href="http://www.skytopia.com/project/articles/compsci/c-help.html">first created 05/07/2006</a> and updated 1/9/06).</small><br><br>
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+function SetType(type) {
+	if(document.getElementById(type).checked==true) {
+		try { n=0; while(1!=0) { document.getElementById(type+n).style.display = "" ; n++; } } catch(err){}
+	} else {
+		try { n=0; while(1!=0) { document.getElementById(type+n).style.display = "none"; n++; } } catch(err){}
+	}
+}
+
+function NoWrapping(type) {
+
+	if(document.getElementById(type).checked==true) { 
+		try { n=0; while(1!=0) {
+		if (n==0 || n==2 || n==4) bgc="b0b0b0"
+		if (n==1 || n==3 || n==5 || n==6) bgc="d0c090"
+		document.getElementById(type+n).style = ("background-color:#"+bgc) ; n++;
+		} } catch(err){}
+	} else {
+		try { n=0; while(1!=0) {
+		if (n==0 || n==2 || n==4) bgc="b0b0b0"
+		if (n==1 || n==3 || n==5 || n==6 ) bgc="d0c090"
+		document.getElementById(type+n).style = ("white-space:nowrap; background-color:#"+bgc) ; n++; } } catch(err){}
+	}
+}
+
+</script>
+
+
+
+
+
+
+
+
+
+
+<center>
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-4983673227954584";
+//C-help linkunit - 200x90, created 1/9/08
+google_ad_slot = "1421974804";
+google_ad_width = 200;
+google_ad_height = 90;
+//--></script>
+<script type="text/javascript" src="Convert%20Java%20from_to%20C%20or%20C++.%20Join_copy%20int,string,char,array_files/show_ads.js">
+</script>
+
+
+
+
+<h1>Quick conversion and reference to the most<br> common commands used in C/C++ and Java</h1></center>
+
+<table style="margin-left:15" align="right"><tbody><tr><td>
+<script type="text/javascript"><!--
+google_ad_client = "pub-4983673227954584";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+//2006-12-28: C help
+google_ad_channel = "5134766604";
+google_color_border = "b6890C";
+google_color_bg = "806346";
+google_color_link = "FFFFFF";
+google_color_text = "fEdC77";
+google_color_url = "fE8C6B";
+//--></script>
+<script type="text/javascript" src="Convert%20Java%20from_to%20C%20or%20C++.%20Join_copy%20int,string,char,array_files/show_ads.js">
+</script>
+</td></tr></tbody></table>
+
+Throw all those C and Java books away! This is your one-stop shop to the
+ basic commands found in the Java and C/C++ programming languages. No 
+need to hunt through pages and pages of documentation, or tutorials - 
+just copy and paste (and learn 100x times faster with the terse but 
+informative comments!). Also, once you've had experience programming in 
+those, everything else like Javascript, PHP and visual basic is super 
+easy!<br><br>
+
+<font color="blue"><b><big>This article/reference is useful for beginners and experts .....</big></b></font><br>
+<li>If you wish to quickly learn or remember how to do a simple command or operation in C/C++ or Java.<br>
+</li><li>If you are converting from C (and some C++) code to Java (or vice versa), and want to see the equivalent commands.<br>
+</li><li>If you are new to C/C++ or Java, and are learning the ropes 
+such as array creation, file handling, passing to functions, or string 
+manipulation.<br><br>
+
+<!--
+I knocked up this page as a quick reference to many useful commands used in the C/C++ programming language. They're mainly geared towards C though I'll include some C++ only commands when I feel like it.<br>-->
+Basically, I would have died for a web page like this when I first 
+started out learning C (I came from a Java background, but found C many 
+times faster for my first application conversion!). Hope you all find it
+ useful! If you'd like to comment on this page, please <a href="http://www.skytopia.com/email.html">email me</a>
+
+<br><br>
+
+
+<table border="0" width="99%"><tbody><tr>
+
+<td>
+
+
+<li><a href="#template">Basic program template for C/C++ and Java</a>
+</li><li><a href="#operators">Basic operators for C/C++ and Java</a>
+</li><li><a href="#loops">Control flow commands &amp; loops for C/C++ and Java</a>
+</li><li><a href="#commands">Most common commands and functions for C/C++ and Java</a>
+</li><li><a href="#functions">Arrays, malloc, passing to functions etc.</a>
+</li><li><a href="#fileio">File opening, saving, etc.</a>
+</li><li><a href="#math">Math functions</a>
+</li><li><a href="#specialchars">Special characters for use in strings</a>
+
+
+</li></td>
+
+<td>
+
+<!--
+<table border=0 align=right width=300 style="font-family:arial; margin: auto"><tr><td bgcolor=white valign=center>
+<a href="http://www.netblaze.co.uk"><center><img border=0 src="../netblaze.png"></center></a>
+<center>
+<b>Small, quiet and compact<br>
+<a href="http://www.netblaze.co.uk">computers from NetBlaze
+</a></b></center>
+</td></tr></table>
+-->
+
+
+</td>
+</tr>
+</tbody></table>
+
+
+
+
+
+<!--
+<table cellpadding=5 style="background-color:#b0b0b0"><tr><td>
+was ad
+</td></tr></table>
+-->
+
+<br><br>
+<hr>
+<center>
+	If the info on this site has been of sufficient interest, a small donation would be appreciated:<br>
+	
+	
+	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+	<input name="cmd" value="_s-xclick" type="hidden">
+	<input name="hosted_button_id" value="NGHBKA83HP5CJ" type="hidden">
+	<table>
+	<tbody><tr><td><input name="on0" value="Amount you wish to contribute:" type="hidden">Amount you wish to contribute:</td></tr><tr><td><select name="os0">
+		<option value="Option 1 -">Option 1 - $5.00 USD</option>
+		<option selected="selected" value="Option 2 -">Option 2 - $10.00 USD</option>
+		<option value="Option 3 -">Option 3 - $20.00 USD</option>
+		<option value="Option 4 -">Option 4 - $50.00 USD</option>
+		<option value="Option 5 -">Option 5 - $100.00 USD</option>
+	</select> </td></tr>
+	</tbody></table>
+	<input name="currency_code" value="USD" type="hidden">
+	<input src="Convert%20Java%20from_to%20C%20or%20C++.%20Join_copy%20int,string,char,array_files/btn_paynow_SM.gif" name="submit" alt="PayPal — The safer, easier way to pay online." border="0" type="image">
+	<img alt="" src="Convert%20Java%20from_to%20C%20or%20C++.%20Join_copy%20int,string,char,array_files/pixel.gif" height="1" border="0" width="1">
+	</form>
+	
+	
+	
+</center>
+
+
+
+
+
+<hr>
+
+<a name="template"></a>
+<center><h2 style="color:#0000c0">Basic program template for C/C++ and Java:</h2></center>
+
+<table style="border-spacing: 40px 0px" cellpadding="20"><tbody><tr>
+
+<td valign="top"><h3>C/C++</h3><pre>#include &lt;stdio.h&gt;
+int main(int argc, char *argv[])
+{
+	printf("Hello World!");
+	return 0;
+}
+</pre></td>
+
+<td valign="top"><h3>Java</h3><pre>class MyClass
+{
+	public static void main(String[] args)
+	{
+		System.out.println("Hello World!");
+	}
+}
+</pre></td>
+</tr></tbody></table>
+
+
+
+
+
+<a name="operators"></a>
+<center><h2 style="color:#0000c0">Basic Operators and syntax for C/C++ and Java:</h2></center>
+
+<table style="background-color:#d0d0d0" border="1" cellpadding="2" cellspacing="0">
+<tbody><tr><td bgcolor="#e8e8e8">+ * - / %</td>                     <td>Simple
+ math functions same as usual. Plus, multiply, subtract, divide, and 
+modulus (which means take the 'remainder' (e.g. 5 % 17 = 2)). Use of the
+ term '++' in n++ for example, is shorthand for n=n+1.</td></tr>
+<tr><td bgcolor="#e8e8e8">// hidden</td>                     <td>'Comment' or 'quote out' a line from that point on, to make it 'invisible' to the compiler.</td></tr>
+<tr><td bgcolor="#e8e8e8" width="100">/* hidden */</td>                  <td>Like above, but quotes out a whole section. /* Begins the section, and */ ends it.</td></tr>
+<tr><td bgcolor="#e8e8e8">&amp;&amp;</td>                            <td>AND operator</td></tr>
+<tr><td bgcolor="#e8e8e8">||</td>                            <td>OR operator</td></tr>
+<tr><td bgcolor="#e8e8e8">!</td>                             <td>NOT operator</td></tr>
+<tr><td bgcolor="#e8e8e8">=</td>                             <td>Means simple assignment. For example: n=10</td></tr>
+<tr><td bgcolor="#e8e8e8">==</td>                            <td>Means 
+'equals to'. 1==2 is false etc. Be very careful not to mix this up with 
+assignment (=). Also in the case of Java, you need to use the 
+a.equals(b) method to test whether strings are the same.</td></tr>
+<tr><td bgcolor="#e8e8e8">!=</td>                            <td>Means 'not equals to'. 1!=2 is true etc.</td></tr>
+<tr><td bgcolor="#e8e8e8">&lt;</td>                         <td>Less than. For example, 3&lt;7 is true. Also use &lt;= for 'less than or equals to'.</td></tr>
+<tr><td bgcolor="#e8e8e8">&gt;</td>                             <td>More than. For example, 3&gt;7 is false. Also use &gt;= for 'more than or equals to'.</td></tr>
+
+</tbody></table>
+
+
+<br><br>
+
+<a name="loops"></a>
+<center><h2 style="color:#0000c0">Control flow commands &amp; loops for C/C++ and Java:</h2></center>
+
+<table style="border-spacing: 0px 0px">
+<tbody><tr><td><b>if    (a==b) { blah...  }</b></td><td>                 If a equals b, then do whatever is in the curly brackets.</td></tr>
+<tr><td><b>else         { blah...  }</b></td><td>                 Put under the "if" section, this executes if the previous "if" failed.</td></tr>
+<tr><td><b>while (a&lt;b)  { blah...  }</b></td><td>             For as long as a is less than b, continue to execute (loop) whatever is inside the {} brackets.</td></tr>
+<tr><td><b>for (int n=0 ; n&lt;50 ; n=n+1 ) { blah... } &nbsp; &nbsp; &nbsp; </b></td><td>    This will execute whatever is in the curly brackets, 50 times. Also n will go from 0 to 49.</td></tr>
+<tr><td><b>break;</b></td><td>    Breaks out of a loop or switch section prematurely.</td></tr>
+<tr><td><b>continue;</b></td><td>    Skips the current iteration of a loop section.</td></tr>
+</tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+
+<a name="commands"></a>
+<center><h2 style="color:#0000c0">Most common commands and functions for C/C++ and Java:</h2></center><br>
+
+<h3>Useful libraries to include in your code. Many of the commands below rely on these:</h3>
+<table style="border-spacing: 40px 5px"><tbody><tr><td valign="top"><b>C/C++</b><br>
+#include &lt;stdio.h&gt;<br>
+#include &lt;string.h&gt;<br>
+#include &lt;stdlib.h&gt;<br>
+#include &lt;sys/timeb.h&gt;<br>
+#include &lt;time.h&gt;<br>
+#include &lt;math.h&gt;<br>
+#include &lt;iostream&gt;<br>
+#include &lt;windows.h&gt;   // (Slow to import, and Windows only)<br>
+
+</td>
+
+<td valign="top"><b>Java</b><br>
+import java.io.*;<br>
+import java.lang.Math;<br>
+import java.util.*;<br>
+</td>
+</tr></tbody></table>
+
+
+<br><br>
+
+<b><big><font color="#e00000">Please click the checkboxes below to suit the table to your requirements:</font></big></b><br>
+<font color="#ffffff"><b>Select blue to learn just about the c/c++ 
+commands or orange to learn only about Java commands, and select both to
+ compare them side by side. Also, you may want to click the white button
+ to save line space (at the cost of needing to scroll the screen).</b></font>
+<table cellpadding="5"><tbody><tr>
+<td> <table border="2"><tbody><tr><td bgcolor="#6080ff"><input id="a" checked="checked" onclick="SetType('a')" type="checkbox"></td></tr></tbody></table> Display C / C++ commands</td>
+<td> <table border="2"><tbody><tr><td bgcolor="#ff8060"><input id="b" checked="checked" onclick="SetType('b')" type="checkbox"></td></tr></tbody></table> Display Java commands</td>
+<td> <table border="2"><tbody><tr><td bgcolor="#dfdfdf"><input id="w" checked="checked" onclick="NoWrapping('w')" type="checkbox"></td></tr></tbody></table> Wrap lines</td>
+</tr></tbody></table>
+
+
+<h3>Declaring Variables (for next section)</h3>
+
+
+<!--
+template
+<tr><td><span id="a2"> </span></td>  <td><span id="b2"> </span></td>    <td> </td></tr>
+-->
+
+<table style="background-color:#b0b0b0" id="w0" border="1" cellpadding="2" cellspacing="0">
+<tbody><tr><td bgcolor="#989898"><span id="a0"><b>C / C++</b></span></td>		<td><span id="b0"><b>Java</b></span></td>		<td bgcolor="#989898"><span id="a1"> <b>C/C++ explanation</b></span></td>       <td><span id="b1"> <b>Java explanation</b></span></td>   </tr>
+<tr><td bgcolor="#989898"><span id="a2"> int i; </span></td>			<td><span id="b2"> int i; </span></td>		<td bgcolor="#989898"><span id="a3"><small>Declare an integer</small></span></td>            <td><span id="b3"><small>Declare an integer</small></span></td> </tr>
+<tr><td bgcolor="#989898"><span id="a4"> long l; </span></td>			<td><span id="b4"> long i; </span></td>		<td bgcolor="#989898"><span id="a5"><small>Declare a long (allows bigger numbers than an int usually)</small></span></td>            <td><span id="b5"><small>Declare a long (allows bigger numbers than an int)</small></span></td> </tr>
+<tr><td bgcolor="#989898"><span id="a6"> double d; </span></td>			<td><span id="b6"> double d; </span></td>		<td bgcolor="#989898"><span id="a7"><small>Declare a double</small></span></td>            <td><span id="b7"><small>Declare a double</small></span></td> </tr>
+<tr><td bgcolor="#989898"><span id="a8"> char c; </span></td>			<td><span id="b8"> char c;  </span></td>		<td bgcolor="#989898"><span id="a9"><small>Declare a char (one character string).</small></span></td>   <td><span id="b9"><small>Declare a char</small></span></td>  </tr>
+<tr><td bgcolor="#989898"><span id="a10"> char mystring[100]; </span></td>		<td><span id="b10"> String mystring </span></td>		<td bgcolor="#989898"><span id="a11"><small>Declare
+ string of 100 chars big  (but use the malloc method instead for 
+super-large arrays). This is the way to get a string in c.</small></span></td> <td><span id="b11"><small>Declare a string. Java handles all the difficult work at the cost of speed.</small></span></td> </tr>
+<tr><td bgcolor="#989898"><span id="a12"> char array2d[20][100]; </span></td>		<td><span id="b12"> String[] stringArray = new String[20]; </span></td>	<td bgcolor="#989898"><span id="a13"><small>Declare 20 strings of 100 length (but use the malloc method instead for super-large arrays or if you want to pass to a function)</small></span></td> <td><span id="b13"><small>Declare 20 strings.</small></span></td> </tr>
+<tr><td bgcolor="#989898"><span id="a14"> struct newtype { int o;	char p[5]; }; </span></td>	<td><span id="b14"> --- </span></td>		<td bgcolor="#989898"><span id="a15"><small>Create
+ a new 'structure' to contain sub-variables (similar to an object in an 
+object-orientated language like Java). In this example, each variable of
+ type "newtype" will contain the subvariables 'o' (an integer), and 'p' 
+(an array of chars). All structs must be above (and outside) any 
+functions.</small></span></td> <td><span id="b15"><small>Java doesn't support structs. Use classes/objects instead.</small></span></td> </tr>
+<tr><td bgcolor="#989898"><span id="a16"> newtype ntype; </span></td>		<td><span id="b16"> --- </span></td>		<td bgcolor="#989898"><span id="a17"><small>Using the struct created above, declare a variable of type newtype. This goes into a function (eg. main () ).</small></span></td> <td><span id="b17"> ---</span></td> </tr>
+</tbody></table>
+
+
+
+
+
+<br>
+
+
+<h3>Many of the commands below rely on the variables as declared above, and should go into a function (eg: main)</h3>
+
+<table id="w1" style="background-color:#c0b090" border="1" cellpadding="2" cellspacing="0">
+<tbody><tr><td bgcolor="#b0a080"><span id="a18"><b>C / C++</b></span></td>		<td><span id="b18"><b>Java</b></span></td>		<td bgcolor="#b0a080"><span id="a19"> <b>C/C++ explanation</b></span></td>   <td><span id="b19"> <b>Java explanation</b></span></td>   </tr>
+
+<tr><td bgcolor="#b0a080"><span id="a20"> printf("Hello\nWorld");</span></td>  <td><span id="b20"> System.out.print("Hello\nWorld");</span></td>    <td bgcolor="#b0a080"><span id="a21"><small>Prints stuff ("\n" means newline)</small></span></td>  <td><span id="b21"><small>Prints stuff ("\n" means newline)</small></span></td></tr>
+<tr><td bgcolor="#b0a080"><span id="a22"> printf("%s",mystring);</span></td>  <td><span id="b22"> System.out.print(mystring);</span></td>    <td bgcolor="#b0a080"><span id="a23"><small>Prints char array (mystring var), eg., a string.</small></span></td> <td><span id="b23"><small>Prints string</small></span></td></tr>
+<tr><td bgcolor="#b0a080"><span id="a24"> printf("%c",c);</span></td>  <td><span id="b24">System.out.print(c);</span></td>    <td bgcolor="#b0a080"><span id="a25"><small>Print a char from the char declared above</small></span></td>      <td><span id="b25"><small>Print a char from the char declared above</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a162"> printf("%c hello %s",c,mystring);</span></td>  <td><span id="b162"><small>System.out.print(c+" hello"+mystring);</small></span></td>    <td bgcolor="#b0a080"><span id="a163"><small>Print a char followed by "hello", followed by the mystring variable.</small></span></td>      <td><span id="b163"><small>Print a char followed by "hello", followed by the mystring variable.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a26"> printf("%c",mystring[99]);</span></td>  <td><span id="b26"><small>System.out.print(mystring.charAt(99));</small></span></td>    <td bgcolor="#b0a080"><span id="a27"><small>Print last char from the string declared above</small></span></td>      <td><span id="b27"><small>Print last char from the string declared above</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a28"> printf("%s",array2d[19]);</span></td>  <td><span id="b28">System.out.print(array2d[19]);</span></td>    <td bgcolor="#b0a080"><span id="a29"><small>Print last string from the string array (declared above under title "Declaring Variables").</small></span></td>    <td><span id="b29"><small>Print last string from the string array (declared above under title "Declaring Variables").</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a30"> printf("%c",array2d[19][99]);</span></td>  <td><span id="b30"><small>System.out.print( array2d[19].charAt(99) );</small></span></td>    <td bgcolor="#b0a080"><span id="a31"><small>Print last char from the last string in the string array.</small></span></td>    <td><span id="b31"><small>Print last char from the last string in the string array.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a32"> mystring[99] = 'z'</span></td>  <td><span id="b32">---</span></td>    <td bgcolor="#b0a080"><span id="a33"><small>Change last character in mystring string to 'z'</small></span></td>    <td><span id="b33"><small>No direct char editing in string</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a34"> mystring = "hello"</span></td>  <td><span id="b34">mystring = "hello"</span></td>    <td bgcolor="#b0a080"><span id="a35"><small>Obvious, but illegal! You can't directly assign a string to a char array. Use strcpy instead.</small></span></td>    <td><span id="b35"><small>Unlike in C, this is fine, and just assigns "hello" to the mystring String.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a36"> array2d[19][99]    = 'y'</span></td>  <td><span id="b36">---</span></td>    <td bgcolor="#b0a080"><span id="a37"><small>Change last character in last string to 'y'</small></span></td>    <td><span id="b37"><small>No direct char editing in a string</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a38"> strcpy(mystring, "hello");</span></td> <td><span id="b38">mystring = "hello"</span></td>    <td bgcolor="#b0a080"><span id="a39"><small>Copy "test" to the "mystring" string as declared earlier.</small></span></td>    <td><span id="b39"><small>Assigns word "hello" to the mystring String.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a40"> strcpy(array2d[5], "hello");</span></td>  <td><span id="b40"> stringArray[5] = "hello"</span></td>    <td bgcolor="#b0a080"><span id="a41"><small>Copy "test" to the 5th string in "array2d" as declared earlier.</small></span></td>    <td><span id="b41"><small>Copy "test" to the 5th string in "stringArray" as declared earlier.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a42"> strncpy(array2d[5], "hello", 5);</span></td>  <td><span id="b42"> stringArray[5] = "hello".substring(0, 5) </span></td>    <td bgcolor="#b0a080"><span id="a43"><small>Use strcpy instead usually. This is used if you want to define the number of chars to copy.</small></span></td>    <td><span id="b43"><small>Use substring (truncate) to define a limited section of the string.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a44"> strncpy(array2d[5], mystring+10, 50);</span></td>  <td><span id="b44">stringArray[5] = mystring.substring(10, 60) </span></td>    <td bgcolor="#b0a080"><span id="a45"><small>Takes a substring of mystring (start from 10th char and do 50 of them), and puts it into the array2d[5] string.</small></span></td>    <td><span id="b45"><small> Takes a substring of mystring (start from 10th char and do 50 of them), and puts it into the array2d[5] string.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a46"> strcat(mystring,"hello");</span></td>  <td><span id="b46">mystring = mystring + "hello"</span></td>    <td bgcolor="#b0a080"><span id="a47"><small>Concatenate (add/append) "test" to the string, along with the escape code '\0' to signify the end</small></span></td>    <td><span id="b47"><small>Concatenate
+ (add/append) "test" to the string. However, for large amounts of 
+concatenations, use Java's StringBuffer() method, as it is much quicker.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a48"> strcmp(a,b);</span></td>  <td><span id="b48">a.compareToIgnoreCase(b)</span></td>    <td bgcolor="#b0a080"><span id="a49"><small>Compare two strings. Returns zero if same, -1 if a is less than b, and 1 if a is more than b.</small></span></td>    <td><span id="b49"><small>Compare two strings. Returns zero if same, Less than zero if a is less than b, and more than zero if a is more than b.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a50"> strcmpi(a,b);</span></td>  <td><span id="b50">a.compareTo(b)</span></td>    <td bgcolor="#b0a080"><span id="a51"><small>Case sensitive version of above</small></span></td>    <td><span id="b51"><small>Case sensitive version of above</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a52"> strlen(mystring);</span></td>  <td><span id="b52">mystring.length()</span></td>    <td bgcolor="#b0a080"><span id="a53"><small>Number of chars so far stored in the string (everything up to escape code '\0')</small></span></td>    <td><span id="b53"><small>Number of chars so far stored in the string.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a54"> int i = '7'-48;</span></td>  <td><span id="b54">int i = '7'-48;</span></td>    <td bgcolor="#b0a080"><span id="a55"><small>Convert char to int, providing the char is a number from 0-9.</small></span></td>    <td><span id="b55"><small>Convert char to int, providing the char is a number from 0-9.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a56"> int i = 'a';</span></td>  <td><span id="b56">int i = 'a';</span></td>    <td bgcolor="#b0a080"><span id="a57"><small>Convert char to int code</small></span></td>    <td><span id="b57"><small>Convert char to int code</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a58"> char c = 7 +48;</span></td>  <td><span id="b58">char c = 7 +48;</span></td>    <td bgcolor="#b0a080"><span id="a59"><small>Convert int to char, providing the number is from 0-9.</small></span></td>    <td><span id="b59"><small>Convert int to char, providing the number is from 0-9.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a60"> char c = 97; </span></td>  <td><span id="b60">char c = 97; </span></td>    <td bgcolor="#b0a080"><span id="a61"><small>Convert
+ int code to char ('a' in this case). If you don't want to declare a new
+ char, then use the wrapper type "(char)" next to 97.</small></span></td>    <td><span id="b61"><small>Convert
+ int code to char ('a' in this case). If you don't want to declare a new
+ char, then use the wrapper type "(char)" next to 97.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a62"> int i = atoi("456");</span></td>  <td><span id="b62">int i = Integer.parseInt("456")</span></td>    <td bgcolor="#b0a080"><span id="a63"><small>Convert string to int. Use 'atof' to convert string to double/float, and 'atol' for converting string to long.</small></span></td>    <td><span id="b63"><small>Convert string to int. Use Double.parseDouble to convert string to double, and Long.parseLong for converting string to long.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a64"> sprintf(mystring, "%d", 123);</span></td>  <td><span id="b64">mystring = String.valueOf(123)</span></td>    <td bgcolor="#b0a080"><span id="a65"><small>Convert int to string (or double to string, using %f instead of %d)</small></span></td>    <td><span id="b65"><small>Convert int to string (or double to string)</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a66"> itoa(123, mystring, 10);</span></td>  <td><span id="b66">---</span></td>    <td bgcolor="#b0a080"><span id="a67"><small>Convert int to string base 10 (nonstandard, so use above instead usually)</small></span></td>    <td><span id="b67"><small>---</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a68"> int i = sizeof(mystring);</span></td>  <td><span id="b68">int i = mystring.length</span></td>    <td bgcolor="#b0a080"><span id="a69"><small>Find (full) length of array (returns 100 in this case)</small></span></td>    <td><span id="b69"><small>Find (full) length of array (returns 20 in this case)</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a70"> exit(0);</span></td>  <td><span id="b70">System.exit(0);</span></td>    <td bgcolor="#b0a080"><span id="a71"><small>Quit program</small></span></td>    <td><span id="b71"><small>Quit program</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a72"> system("PAUSE");</span></td>  <td><span id="b72">System.in.read();</span></td>    <td bgcolor="#b0a080"><span id="a73"><small>"Press any key to continue" (Windows only)</small></span></td>    <td><span id="b73"><small>Pause program until return key is pressed. You must use allow to throw an IOException though.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a182"> Sleep(500);</span></td>  <td><span id="b182">try {Thread.sleep(500); }<br>catch(Exception e) { }</span></td>    <td bgcolor="#b0a080"><span id="a183"><small>Wait 500 milliseconds (Windows only)</small></span></td>    <td><span id="b183"><small>Wait 500 milliseconds.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a74"> char mystring2[]="hello";</span></td>  <td><span id="b74"> String mystring2="hello";</span></td>    <td bgcolor="#b0a080"><span id="a75"><small>Declare and initialize string in one go</small></span></td>    <td><span id="b75"><small>Declare and initialize string in one go</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a76"> int i2=99; </span></td>  <td><span id="b76">int i2=99; </span></td>    <td bgcolor="#b0a080"><span id="a77"><small>Declare and initialize an integer in one go</small></span></td>    <td><span id="b77"><small>eclare and initialize an integer in one go</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a78"> ntype.o = 37;</span></td>  <td><span id="b78"> ---</span></td>    <td bgcolor="#b0a080"><span id="a79"><small>Assign the number 37 to the 'o' part of the ntype variable.</small></span></td>    <td><span id="b79"><small>No structs with Java. Use objects instead.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a80"> ntype.p[3] = 'z';</span></td>  <td><span id="b80">---</span></td>    <td bgcolor="#b0a080"><span id="a81"><small>Assign the char 'z' to the 3rd element of the array in the 'p' part of the ntype variable.</small></span></td>    <td><span id="b81"><small>No structs with Java. Use objects instead.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a82"> long l = clock();</span></td>  <td><span id="b82">---</span></td>    <td bgcolor="#b0a080"><span id="a83"><small>Assign to l, the number of milliseconds of CPU time used on the program since its execution.</small></span></td>    <td><span id="b83"><small>No measuring of CPU time in Java.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a84"> long l = time(NULL);</span></td>  <td><span id="b84"><small>long l = System.currentTimeMillis()/1000;</small></span></td>    <td bgcolor="#b0a080"><span id="a85"><small>Assign to l, the number of seconds since 00:00:00, January 1, 1970.</small></span></td>    <td><span id="b85"><small>Assign to l, the number of seconds since 00:00:00, January 1, 1970.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a86"> timeb ti;  ftime( &amp;ti );<br>double l = ti.time*1000.0 + ti.millitm;</span></td>  <td><span id="b86"><small>long l = System.currentTimeMillis()</small></span></td>    <td bgcolor="#b0a080"><span id="a87"><small>Assign to l, the number of milliseconds since 00:00:00, January 1, 1970.</small></span></td>    <td><span id="b87"><small>Assign to l, the number of milliseconds since 00:00:00, January 1, 1970.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a88"> time_t mytime = time(0);<br>strcpy(mystring, ctime(&amp;mytime) );</span></td>  <td><span id="b88"> ?</span></td>    <td bgcolor="#b0a080"><span id="a89"><small>Assign to mystring, the local date and time in ascii format.</small></span></td>    <td><span id="b89"><small> ?</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a90"> srand(77);</span></td>  <td><span id="b90">Random r = new Random(77);</span></td>    <td bgcolor="#b0a080"><span id="a91"><small>Randomize seed for random numbers (77 used here, but use srand((unsigned)time(NULL)) instead<br>for different random numbers each time the program is run)</small></span></td>    <td><span id="b91"><small>Create random object, with a seed of 77. Remove '77' to create different random numbers every time the program is run.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a92"> 100 *       rand()/(RAND_MAX+1)</span></td>  <td><span id="b92">Random r = new Random();<br>i = r.nextInt(100);</span></td>    <td bgcolor="#b0a080"><span id="a93"><small>Compute random integer number between 0 and 100  (0 &lt;= r &lt; 100).</small></span></td>    <td><span id="b93"><small>Compute random integer number between 0 and 100  (0 &lt;= r &lt; 100).</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a94"> 68 * rand()/(RAND_MAX+1) + 32</span></td>    <td><span id="b94">Random r = new Random();<br>i = r.nextInt(68)+32;</span></td>    <td bgcolor="#b0a080"><span id="a95"><small>Compute random integer number between 32 and 100  (32 &lt;= r &lt; 100).</small></span></td>    <td><span id="b95"><small>Compute random integer number between 32 and 100  (32 &lt;= r &lt; 100).</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a96"> (float)     rand()/(RAND_MAX+1)</span></td>  <td><span id="b96">Random r = new Random();<br>d = r.nextFloat()</span></td>    <td bgcolor="#b0a080"><span id="a97"><small>Compute random floating number between 0 and 1 (0 &lt;= r &lt; 1).</small></span></td>    <td><span id="b97"><small>Compute random floating number between 0 and 1 (0 &lt;= r &lt; 1).</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a98"> 100*(float) rand()/(RAND_MAX+1)</span></td>  <td><span id="b98">Random r = new Random();<br>d = r.nextFloat()*100.0</span></td>    <td bgcolor="#b0a080"><span id="a99"><small>Compute random floating number between 0 to 99.999... inclusive   (0 &lt;= r &lt; 100).</small></span></td>    <td><span id="b99"><small>Compute random floating number between 0 to 100</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a100"> scanf("%s", &amp;mystring);</span></td>  <td><span id="b100"> BufferedReader r = new<br>BufferedReader(new<br>InputStreamReader(System.in));<br>mystring = r.readLine(); </span></td>    <td bgcolor="#b0a080"><span id="a101"><small>Read from console input into string</small></span></td>    <td><span id="b101"><small>Read from console input into string</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a184"> char* token;<br>token = strtok (str," ");<br>while (token != NULL)<br>{<br> token = strtok (NULL," "); <br>}</span></td>  <td><span id="b184">...</span></td>    <td bgcolor="#b0a080"><span id="a185"><small>Split
+ the string "str" into pieces or 'tokens'. One could use any symbol to 
+split by, such as a comma or space (as used here), or any arbitrary 
+letter or number. In the while loop, you'll want to do something with 
+each token such as print it out. We use "NULL" (instead of the 
+previously used "str") as the first parameter for future strtok calls to
+ indicate that we're going from where we previously left off, otherwise 
+we'll keep getting the first token of a string each time.</small></span></td>    <td><span id="b185"><small>...</small></span></td> </tr>
+
+
+
+</tbody></table>
+
+<br><br>
+
+<a name="functions"></a>
+<center><h2 style="color:#0000c0">Arrays, malloc, passing to functions etc.:</h2></center>
+
+<h3>Declaring Variables (for next section)</h3>
+
+<table style="background-color:#b0b0b0" id="w2" border="1" cellpadding="2" cellspacing="0">
+<tbody><tr><td bgcolor="#989898"><span id="a102"><b>C / C++</b></span></td>		<td><span id="b102"><b>Java</b></span></td>		<td bgcolor="#989898"><span id="a103"> <b>C/C++ explanation</b></span></td>       <td><span id="b103"> <b>Java explanation</b></span></td>   </tr>
+<tr><td bgcolor="#989898"><span id="a104"> int  i = 5;</span></td>			<td><span id="b104"> int  i = 5;</span></td>		<td bgcolor="#989898"><span id="a105"><small>Create an integer</small></span></td>            <td><span id="b105"><small>Create an integer  </small></span></td> </tr>
+<tr><td bgcolor="#989898"><span id="a106"> char j = 'z';</span></td>			<td><span id="b106"> char j = 'z';</span></td>		<td bgcolor="#989898"><span id="a107"><small>Create a character</small></span></td>            <td><span id="b107"><small>Create a character</small></span></td> </tr>
+
+<tr><td bgcolor="#989898"><span id="a108"> int myIntArray[10];</span></td>			<td><span id="b108"> int[] myIntArray = new int[10];</span></td>		<td bgcolor="#989898"><span id="a109"><small>Create an integer array</small></span></td><td><span id="b109"><small>Create an integer array</small></span></td></tr>
+
+
+<tr><td bgcolor="#989898"><span id="a188"> int*myIntArrayB = (int*)malloc(100000*sizeof(int));</span></td>			<td><span id="b188"> int[] myIntArrayB = new int[100000];</span></td>		<td bgcolor="#989898"><span id="a189"><small>Create
+ an int array, myIntArrayB, of size 100000. Use instead of "int 
+myIntArrayB[100000];" for large values like 100000. (Same goes for other
+ array types like char too). When done with, use "free(myIntArrayB)" to 
+free up the memory created. To access/change the array, simply use 
+myIntArrayB[i] as usual.</small></span></td>   <td><span id="b189"><small>Create an int array, myIntArrayB, of size 100000.</small></span></td>  </tr>
+
+
+<tr><td bgcolor="#989898"><span id="a110"> char*mystring = (char*)malloc(100000*sizeof(char));</span></td>			<td><span id="b110"> char[] mystring = new char[100000];</span></td>		<td bgcolor="#989898"><span id="a111"><small>Create
+ a char array, mystring, of size 100000. Use instead of "char 
+mystring[100000];" for large values like 100000. (Same goes for other 
+array types like int too). When done with, use "free(mystring)" to free 
+up the memory created. To access/change the array, simply use 
+mystring[i] as usual.</small></span></td>   <td><span id="b111"><small>Create a char array, mystring, of size 100000.</small></span></td>  </tr>
+<tr><td bgcolor="#989898"><span id="a112"> <small>char**array2d = (char**)malloc(2000*sizeof(char*));<br>for (int n=0 ; n&lt;2000 ; n++) { array2d[n]=(char*)malloc(1000*sizeof(char));  }</small></span></td>		<td><span id="b112">char[][] array2d = new char[2000][1000];</span></td>		<td bgcolor="#989898"><span id="a113"><small>Declare
+ 2000 strings of 1000 length. Use instead of "char array2d[2000][1000];"
+ for large values, or if you want to pass to a function. To 
+access/change the array, simply use array2d[i][j] as usual.</small></span></td> <td><span id="b113"><small>Declare 2000 strings of 1000 length.</small></span></td> </tr>
+<tr><td bgcolor="#989898"><span id="a114"> <small>char**array2d = (char**)malloc(2000*sizeof(char*));<br>for (int n=0 ; n&lt;2000 ; n++) { array2d[n]=(char*)calloc(1000,sizeof(char));  }</small></span></td>		<td><span id="b114">---</span></td>	<td bgcolor="#989898"><span id="a115"><small>Like above, except all are initialized to null.</small></span></td> <td><span id="b115"><small>---</small></span></td> </tr>
+<tr><td bgcolor="#989898"><span id="a186"> <small>char***array3d = (char***)malloc(200*sizeof(char**));<br>for(int i = 0; i &lt; 200; i++)		array3d[i] = (char **)malloc( 100 *sizeof(char*));<br>for(int i=0; i&lt;200; i++) {<br>	for(int j=0; j&lt;100; j++)	array3d[i][j]=(char*)malloc( 3 *sizeof(char));<br>}<br></small></span></td>		<td><span id="b186">char[][][] array3d = new char[200][100][3];</span></td>	<td bgcolor="#989898"><span id="a187"><small>Allocate
+ for a 3 dimensional array (in this case, it's 200*100*3). Obviously 
+char can be replaced with int, float etc. To access/change the array, 
+simply use array3d[i][j][k] as usual. </small></span></td> <td><span id="b187"><small>Allocate for a 3 dimensional array. </small></span></td> </tr>
+
+
+
+<tr><td bgcolor="#989898"><span id="a116"> struct newtype {<br>&nbsp; &nbsp; int amount;<br>&nbsp; &nbsp; char strings[10][10];<br>};</span></td>	<td><span id="b116"> --- </span></td>		<td bgcolor="#989898"><span id="a117"><small>Similar
+ to an object in Java, create a new 'structure' to contain 
+sub-variables. Each variable of type "newtype" will contain an integer -
+ "amount", and a 2D array of chars - "strings". All structs must be 
+above (and outside) any functions.</small></span></td> <td><span id="b117"><small>---  </small></span></td> </tr>
+<tr><td bgcolor="#989898"><span id="a118"> newtype ntype;</span></td>		<td><span id="b118"> --- </span></td>		<td bgcolor="#989898"><span id="a119"><small>Using the struct created above, we have created a variable of type 'newtype'.</small></span></td> <td><span id="b119"><small>---</small></span></td> </tr>
+<tr><td bgcolor="#989898"><span id="a120"> newtype ntypeArray[10];</span></td>		<td><span id="b120"> --- </span></td>		<td bgcolor="#989898"><span id="a121"><small>Using the struct created above, we have created a variable array of type 'newtype'.</small></span></td> <td><span id="b121"><small>---</small></span></td> </tr>
+</tbody></table>
+<br>
+
+<h3>The commands below rely on the variables as declared above, and should go into a function (eg: main)</h3>
+
+<table style="background-color:#c0b090" id="w3" border="1" cellpadding="2" cellspacing="0">
+<tbody><tr><td bgcolor="#b0a080"><span id="a122"><b>C / C++<br><img src="Convert%20Java%20from_to%20C%20or%20C++.%20Join_copy%20int,string,char,array_files/invis.png" width="180"></b></span></td>		<td><span id="b122"><b>Java<br><img src="Convert%20Java%20from_to%20C%20or%20C++.%20Join_copy%20int,string,char,array_files/invis.png" width="210"></b></span></td>		<td bgcolor="#b0a080"><span id="a123"> <b>C/C++ explanation</b></span></td>       <td><span id="b123"> <b>Java explanation</b></span></td>   </tr>
+
+
+<tr><td bgcolor="#b0a080"><span id="a124"><font color="#c00000">int z = addTwo(5);</font><br>int addTwo(int x) {<br>&nbsp; &nbsp; int n=x+2 ; return n ;<br>}</span></td>		<td><span id="b124"><font color="#c00000">int z = addTwo(5);</font><br>static int addTwo(int x) {<br>&nbsp; &nbsp; int n=x+2 ; return n ;<br>} </span></td>		<td bgcolor="#b0a080"><span id="a125"><small>The
+ first part in red (which should go in a function like main() {...} ) 
+passes 5 to the "addTwo" function (outside of main() {...} !), which 
+then returns 5+2. Then z (in red), becomes 7 as a result. The int in 
+"int addTwo(" means that the type to churn out is an integer.</small></span></td> <td><span id="b125"><small>The
+ first part in red (which should go in a function like main() {...} ) 
+passes 5 to the "addTwo" function (outside of main() {...} !), which 
+returns 5+2. Then z (in red), becomes 7 as a result. The int in "int 
+addTwo(" means that the type to churn out is an integer.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a126"><font color="#c00000">myFunc(i,j);</font><br>void myFunc(int i, char j) {<br>&nbsp; &nbsp; i=5 ; int i2 = i;<br>}</span></td>		<td><span id="b126"><font color="#c00000">myFunc(i,j);</font><br>static void myFunc(int i, char j) {<br>&nbsp; &nbsp; i=5 ; int i2 = i;<br>}</span></td>		<td bgcolor="#b0a080"><span id="a127"><small>How
+ to pass 2 variables to a function (integer i and char j in this case). 
+Since the variables are not arrays, they are passed by <b>value</b> instead of reference. Therefore the vars inside the <b>"void myFunc(...)"</b> and <b>"{..}"</b> bits are completely separate from the i and j vars outside the function (including the caller bit: <b>"myFunc(...)"</b>). 'void' means that nothing is returned to the caller.</small></span></td> <td><span id="b127"><small>How
+ to pass 2 variables to a function (integer i and char j in this case). 
+Since the variables are not arrays, they are passed by <b>value</b> 
+instead of reference. Therefore the vars inside the "void myFunc(...)" 
+and "{..}" bits are completely separate from the i and j vars outside 
+the function (including the caller bit: "myFunc(...)"). 'void' means 
+that nothing is returned to the caller.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a128"><font color="#c00000">myFunc(&amp;i);</font><br>void myFunc(int *i) {<br>&nbsp; &nbsp; *i=5 ; int i2 = *i;<br>}</span></td>		<td><span id="b128">---</span></td>		<td bgcolor="#b0a080"><span id="a129"><small>Unlike
+ above, this time, the variable is passed by reference. This means that 
+the 'i' variable inside the function is the same as the 'i' variable 
+outside, and not a copy. In other words, actual changes to 'i' inside 
+the function affect 'i' globally. Inside, the * symbol is used to 
+'dereference' the variable, so we can work with it.</small></span></td> <td><span id="b129"><small>Java
+ does not support passing non-array variables by reference directly, but
+ a hack involves create a 1 element array, and using that instead.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a130"><font color="#c00000">myFunc(myIntArray);</font><br>void myFunc(int *array) {<br>&nbsp; &nbsp; array[5]=99;<br>}</span></td>		<td><span id="b130"><font color="#c00000">myFunc(myIntArray);</font><br>static void myFunc(int[] array) {<br>&nbsp; &nbsp; array[5]=99;<br>}</span></td>		<td bgcolor="#b0a080"><span id="a131"><small>Pass
+ an array to the function. Arrays are always passed by reference, so 
+changing "array" inside the function will change "myIntArray" outside.</small></span></td> <td><span id="b131"><small>Pass
+ an array to the function. Arrays are always passed by reference, so 
+changing array2d inside the function will change myIntArray outside.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a132"><font color="#c00000">myFunc(mystring,array2d);</font><br>void myFunc(char* data, char** data2) {<br>&nbsp; &nbsp; data[99]=5;<br>&nbsp; &nbsp; data2[99][99]=5;<br>} </span></td>		<td><span id="b132"><font color="#c00000">myFunc(mystring,array2d);</font><br>static void myFunc(char[] data, char[][] data2) {<br>&nbsp; &nbsp; data[99]=5;<br>&nbsp; &nbsp; data2[99][99]=5;<br>} </span></td>		<td bgcolor="#b0a080"><span id="a133"><small>How
+ to pass the 1D and 2D 'malloced' arrays to a function. By default, 
+arrays are passed by reference (see above for explanation).</small></span></td> <td><span id="b133"><small>How to pass the 1D and 2D arrays to a function. By default, arrays are passed by reference (see above for explanation). </small></span></td> </tr>
+
+
+<tr><td bgcolor="#b0a080"><span id="a134"><font color="#c00000">myFunc(ntype);</font><br>void func5(newtype in) {<br>&nbsp; &nbsp; in.strings[3][3]='z'; <br>&nbsp; &nbsp; data2[99][99]=5;<br>}  </span></td>		<td><span id="b134">---</span></td>		<td bgcolor="#b0a080"><span id="a135"><small>Pass
+ the ntype variable (type newtype) to the func5 function. The function 
+takes the passed variable, creates a copy of it, and inside the curly 
+brackets, gets the "strings" variable part of ntype, and changes one of 
+its chars.</small></span></td> <td><span id="b135"><small> ---</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a136"><font color="#c00000">myFunc(&amp;ntype);</font><br>void myFunc(newtype *in) {<br>&nbsp; &nbsp; (*in).strings[3][3]='z'; <br>&nbsp; &nbsp; data2[99][99]=5;<br>}</span></td>		<td><span id="b136">---</span></td>		<td bgcolor="#b0a080"><span id="a137"><small>Like above, but access the variable directly - don't make a copy.</small></span></td> <td><span id="b137"><small> ---</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a138"><font color="#c00000">myFunc(ntypeArray);</font><br>void myFunc(newtype *in) {<br>&nbsp; &nbsp; in[5].strings[3][3]='z'; <br>}</span></td>		<td><span id="b138">---</span></td>		<td bgcolor="#b0a080"><span id="a139"><small>Pass
+ a "newtype" array to the function. Just like when passing normal arrays
+ (like int[] and char[] ), by default, they are passed by reference.</small></span></td> <td><span id="b139"><small> ---</small></span></td> </tr>
+
+
+</tbody></table>
+
+
+<br><br>
+
+
+
+
+
+
+<a name="fileio">
+<center><h2 style="color:#0000c0">File opening, saving, etc.:</h2></center>
+
+
+<h3>Declaring Variables (for next section)</h3>
+
+<table style="background-color:#b0b0b0" id="w4" border="1" cellpadding="2" cellspacing="0">
+<tbody><tr><td bgcolor="#989898"><span id="a140"><b>C / C++<br><img src="Convert%20Java%20from_to%20C%20or%20C++.%20Join_copy%20int,string,char,array_files/invis.png" width="220"></b></span></td>		<td><span id="b140"><b>Java</b><img src="Convert%20Java%20from_to%20C%20or%20C++.%20Join_copy%20int,string,char,array_files/invis.png" width="180"></span></td>		<td bgcolor="#989898"><span id="a141"> <b>C/C++ explanation</b></span></td>       <td><span id="b141"> <b>Java explanation</b></span></td>   </tr>
+<tr><td bgcolor="#989898"><span id="a142"><small>FILE *fs = fopen("outputfile.txt", "w");<br>if (!fs) { printf("Can't write file"); exit(0); }</small></span></td>			<td><span id="b142"><small> File fs = new File("outputfile.txt");<br>	FileWriter fw = new FileWriter(fs);<br> BufferedWriter mywriter;<br>	mywriter = new BufferedWriter(fw);</small></span></td>		<td bgcolor="#989898"><span id="a143"><small>Create
+ file (on the hard disk usually) ready for writing to. Use "a" instead 
+of "w" for append instead. The second line just checks if the file could
+ be created.</small></span></td>            <td><span id="b143"><small>Create
+ file (on the hard disk usually) ready for writing to. The 
+BufferedWriter isn't strictly necessary, but speeds up the process of 
+writing considerably. Use <b>FileWriter(fs, true);</b> instead to append
+ data instead of overwrite it. Don't forget to allow for an IOException 
+throw (i.e. by wrapping it in a try/catch block, or putting "throws 
+IOException" right next to the method declaration).</small></span></td> </tr>
+<tr><td bgcolor="#989898"><span id="a144"><small>FILE *fl = fopen("input.txt", "r");  <br>if (!fl) { printf("Can't open file"); exit(0); }<br> <font color="#008000">char *array=(char *)malloc(getSize(fl));<br>fread(array, 1, getSize(fl), fl);<br>rewind(fl);</font></small></span></td>			<td><span id="b144">   <small>File fl = new File("input.txt");<br>FileReader fis;<br>fis = new FileReader(fl);<br>BufferedReader myreader;<br>myreader = new BufferedReader(fis);<br><font color="#008000">byte[] array=new byte[(int)fl.length()];<br>fis.read(array);</font></small>   </span></td>		<td bgcolor="#989898"><span id="a145"><small>Prepare
+ a file ready for reading. The second line makes sure the file exists. 
+This is now ready for use. However, if you want super fast memory 
+access, then the green part comes in handy. The first green line creates
+ an array ready for the file to be transferred, and the second, 
+transfers it (getSize() is a custom function - see below). Finally, the 
+rewind function rewinds the file position indicator back to the start of
+ the file.</small></span></td>            <td><span id="b145"><small>Prepare
+ a file ready for reading. The BufferedReader part isn't strictly 
+necessary, but speeds up the reading process significantly. This is now 
+ready for use. However, if you want super fast memory access, then the 
+green part comes in handy. The first green line creates an array ready 
+for the file to be transferred, and the final line transfers it.</small></span></td> </tr>
+<tr><td bgcolor="#989898"><span id="a146"><small>int getSize(FILE* fin)  { fseek(fin,0,2); int size=ftell(fin); rewind(fin); return size; }</small></span></td>			<td><span id="b146"> fl.length()</span></td>		<td bgcolor="#989898"><span id="a147"><small>Useful function to retrieve the size of a file.</small></span></td>   <td><span id="b147"><small>Retrieve the size of a file (fl was declared above).</small></span></td>  </tr>
+
+<tr><td bgcolor="#989898"><span id="a192"><small>FILE *vFile1 = fopen ("myfile.bin","wb");<br>FILE *vFile2 = fopen ("myfile.bin","rb");</small></span></td>			<td><span id="b192">...</span></td>		<td bgcolor="#989898"><span id="a193"><small>Declaring write and read files ready for binary writing to a file named "myfile.bin".</small></span></td>   <td><span id="b193"><small>...</small></span></td>  </tr>
+
+	
+	
+
+</tbody></table>
+
+
+
+
+
+
+
+
+
+<br><br>
+
+<h3>The commands below rely on the variables as declared above, and should go into a function (eg: main)</h3>
+
+
+<table style="background-color:#c0b090" id="w5" border="1" cellpadding="2" cellspacing="0">
+<tbody><tr><td bgcolor="#b0a080"><span id="a148"><b>C / C++<br><img src="Convert%20Java%20from_to%20C%20or%20C++.%20Join_copy%20int,string,char,array_files/invis.png" width="260"></b></span></td>		<td><span id="b148"><b>Java</b><img src="Convert%20Java%20from_to%20C%20or%20C++.%20Join_copy%20int,string,char,array_files/invis.png" width="120"></span></td>		<td bgcolor="#b0a080"><span id="a149"> <b>C/C++ explanation</b></span></td>       <td><span id="b149"> <b>Java explanation</b></span></td>   </tr>
+<tr><td bgcolor="#b0a080"><span id="a150"> char ch = array[100];</span></td>			<td><span id="b150"> char ch = array[100];</span></td>		<td bgcolor="#b0a080"><span id="a151"><small>If
+ the green section was included above, then this will read one character
+ from the array (which has the file data in!) and put it into ch.</small></span></td>            <td><span id="b151"><small>If
+ the green section was included above, then this will read one character
+ from the array (which has the file data in!) and put it into ch.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a152"> char ch = fgetc(fl);</span></td>			<td><span id="b152"> char ch = myreader.read();</span></td>		<td bgcolor="#b0a080"><span id="a153"><small>If
+ you didn't want to create a massive array to put the file data in (i.e.
+ you excluded the green code), then this command will read characters 
+directly from the file. After each fget, the file position indicator is 
+advanced ready to read the next character.</small></span></td>            <td><span id="b153"><small>If
+ you didn't want to create a massive array to put the file data in (i.e.
+ you excluded the green code), then this command will read characters 
+directly from the file. As it is, it will return ints, so put "(char)" 
+in front of "myreader.read()" to return chars. After each read(), the 
+file position indicator is advanced ready to read the next character.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a154"> bool b = fgets (mystring , 10000 , fl);</span></td>			<td><span id="b154"> String s=myreader.readLine();</span></td>		<td bgcolor="#b0a080"><span id="a155"><small>Like
+ above, but reads a whole line from the file instead of just a single 
+character. The first argument (mystring) is the string (char array) 
+which to write to. The second is the maximum amount of characters 
+allowed before cutoff, and the third is the file from which to read the 
+line from. bool b just returns whether the operation was successful 
+(useful for end of file checking etc.)</small></span></td>            <td><span id="b155"><small>Like
+ above, but reads a whole line from the file instead of just a single 
+character. If the end of the file is reached, then readLine returns 
+null.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a156"> fputs("Hello", fs);</span></td>			<td><span id="b156">mywriter.write("Hello");</span></td>		<td bgcolor="#b0a080"><span id="a157"><small>The
+ fputs command appends a string to the file. Also, the fclose function 
+(see below) makes the file available for the OS to use. You might want 
+to try: <i>fwrite("Hello",1, sizeof("Hello"), fs);</i> instead if you 
+have problems (i.e. if you want to write zeros to a file). The 1 
+represents the size of the variable type (char = 1 byte), and 
+sizeof(hello) is how many elements there are in "hello".</small></span></td>            <td><span id="b157"><small>The
+ write command writes a string to the file. Finally, the close function 
+(see below) makes the file available for the OS to use.</small></span></td> </tr>
+
+<tr><td bgcolor="#b0a080"><span id="a194"> fprintf(fs,"%s %f %i","Hello",1.7,2);</span></td>			<td><span id="b194">...</span></td>		<td bgcolor="#b0a080"><span id="a195"><small>Similar
+ to above, but works more in line with the printf syntax. Nice and 
+flexible, since floats etc. can be printed as chars too (without going 
+through intial conversion).</small></span></td>            <td><span id="b195"><small>...</small></span></td> </tr>
+
+
+<tr><td bgcolor="#b0a080"><span id="a158"> fclose(fs); </span></td>			<td><span id="b158"> mywriter.close();</span></td>		<td bgcolor="#b0a080"><span id="a159"><small>Close file to release to the OS, making it ready to use.</small></span></td>            <td><span id="b159"><small>Close file to release to the OS, making it ready to use.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a160"> fseek(fl, 100, 0);</span></td>			<td><span id="b160"> ---</span></td>		<td bgcolor="#b0a080"><span id="a161"><small>Move the file position indicator to the 100th character of the file.</small></span></td>            <td><span id="b161"><small>---</small></span></td> </tr>
+
+
+<tr><td bgcolor="#b0a080"><span id="a190"> <small>
+fwrite(&amp;i, sizeof(int), 1, vFile1);<br>
+fwrite(mystring, sizeof(char), 20, vFile1);<br>
+for(int n=0; n&lt;6; n++)<br>
+ &nbsp; { fwrite(array2d[n], sizeof(float), 4, vFile1);}<br>
+fclose (vFile1);<br><br>
+// At this point, the file of variable data is on<br>
+// hard drive, ready for use another day.<br><br>
+fread (&amp;i, sizeof(int), 1, vFile2);<br>
+fread (mystring, sizeof(char), 20, vFile2);<br>
+for(int n=0; n&lt;6; n++)<br>
+ &nbsp; {fread(array2d[n], sizeof(float), 4, vFile2);}<br><br>
+// Now you can do stuff with<br>
+// i, mystring[] and array2d[][]<br><br>
+fclose(vFile2);	&nbsp; &nbsp; // Finally, close the file.</small></span></td>			<td><span id="b190"> ...</span></td>		<td bgcolor="#b0a080"><span id="a191"><small>Write
+ variable data (like integers, arrays or strings) to a file, ready to 
+load back another time. In our case, "i" is a singler integer, 
+"mystring" is a 20 char string (i.e a 1d array of chars), and "array2d" 
+DESPITE POSSIBLE APPEARANCES TO THE CONTRARY, is a 2D array of floats 
+(6x4 elements).<br><br>
+Once we have used fwrite to write the variables to a file, we can later 
+use fread to load them back in again at a later time (even from another 
+run of the program).<br><br>
+The first parameter in fwrite (or fread) is the pointer to the data, the
+ 2nd is the type size, the 3rd is the number of elements to write, and 
+the 4th is the FILE pointer (declared earlier).<br><br>
+(Note that we haven't declared the variables (i, mystring, and array2d), or put anything inside them - that's up to you).<br><br>
+</small></span></td>            <td><span id="b191"><small>...</small></span></td> </tr>
+
+
+
+
+
+
+</tbody></table>
+
+
+
+
+<br><br>
+
+
+
+</a><a name="math">
+</a><center><a name="math"><h2 style="color:#0000c0">Math functions:</h2>
+</a><a href="http://www.cppreference.com/stdmath/all.html">See the cppreference.com site for more maths functions.</a></center><br>
+
+<table style="background-color:#c0b090" id="w6" border="1" cellpadding="2" cellspacing="0">
+<tbody><tr><td bgcolor="#b0a080"><span id="a164"><b>C / C++<br></b></span></td>		<td><span id="b164"><b>Java</b></span></td>		<td bgcolor="#b0a080"><span id="a165"> <b>C/C++ explanation</b></span></td>       <td><span id="b165"> <b>Java explanation</b></span></td>   </tr>
+<tr><td bgcolor="#b0a080"><span id="a166">int i = abs(-20);</span></td>	<td><span id="b166">int i = Math.abs(-20);</span></td>	<td bgcolor="#b0a080"><span id="a167"><small>Calculate the absolute value (turns negative numbers to positive.</small></span></td>  <td><span id="b167"><small>Calculate the absolute value (turns negative numbers to positive.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a168">double d = pow(3.0, 7.5);</span></td>	<td><span id="b168">double d = Math.pow(3, 7.5);</span></td>	<td bgcolor="#b0a080"><span id="a169"><small>Calculate 3 to the power of 7.5</small></span></td>  <td><span id="b169"><small>Calculate 3 to the power of 7.5</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a170">double d = sin(50.0);</span></td>	<td><span id="b170">double d = Math.sin(50);</span></td>	<td bgcolor="#b0a080"><span id="a171"><small>Calculate the sine of 50 (in radians). Use 50*pi/180 instead to get degrees.</small></span></td>  <td><span id="b171"><small>Calculate the sine of 50 (in radians). Use 50*pi/180 instead to get degrees.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a172">double d = cos(50.0);</span></td>	<td><span id="b172">double d = Math.cos(50);</span></td>	<td bgcolor="#b0a080"><span id="a173"><small>Calculate the sine of 50 (in radians). Use 50*pi/180 instead to get degrees.</small></span></td>  <td><span id="b173"><small>Calculate the sine of 50 (in radians). Use 50*pi/180 instead to get degrees.</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a174">double d = sqrt(50.0);</span></td>	<td><span id="b174">double d = Math.sqrt(50);</span></td>	<td bgcolor="#b0a080"><span id="a175"><small>Calculate the square root</small></span></td>  <td><span id="b175"><small>Calculate the square root</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a176">double d = tan(50.0);</span></td>	<td><span id="b176">double d = Math.tan(50);</span></td>	<td bgcolor="#b0a080"><span id="a177"><small>Calculate the tangent</small></span></td>  <td><span id="b177"><small>Calculate the tangent</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a178">double d = atan(50.0);</span></td>	<td><span id="b178">double d = Math.atan(50);</span></td>	<td bgcolor="#b0a080"><span id="a179"><small>Calculate the inverse tangent</small></span></td>  <td><span id="b179"><small>Calculate the inverse tangent</small></span></td> </tr>
+<tr><td bgcolor="#b0a080"><span id="a180">double d = log(32.0)/log(2.0);</span></td>	<td><span id="b180">double d = Math.log(32.0)/Math.log(2.0);</span></td>	<td bgcolor="#b0a080"><span id="a181"><small>Calculate the base 2 logarithm of 32 (which is 5).</small></span></td>  <td><span id="b181"><small>Calculate the base 2 logarithm of 32 (which is 5).</small></span></td> </tr>
+
+</tbody></table>
+
+<br><br>
+
+
+<!--
+</pre><h3>Clock test - great for testing the speed of your code</h3><pre>
+struct timeb timef; ftime (&timef);  long startTime = timef.time * 1000 + timef.millitm;                                           // Start clock
+ftime (&timef);	                     long endTime   = timef.time * 1000 + timef.millitm;  printf("Time: %d ms",endTime-startTime); // End clock
+-->
+
+
+
+
+
+<table style="margin-right:10" align="right"><tbody><tr><td>
+<script type="text/javascript"><!--
+google_ad_client = "pub-4983673227954584";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="5134766604";
+google_color_border = "6699CC";
+google_color_bg = "003366";
+google_color_link = "FFFFFF";
+google_color_text = "AECCEB";
+google_color_url = "AECCEB";
+//--></script>
+<script type="text/javascript" src="Convert%20Java%20from_to%20C%20or%20C++.%20Join_copy%20int,string,char,array_files/show_ads.js">
+</script>
+</td></tr></tbody></table>
+
+<a name="specialchars"></a>
+<h2 style="color:#0000c0">Special characters for use in strings</h2><pre>\n	Newline	
+\?	Question mark	
+\'	Single quote	
+\"	Double quote
+\t	Horizontal tab
+\a	Bell (alert)	
+\b	Backspace	
+\\	Backslash
+</pre>
+
+
+
+
+
+
+<h2 style="color:#0000c0">links</h2>
+</li><li><a href="http://www.jazillian.com/whitepapers.html">Jazillion - includes links and an excellent guide to convert from C to Java.</a>
+</li><li><a href="http://c-faq.com/">Frequently Asked Questions on C</a>
+</li><li><a href="http://irc.essex.ac.uk/www.iota-six.co.uk/c/">Eddie's basic guide to C programming</a>
+</li><li><a href="http://c-faq.com/%7Escs/cclass/notes/top.html">C Programming Notes</a>
+</li><li><a href="http://groogle.sourceforge.net/">Groogle</a> - A web based peer code review tool providing a range of features aimed at easing the code review process.
+
+<br><br><br>
+
+<center><big><b>
+Found this site of use, or want to say something? Please <a href="http://www.skytopia.com/email.html">email me</a>
+</b></big></center>
+
+<br><br>
+
+
+<!--
+// Useful - gets notation so all numbers are the same length for fixed fonts
+	static String numberTruncate(double n) {
+		int newlength=5;
+		String s = String.valueOf(n);
+		int oldlength=s.length();
+		if (oldlength < newlength) {
+			for (int t=0 ; t<newlength-oldlength ; t++) s+="0";
+			return s;
+		}
+		else {
+			return s.substring(0, newlength);
+		}
+	}
+-->
+
+
+
+<!--
+http://www.cs.umbc.edu/courses/undergraduate/201/fall06/lectures/pointerstopointers/2darray.shtml
+
+http://www.cplusplus.com/ref/
+http://www.horstmann.com/ccj2/ccjapp3.html
+http://www.knosof.co.uk/ctojava.html
+http://www.cprogramming.com/begin.html
+http://www.opengroup.org/onlinepubs/009695399/basedefs/math.h.html - maths
+http://cplus.about.com/od/cprogrammingtips/l/aa041403a.htm - random numbers 1
+http://www.thinkage.ca/english/gcos/expl/c/lib/rand.html - random numbers
+http://krtkg1.rug.ac.be/~colle/C/array_vs_pointers.html 
+http://irc.essex.ac.uk/www.iota-six.co.uk/c/g6_strcat_strncat.asp - string concatenation
+http://www.thinkage.ca/english/gcos/expl/c/lib/fopen.html - file open types
+http://www.themost.org/courses/langs/eoc/lessons/eoc_09.html - file IO
+http://www.faqfarm.com/Q/What_is_the_difference_between_malloc_and_calloc_functions
+http://cboard.cprogramming.com/archive/index.php/t-61553.html - return char arrays
+http://www.cs.northwestern.edu/~agupta/cs340/project2/c++reference.htm - summary
+
+
+
+array[7]=96;                                  same as   *(array+7)=96;            (pointer arithmetic equivalent)
+array=(int*)malloc(length*sizeof(int));       same as   array=new int[length];    (c++ equivalent)
+
+
+
+=====================
+
+NOT EQUIVALENT!!!!:
+char**visited;   visited=(char**)malloc(historyBuffer*sizeof(char**));      for (int q=0; q<historyBuffer;q++) { visited[q]=(char*)malloc(historyStringLength); }
+
+char*visited[historyBuffer]; for (int q=0;q<historyBuffer;q++) { visited[q]=(char*)malloc(historyStringLength); }
+
+char**visited;   visited=        malloc(historyBuffer*sizeof(char*));	    for (int q=0; q < historyBuffer; q++)  visited[q] = malloc(historyStringLength * sizeof(char));
+
+
+
+
+%s	Display a string. The argument is a pointer to char. Characters are displayed until a null character is encountered or the number of characters specified by precision (which defaults to 32767) is displayed. The terminating null character is not output.	
+%c	Display a single character (the argument gives the character's ASCII code).	
+%d, %i	Display a signed integer in decimal notation.	
+%f	Display a float or double in decimal notation (for example, 123.45 is displayed as 123.450000). Six digits are displayed to the right of the decimal point unless another precision is specified.	
+%.2f	Same as above, but with only two decimal places.
+%u	Display an unsigned integer in decimal notation.	
+%o	Display an integer in unsigned octal notation.	
+%x, %X	Display an integer in unsigned hexadecimal notation. Use x for lowercase output and X for uppercase output.	
+%e, %E	Display a float or double in scientific notation (for example, 123.45 is displayed as 1.234500e+002). Six digits are displayed to the right of the decimal point unless another precision is specified with the f specifier. Use e or E to control the case of output.	
+%g, %G	Use e, E, or f format. The e or E format is used if the exponent is less than -3 or greater than the precision (which defaults to 6). f format is used otherwise. Trailing zeros are truncated.	
+%n	Nothing is displayed. The argument corresponding to an n conversion command is a pointer to type int. The printf() function assigns to this variable the number of characters output so far.	
+%	Display the % character.
+
+
+
+
+
+	char ch[200];
+	FILE *fp = fopen("testc.txt", "r");
+	for (int n=0; n<3; n++ ) fscanf(fp,"%c", ch[n]);
+
+
+
+
+
+=====================================
+
+// example 1:
+int ARRAY[100];
+  for (int i=0; i <  100; i++)
+printf("element = %i\n", ARRAY[i]);
+
+
+// example 2:
+int ARRAY[100];
+for (int i=0, int *element=ARRAY; i <  100; i++, element++)
+  printf("element = %i\n", *element);
+
+// example 3 (magicfruit's)
+int ARRAY[100];
+for (int *element=&ARRAY[0]; element != &ARRAY[100], ++element)
+  printf("element = %i\n", *element);
+}
+
+=======================================
+
+-->
+
+
+
+<hr><br>
+
+
+
+
+
+
+<a href="http://www.skytopia.com/index.html">Skytopia</a> &gt; <a href="http://www.skytopia.com/project/articles/articles.html">Articles</a> &gt; Quick reference to the most common commands used in C/C++ and Java<small>   &nbsp; &nbsp;(article <a href="http://www.skytopia.com/project/articles/compsci/c-help.html">first created 05/07/2006</a> and heavily updated 01/09/2006).</small><br><br>
+
+<br><br>
+<center>
+<img src="Convert%20Java%20from_to%20C%20or%20C++.%20Join_copy%20int,string,char,array_files/skytopia3a.jpg" usemap="#back" border="0">
+<map name="back">
+<area shape="rect" coords="12,12,112,60" href="http://www.skytopia.com/project/articles/articles.html">
+<area shape="rect" coords="192,12,292,60" href="http://www.skytopia.com/index.html">
+</map>
+<br><br>
+<small><small><small>
+This page is copyright 2006 onwards Daniel White.<br>
+If you wish to duplicate any of the information from this page, please <a href="http://www.skytopia.com/email.html">contact me</a> for permission.<br>
+</small></small></small>
+
+
+
+
+<img src="Convert%20Java%20from_to%20C%20or%20C++.%20Join_copy%20int,string,char,array_files/skytopia.png">
+<script language="JavaScript">
+<!--
+document.write("<IMG SRC=\"/cgi-bin/axs/ax.pl?trans.gif&ref=");
+document.write(document.referrer);
+document.write("\" HEIGHT=1 WIDTH=1>");
+// -->
+</script><img src="Convert%20Java%20from_to%20C%20or%20C++.%20Join_copy%20int,string,char,array_files/ax.gif" height="1" width="1"><noscript>
+<IMG SRC="/cgi-bin/axs/ax.pl?trans.gif" HEIGHT="1" WIDTH="1">
+</noscript>
+
+
+
+
+<!--
+
+%d or %i for decimal, %o for octal, %x or %X for hex
+
+
+
+Excluded, but may be useful:
+<tr><td><span id="a55"> time_t mytime = time(0);<br>strcpy(mystring, asctime(localtime(&mytime)));</span></td>  <td><span id="b95"> ?</span></td>    <td> Assign to mystring, the local date and time in ascii format.</td>    <td><span id="b96"><small> ?</small></span></td> </tr>
+
+
+	millisec = ( float )( end - start ) / ( ( float )CLOCKS_PER_SEC / 1000 );
+
+
+	c split?:
+	strtok(str, "-");
+
+
+
+	The String.indexOf() method returns the index of the given character or String (or -1 if it's not found): 
+	String s = "abcd";
+	int i = s.indexOf('b');    // returns 1
+
+
+
+--------------------------------------------------------
+
+// pass a function to a function
+
+#include <stdio.h>
+
+int add3(int n) {
+	return n+3;
+}
+int add4(int n) {
+	return n+4;
+}
+int add( int(*func)(int n) ) {
+	return 100+func(10);
+}
+
+int main(int argc, char *argv[])
+{
+	printf("add %i\n",add(add3));
+	
+	return 0;
+}
+
+
+
+//double* aSearch
+
+
+
+-->
+</center></li></div></body></html>
