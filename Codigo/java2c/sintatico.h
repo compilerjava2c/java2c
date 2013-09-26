@@ -71,7 +71,9 @@
      EPARENTHESES = 289,
      COMMA = 290,
      DOT = 291,
-     SEMICOLON = 292
+     SEMICOLON = 292,
+     CLASSPATH = 293,
+     PARAMETER = 294
    };
 #endif
 

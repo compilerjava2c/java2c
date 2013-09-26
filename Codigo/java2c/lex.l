@@ -49,6 +49,10 @@ print			return PRINTTOK;
 ,			return COMMA;
 .			return DOT;
 ;                       return SEMICOLON;
+
+CLASSPATH		return CLASSPATH;
+PARAMETER		return PARAMETER;
+
 \n                      /* ignore EOL */;
 
 [ \t]+                  /* ignore whitespace */;
