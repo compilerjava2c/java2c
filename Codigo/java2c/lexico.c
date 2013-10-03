@@ -989,12 +989,12 @@ return EBRACKET;
 case 31:
 YY_RULE_SETUP
 #line 46 "lex.l"
-return OPARENTHESES;
+return LPARENTHESES;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 47 "lex.l"
-return EPARENTHESES;
+return RPARENTHESES;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP

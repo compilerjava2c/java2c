@@ -6,7 +6,7 @@
 %%
 
 int                     return INTTOK;
-String			return STRINGTOK;
+{ STRING } { strcpy(buffer,yytext); return STRINGTOK;
 char			return CHARTOK;
 boolean			return BOOLEANTOK;
 constant		return CONSTANTTOK;
@@ -49,6 +49,15 @@ print			return PRINTTOK;
 ,			return COMMA;
 .			return DOT;
 ;                       return SEMICOLON;
+\<			return LESS;
+\>			return GREATER;
+"<="		    	return LESSEQUAL;
+">="		   	return GREATEREQUAL;
+"=="		    	return EQUALS;
+"!="		    	return NEGATION;
+"&&"		    	return AND;
+"||"		    	return OR;
+
 
 CLASSPATH		return CLASSPATH;
 PARAMETER		return PARAMETER;
@@ -57,4 +66,15 @@ PARAMETER		return PARAMETER;
 
 [ \t]+                  /* ignore whitespace */;
 
+%%
+int main()
+{
+	yyparse();
+
+}
+
+int yyerror(char* s)
+{
+	printf("%s\n", s);
+}
 %%

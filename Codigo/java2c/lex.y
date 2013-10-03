@@ -49,6 +49,14 @@
 %token COMMA
 %token DOT
 %token SEMICOLON
+%token LESS
+%token GREATER
+%token LESSEQUAL
+%token GREATEREQUAL
+%token EQUALS
+%token NEGATION
+%token AND
+%token OR
 
 %token CLASSPATH
 %token PARAMETER
@@ -83,5 +91,19 @@ class:
 	//metodo1(1,2);
 		class_path_list "(" parameters_list ")"; 
 ;
+
+
+for_stmt: FORTOK OPARENTHESES STRINGTOK EPARENTHESES
+	{
+	
+		printf ("--------------Convertendo--------------\n");
+		printf ("for(%s)\n",buffer);
+
+	}
+while_stmt: WHILETOK OPARENTHESES STRINGTOK EPARENTHESES
+	{
+		printf ("--------------Convertendo--------------\n");
+		printf ("while()\n");
+	}
 
 %%

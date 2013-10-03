@@ -72,8 +72,16 @@
      COMMA = 290,
      DOT = 291,
      SEMICOLON = 292,
-     CLASSPATH = 293,
-     PARAMETER = 294
+     LESS = 293,
+     GREATER = 294,
+     LESSEQUAL = 295,
+     GREATEREQUAL = 296,
+     EQUALS = 297,
+     NEGATION = 298,
+     AND = 299,
+     OR = 300,
+     CLASSPATH = 301,
+     PARAMETER = 302
    };
 #endif
 
