@@ -92,8 +92,20 @@ class:
 		class_path_list "(" parameters_list ")"; 
 ;
 
+comparador:
+		
+;
 
-for_stmt: FORTOK OPARENTHESES STRINGTOK EPARENTHESES
+argument:
+		STRINGTOK comparador argument_list
+		
+;
+
+argument_list:
+		 argument
+;
+
+for_stmt: FORTOK OPARENTHESES argument EPARENTHESES
 	{
 	
 		printf ("--------------Convertendo--------------\n");
