@@ -1,0 +1,34 @@
+SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK OPARENTHESES QUOTE String QUOTE EPARENTHESES
+
+fprintf(arq,"printf(\"%s\");",str1);
+
+teste:
+	| String
+{
+printf("reconheceu");			
+}
+
+	teste |
+
+
+doubletype:
+	DOUBLE NAME
+{
+printf("DOUBLE NAME reconhecido");
+}
+;
+
+chartype:
+	CHAR NAME
+{
+printf("CHAR NAME reconhecido");
+}
+;
+
+floattype:
+	FLOAT NAME
+{
+printf("FLOAT NAME reconhecido");
+}
+;
+

@@ -1,0 +1,360 @@
+Terminals unused in grammar
+
+   QUOTE
+
+
+State 0 conflicts: 1 reduce/reduce
+
+
+Grammar
+
+    0 $accept: inicio $end
+
+    1 inicio: print
+    2       | teste
+    3       | inttype
+    4       | doubletype
+    5       | chartype
+    6       | floattype
+
+    7 print: /* empty */
+    8      | SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK OPARENTHESES String EPARENTHESES
+
+    9 $@1: /* empty */
+
+   10 String: QUOTEDTEXT $@1 String
+   11       | /* empty */
+
+   12 $@2: /* empty */
+
+   13 teste: QUOTEDTEXT $@2 teste
+   14      | /* empty */
+
+   15 $@3: /* empty */
+
+   16 inttype: INT NAME $@3 inttype
+   17        | /* empty */
+
+   18 doubletype: DOUBLE NAME
+
+   19 chartype: CHAR NAME
+
+   20 floattype: FLOAT NAME
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+SYSTEMTOK (258) 8
+OUTTOK (259) 8
+PRINTLNTOK (260) 8
+QUOTE (261)
+INT (262) 16
+DOUBLE (263) 18
+CHAR (264) 19
+FLOAT (265) 20
+NAME (266) 16 18 19 20
+QUOTEDTEXT (267) 10 13
+DOT (268) 8
+OPARENTHESES (269) 8
+EPARENTHESES (270) 8
+
+
+Nonterminals, with rules where they appear
+
+$accept (16)
+    on left: 0
+inicio (17)
+    on left: 1 2 3 4 5 6, on right: 0
+print (18)
+    on left: 7 8, on right: 1
+String (19)
+    on left: 10 11, on right: 8 10
+$@1 (20)
+    on left: 9, on right: 10
+teste (21)
+    on left: 13 14, on right: 2 13
+$@2 (22)
+    on left: 12, on right: 13
+inttype (23)
+    on left: 16 17, on right: 3 16
+$@3 (24)
+    on left: 15, on right: 16
+doubletype (25)
+    on left: 18, on right: 4
+chartype (26)
+    on left: 19, on right: 5
+floattype (27)
+    on left: 20, on right: 6
+
+
+state 0
+
+    0 $accept: . inicio $end
+
+    SYSTEMTOK   shift, and go to state 1
+    INT         shift, and go to state 2
+    DOUBLE      shift, and go to state 3
+    CHAR        shift, and go to state 4
+    FLOAT       shift, and go to state 5
+    QUOTEDTEXT  shift, and go to state 6
+
+    $end      reduce using rule 7 (print)
+    $end      [reduce using rule 14 (teste)]
+    $end      [reduce using rule 17 (inttype)]
+    $default  reduce using rule 7 (print)
+
+    inicio      go to state 7
+    print       go to state 8
+    teste       go to state 9
+    inttype     go to state 10
+    doubletype  go to state 11
+    chartype    go to state 12
+    floattype   go to state 13
+
+
+state 1
+
+    8 print: SYSTEMTOK . DOT OUTTOK DOT PRINTLNTOK OPARENTHESES String EPARENTHESES
+
+    DOT  shift, and go to state 14
+
+
+state 2
+
+   16 inttype: INT . NAME $@3 inttype
+
+    NAME  shift, and go to state 15
+
+
+state 3
+
+   18 doubletype: DOUBLE . NAME
+
+    NAME  shift, and go to state 16
+
+
+state 4
+
+   19 chartype: CHAR . NAME
+
+    NAME  shift, and go to state 17
+
+
+state 5
+
+   20 floattype: FLOAT . NAME
+
+    NAME  shift, and go to state 18
+
+
+state 6
+
+   13 teste: QUOTEDTEXT . $@2 teste
+
+    $default  reduce using rule 12 ($@2)
+
+    $@2  go to state 19
+
+
+state 7
+
+    0 $accept: inicio . $end
+
+    $end  shift, and go to state 20
+
+
+state 8
+
+    1 inicio: print .
+
+    $default  reduce using rule 1 (inicio)
+
+
+state 9
+
+    2 inicio: teste .
+
+    $default  reduce using rule 2 (inicio)
+
+
+state 10
+
+    3 inicio: inttype .
+
+    $default  reduce using rule 3 (inicio)
+
+
+state 11
+
+    4 inicio: doubletype .
+
+    $default  reduce using rule 4 (inicio)
+
+
+state 12
+
+    5 inicio: chartype .
+
+    $default  reduce using rule 5 (inicio)
+
+
+state 13
+
+    6 inicio: floattype .
+
+    $default  reduce using rule 6 (inicio)
+
+
+state 14
+
+    8 print: SYSTEMTOK DOT . OUTTOK DOT PRINTLNTOK OPARENTHESES String EPARENTHESES
+
+    OUTTOK  shift, and go to state 21
+
+
+state 15
+
+   16 inttype: INT NAME . $@3 inttype
+
+    $default  reduce using rule 15 ($@3)
+
+    $@3  go to state 22
+
+
+state 16
+
+   18 doubletype: DOUBLE NAME .
+
+    $default  reduce using rule 18 (doubletype)
+
+
+state 17
+
+   19 chartype: CHAR NAME .
+
+    $default  reduce using rule 19 (chartype)
+
+
+state 18
+
+   20 floattype: FLOAT NAME .
+
+    $default  reduce using rule 20 (floattype)
+
+
+state 19
+
+   13 teste: QUOTEDTEXT $@2 . teste
+
+    QUOTEDTEXT  shift, and go to state 6
+
+    $default  reduce using rule 14 (teste)
+
+    teste  go to state 23
+
+
+state 20
+
+    0 $accept: inicio $end .
+
+    $default  accept
+
+
+state 21
+
+    8 print: SYSTEMTOK DOT OUTTOK . DOT PRINTLNTOK OPARENTHESES String EPARENTHESES
+
+    DOT  shift, and go to state 24
+
+
+state 22
+
+   16 inttype: INT NAME $@3 . inttype
+
+    INT  shift, and go to state 2
+
+    $default  reduce using rule 17 (inttype)
+
+    inttype  go to state 25
+
+
+state 23
+
+   13 teste: QUOTEDTEXT $@2 teste .
+
+    $default  reduce using rule 13 (teste)
+
+
+state 24
+
+    8 print: SYSTEMTOK DOT OUTTOK DOT . PRINTLNTOK OPARENTHESES String EPARENTHESES
+
+    PRINTLNTOK  shift, and go to state 26
+
+
+state 25
+
+   16 inttype: INT NAME $@3 inttype .
+
+    $default  reduce using rule 16 (inttype)
+
+
+state 26
+
+    8 print: SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK . OPARENTHESES String EPARENTHESES
+
+    OPARENTHESES  shift, and go to state 27
+
+
+state 27
+
+    8 print: SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK OPARENTHESES . String EPARENTHESES
+
+    QUOTEDTEXT  shift, and go to state 28
+
+    $default  reduce using rule 11 (String)
+
+    String  go to state 29
+
+
+state 28
+
+   10 String: QUOTEDTEXT . $@1 String
+
+    $default  reduce using rule 9 ($@1)
+
+    $@1  go to state 30
+
+
+state 29
+
+    8 print: SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK OPARENTHESES String . EPARENTHESES
+
+    EPARENTHESES  shift, and go to state 31
+
+
+state 30
+
+   10 String: QUOTEDTEXT $@1 . String
+
+    QUOTEDTEXT  shift, and go to state 28
+
+    $default  reduce using rule 11 (String)
+
+    String  go to state 32
+
+
+state 31
+
+    8 print: SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK OPARENTHESES String EPARENTHESES .
+
+    $default  reduce using rule 8 (print)
+
+
+state 32
+
+   10 String: QUOTEDTEXT $@1 String .
+
+    $default  reduce using rule 10 (String)

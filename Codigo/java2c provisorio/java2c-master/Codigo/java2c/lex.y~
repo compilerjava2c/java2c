@@ -1,0 +1,54 @@
+%{
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "sintatico.c"
+FILE *arq;
+
+%}
+
+%token SYSTEMTOK 				
+%token OUTTOK 						
+%token PRINTLNTOK 					
+%token QUOTE 			
+%token NAME
+%token DOT
+%token OPARENTHESES
+%token EPARENTHESES
+
+%%
+
+print:
+	| SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK OPARENTHESES QUOTE NAME QUOTE EPARENTHESES
+{
+printf("printf reconhecido");
+fprintf("");
+}
+
+%%
+
+int yywrap(){
+	return 0;
+}
+
+int yyerror(char *s){
+	printf("%s\n", s);
+}
+
+int main(void){
+	
+	arq = fopen ("teste.c","w")//criar arquivo com permissão de escrita
+	fflush (arq);//limpa o buffer 
+	
+	fprintf(arq, "#include <stdio.h> \n");
+	fprintf(arq, "#include <stdio.h> \n");
+	fprintf(arq, "int main (){ \n");
+
+	yyparse();
+
+	fprintf(arq, "}");
+
+	fclose(arq);//nao pode mais escrever
+
+}
+

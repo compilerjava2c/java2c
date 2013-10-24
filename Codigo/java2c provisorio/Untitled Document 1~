@@ -1,0 +1,11 @@
+SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK OPARENTHESES QUOTE String QUOTE EPARENTHESES
+
+fprintf(arq,"printf(\"%s\");",str1);
+
+teste:
+	| String
+{
+printf("reconheceu");			
+}
+
+	teste |
