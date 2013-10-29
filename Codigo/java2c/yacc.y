@@ -18,6 +18,7 @@ FILE *arq;
 %token NAME
 %token QUOTEDTEXT
 %token DOT
+%token COMMA
 %token OPARENTHESES
 %token EPARENTHESES
 
@@ -31,6 +32,7 @@ char buffer [1000];
 inicio:
 	print
 	| teste
+	| ready_parameters_list
 	| parameters_list
 	| parameters
 	| type
@@ -69,12 +71,29 @@ teste:
 	teste |
 ;
 
+/*
 parameters_list:
 	OPARENTHESES parameters EPARENTHESES
 	{
 	printf("parameter list reconhecido\n");
 	}
 	|OPARENTHESES parameters_list ',' parameters EPARENTHESES
+	{
+	printf("multiple parameter list reconhecido\n");
+	}
+;
+*/
+
+ready_parameters_list:
+	OPARENTHESES parameters_list EPARENTHESES
+;
+
+parameters_list:
+	parameters
+	{	
+	printf("parameter list reconhecido\n");
+	}	
+	| parameters_list COMMA parameters
 	{
 	printf("multiple parameter list reconhecido\n");
 	}

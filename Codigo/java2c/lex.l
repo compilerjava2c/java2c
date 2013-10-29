@@ -16,6 +16,7 @@ CHAR			"char"
 FLOAT			"float"
 NAME			[a-z][a-zA-Z0-9]*
 DOT			[.]
+COMMA			[,]
 OPARENTHESES            [(]
 EPARENTHESES 		[)]
 QUOTEDTEXT		\"[^"\n]*["\n]
@@ -52,6 +53,9 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 }
 {DOT} {
 	return DOT;
+}
+{COMMA} {
+	return COMMA;
 }
 {OPARENTHESES} {
 	return OPARENTHESES;
