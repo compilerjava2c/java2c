@@ -14,8 +14,11 @@ INT			"int"
 DOUBLE			"double"
 CHAR			"char"
 FLOAT			"float"
+CLASS			"class"
 NAME			[a-z][a-zA-Z0-9]*
+NAMECLASS		[A-Z][a-zA-Z0-9]*
 DOT			[.]
+COMMA			[,]
 OPARENTHESES            [(]
 EPARENTHESES 		[)]
 QUOTEDTEXT		\"[^"\n]*["\n]
@@ -36,14 +39,28 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 	return QUOTE;
 }
 {INT} {
-	printf("token reconhecido\n");
 	return INT;
+}
+{DOUBLE} {
+	return DOUBLE;
+}
+{CHAR} {
+	return CHAR;
+}
+{FLOAT} {
+	return FLOAT;
+}
+{CLASS} {
+	return CLASS;
 }
 {NAME} {
 	return NAME;
 }
 {DOT} {
 	return DOT;
+}
+{COMMA} {
+	return COMMA;
 }
 {OPARENTHESES} {
 	return OPARENTHESES;

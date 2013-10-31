@@ -14,7 +14,9 @@ INT			"int"
 DOUBLE			"double"
 CHAR			"char"
 FLOAT			"float"
+CLASS			"class"
 NAME			[a-z][a-zA-Z0-9]*
+NAMECLASS		[A-Z][a-zA-Z0-9]*
 DOT			[.]
 COMMA			[,]
 OPARENTHESES            [(]
@@ -48,8 +50,14 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 {FLOAT} {
 	return FLOAT;
 }
+{CLASS} {
+	return CLASS;
+}
 {NAME} {
 	return NAME;
+}
+{NAMECLASS} {
+	return NAMECLASS;
 }
 {DOT} {
 	return DOT;

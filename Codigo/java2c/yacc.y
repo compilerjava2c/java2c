@@ -14,8 +14,10 @@ FILE *arq;
 %token INT
 %token DOUBLE
 %token CHAR
-%token FLOAT	
+%token FLOAT
+%token CLASS	
 %token NAME
+%token NAMECLASS
 %token QUOTEDTEXT
 %token DOT
 %token COMMA
@@ -32,6 +34,7 @@ char buffer [1000];
 inicio:
 	print
 	| teste
+	| metodo
 	| ready_parameters_list
 	| parameters_list
 	| parameters
@@ -51,6 +54,15 @@ print:
 	}
 ;
 
+teste:
+	CLASS NAMECLASS
+	{
+	printf("reconheceu o class");			
+	}
+
+	teste |
+;
+
 String:
 	QUOTEDTEXT 
 
@@ -61,28 +73,16 @@ String:
 	String |
 ;
 
-
-teste:
-	QUOTEDTEXT
+metodo:
+	type ready_parameters_list
 	{
-	printf("reconheceu");			
+		printf("metodo reconhecido\n");
 	}
-
-	teste |
-;
-
-/*
-parameters_list:
-	OPARENTHESES parameters EPARENTHESES
+	|NAME ready_parameters_list
 	{
-	printf("parameter list reconhecido\n");
-	}
-	|OPARENTHESES parameters_list ',' parameters EPARENTHESES
-	{
-	printf("multiple parameter list reconhecido\n");
+		printf("metodo reconhecido\n");
 	}
 ;
-*/
 
 ready_parameters_list:
 	OPARENTHESES parameters_list EPARENTHESES

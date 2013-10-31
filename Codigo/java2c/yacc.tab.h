@@ -45,11 +45,14 @@
      DOUBLE = 263,
      CHAR = 264,
      FLOAT = 265,
-     NAME = 266,
-     QUOTEDTEXT = 267,
-     DOT = 268,
-     OPARENTHESES = 269,
-     EPARENTHESES = 270
+     CLASS = 266,
+     NAME = 267,
+     NAMECLASS = 268,
+     QUOTEDTEXT = 269,
+     DOT = 270,
+     COMMA = 271,
+     OPARENTHESES = 272,
+     EPARENTHESES = 273
    };
 #endif
 

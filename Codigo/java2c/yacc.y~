@@ -14,10 +14,12 @@ FILE *arq;
 %token INT
 %token DOUBLE
 %token CHAR
-%token FLOAT	
+%token FLOAT
+%token CLASS	
 %token NAME
 %token QUOTEDTEXT
 %token DOT
+%token COMMA
 %token OPARENTHESES
 %token EPARENTHESES
 
@@ -31,6 +33,8 @@ char buffer [1000];
 inicio:
 	print
 	| teste
+	| metodo
+	| ready_parameters_list
 	| parameters_list
 	| parameters
 	| type
@@ -49,6 +53,15 @@ print:
 	}
 ;
 
+teste:
+	CLASS
+	{
+	printf("reconheceu o class");			
+	}
+
+	teste |
+;
+
 String:
 	QUOTEDTEXT 
 
@@ -59,24 +72,29 @@ String:
 	String |
 ;
 
-
-teste:
-	QUOTEDTEXT
+metodo:
+	type ready_parameters_list
 	{
-	printf("reconheceu");			
+		printf("metodo reconhecido\n");
 	}
+	|NAME ready_parameters_list
+	{
+		printf("metodo reconhecido\n");
+	}
+;
 
-	teste |
+ready_parameters_list:
+	OPARENTHESES parameters_list EPARENTHESES
 ;
 
 parameters_list:
-	OPARENTHESES parameters EPARENTHESES
-	{
+	parameters
+	{	
 	printf("parameter list reconhecido\n");
-	}
-	|OPARENTHESES parameters_list ',' parameters EPARENTHESES
+	}	
+	| parameters_list COMMA parameters
 	{
-	printf("parameter list reconhecido\n");
+	printf("multiple parameter list reconhecido\n");
 	}
 ;
 
@@ -102,28 +120,28 @@ type:
 inttype:
 	INT NAME
 	{
-	printf("INT NAME reconhecido");
+	printf("INT NAME reconhecido\n");
 	}
 ;
 
 doubletype:
 	DOUBLE NAME
 	{
-	printf("DOUBLE NAME reconhecido");
+	printf("DOUBLE NAME reconhecido\n");
 	}
 ;
 
 chartype:
 	CHAR NAME
 	{
-	printf("CHAR NAME reconhecido");
+	printf("CHAR NAME reconhecido\n");
 	}
 ;
 
 floattype:
 	FLOAT NAME
 	{
-	printf("FLOAT NAME reconhecido");
+	printf("FLOAT NAME reconhecido\n");
 	}
 ;
 
