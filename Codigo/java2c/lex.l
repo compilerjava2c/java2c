@@ -5,7 +5,7 @@
 %}
 
 
-
+WHITESPACE [ \n\r\t]+
 SYSTEMTOK 		"System"		
 OUTTOK 			"out"			
 PRINTLNTOK 		"println"			
@@ -24,8 +24,9 @@ OPARENTHESES            [(]
 EPARENTHESES 		[)]
 QUOTEDTEXT		\"[^"\n]*["\n]
 
-
 %%
+
+{WHITESPACE} /* Ignore */ ;
 
 {SYSTEMTOK} {
 	return SYSTEMTOK;
@@ -55,6 +56,7 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 	return CLASS;
 }
 {NAME} {
+	printf("carai\n");
 	return NAME;
 }
 {NAMECLASS} {
@@ -78,7 +80,3 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 {QUOTEDTEXT} {
 	return QUOTEDTEXT;
 }
-
-
-%%
-

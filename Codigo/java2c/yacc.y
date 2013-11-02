@@ -34,21 +34,15 @@ char buffer [1000];
 %%
 
 inicio:
-	print
-	| class
-	| chamada_metodo_estatico
-	| chamada_metodo_parametro
-	| chamada_metodo
-	| metodo
-	| ready_parameters_list
-	| parameters_list
-	| parameters
-	| type
-	| inttype
-	| doubletype
-	| chartype
-	| floattype
-	| chamada_metodo_estatico
+	
+	|inicio print
+	|inicio class
+	|inicio chamada_metodo_estatico
+	|inicio chamada_metodo_parametro
+	|inicio chamada_metodo
+	|inicio metodo
+	|inicio ready_parameters_list
+	|inicio type
 ;
 
 print:
@@ -101,8 +95,6 @@ String:
 	{ strcpy(buffer, yytext);
 	  strcat(str1, buffer);
 	}
-	
-	String |
 ;
 
 metodo:
@@ -125,7 +117,7 @@ parameters_list:
 	{	
 	printf("parameter list reconhecido\n");
 	}	
-	| parameters_list COMMA parameters
+	|parameters_list COMMA parameters
 	{
 	printf("multiple parameter list reconhecido\n");
 	}
@@ -155,24 +147,6 @@ inttype:
 	{
 	printf("INT NAME reconhecido\n");
 	}
-
-	|INT 
-	{
-		strcpy(buffer, yytext);
-	 	strcat(str1, buffer);
-	}
-	|NAME 
-	{
-		strcpy(buffer, yytext);
-	 	strcat(str1, buffer);
-	}
-	|DOTCOMMA 
-	{
-		printf("reconheceu o atributo");
-		strcpy(buffer, yytext);
-	 	strcat(str1, buffer);
-		fprintf(arq2,"\n%s",str1);
-	}
 ;
 
 doubletype:
@@ -198,15 +172,15 @@ floattype:
 
 %%
 
-int yywrap(){
-	return 0;
+int yywrap(void){
+	return 1;
 }
 
 int yyerror(char *s){
 	printf("%s\n", s);
 }
 
-int main(void){
+int main(int argc, char** argv){
 	
 	arq = fopen ("teste.c","w");//criar arquivo com permissão de escrita
 	arq2 = fopen ("teste.h","w");//criar arquivo com permissão de escrita
@@ -223,6 +197,7 @@ int main(void){
 
 	fclose(arq);//nao pode mais escrever
 	fclose(arq2);//nao pode mais escrever
+	return 0;
 
 }
 

@@ -5,7 +5,7 @@
 %}
 
 
-
+WHITESPACE [ \n\r\t]+
 SYSTEMTOK 		"System"		
 OUTTOK 			"out"			
 PRINTLNTOK 		"println"			
@@ -18,13 +18,16 @@ CLASS			"class"
 NAME			[a-z][a-zA-Z0-9]*
 NAMECLASS		[A-Z][a-zA-Z0-9]*
 DOT			[.]
+DOTCOMMA		[;]
 COMMA			[,]
 OPARENTHESES            [(]
 EPARENTHESES 		[)]
 QUOTEDTEXT		\"[^"\n]*["\n]
-
+ANY_CHAR .
 
 %%
+
+{WHITESPACE} /* Ignore */ ;
 
 {SYSTEMTOK} {
 	return SYSTEMTOK;
@@ -54,6 +57,7 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 	return CLASS;
 }
 {NAME} {
+	printf("carai\n");
 	return NAME;
 }
 {NAMECLASS} {
@@ -61,6 +65,9 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 }
 {DOT} {
 	return DOT;
+}
+{DOTCOMMA} {
+	return DOTCOMMA;
 }
 {COMMA} {
 	return COMMA;
@@ -75,6 +82,6 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 	return QUOTEDTEXT;
 }
 
-
-%%
-
+{ANY_CHAR} {
+	printf("Unexpected character in input: '%c' (ASCII=%d)\n", yytext[0], yytext[0]);
+}
