@@ -18,6 +18,7 @@ CLASS			"class"
 NAME			[a-z][a-zA-Z0-9]*
 NAMECLASS		[A-Z][a-zA-Z0-9]*
 DOT			[.]
+DOTCOMMA		[;]
 COMMA			[,]
 OPARENTHESES            [(]
 EPARENTHESES 		[)]
@@ -61,6 +62,9 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 }
 {DOT} {
 	return DOT;
+}
+{DOTCOMMA} {
+	return DOTCOMMA;
 }
 {COMMA} {
 	return COMMA;

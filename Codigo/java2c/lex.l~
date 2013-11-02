@@ -56,6 +56,9 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 {NAME} {
 	return NAME;
 }
+{NAMECLASS} {
+	return NAMECLASS;
+}
 {DOT} {
 	return DOT;
 }

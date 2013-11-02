@@ -50,9 +50,10 @@
      NAMECLASS = 268,
      QUOTEDTEXT = 269,
      DOT = 270,
-     COMMA = 271,
-     OPARENTHESES = 272,
-     EPARENTHESES = 273
+     DOTCOMMA = 271,
+     COMMA = 272,
+     OPARENTHESES = 273,
+     EPARENTHESES = 274
    };
 #endif
 
