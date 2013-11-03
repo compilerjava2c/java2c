@@ -42,15 +42,15 @@ char buffer [1000];
 
 inicio:
 	
-	|inicio print
-	|inicio class
-	|inicio chamada_metodo_estatico
-	|inicio chamada_metodo_parametro
-	|inicio chamada_metodo
-	|inicio metodo
-	|inicio ready_parameters_list
-	|inicio type
-	|inicio name_recursive
+	|print inicio
+	|class inicio
+	|chamada_method_estatico inicio
+	|chamada_method_parametro inicio
+	|chamada_method inicio
+	|method inicio
+	|ready_parameters_list inicio
+	|type inicio
+	|name_recursive inicio
 ;
 
 print:
@@ -72,13 +72,21 @@ class:
 ;
 
 class_content:
-	
+	variables 
+	|method
+	| variables method
 ;
 
-chamada_metodo_estatico:
-	NAMECLASS DOT chamada_metodo ready_parameters_list
+
+variables:
+	type
+	| variables
+;
+
+chamada_method_estatico:
+	NAMECLASS DOT chamada_method ready_parameters_list
 	{
-		printf("reconheceu a chamada de metodo estático com parametros");			
+		printf("reconheceu a chamada de method estático com parametros");			
 	}
 ;
 
@@ -91,21 +99,21 @@ id:
 	|NUMBER
 ;
 
-chamada_metodo_parametro:
-	chamada_metodo ready_parameters_list
+chamada_method_parametro:
+	chamada_method ready_parameters_list
 	{
-		printf("reconheceu a chamada de metodos com parametros");			
+		printf("reconheceu a chamada de methods com parametros");			
 	}
 ;
 
-chamada_metodo:
+chamada_method:
 	NAME DOT NAME 
 	{
-		printf("reconheceu a chamada de metodos");			
+		printf("reconheceu a chamada de methods");			
 	}
-	|NAME DOT chamada_metodo
+	|NAME DOT chamada_method
 	{
-		printf("reconheceu a chamada de metodos");			
+		printf("reconheceu a chamada de methods");			
 	}
 ;
 
@@ -117,14 +125,14 @@ String:
 	}
 ;
 
-metodo:
+method:
 	type ready_parameters_list
 	{
-		printf("metodo reconhecido\n");
+		printf("method reconhecido\n");
 	}
 	|NAME ready_parameters_list
 	{
-		printf("metodo reconhecido\n");
+		printf("method reconhecido\n");
 	}
 ;
 
@@ -167,11 +175,18 @@ inttype:
 	{
 	printf("INT NAME reconhecido\n");
 	}
-	| INT name_recursive
+	| INT NAME DOTCOMMA
+	{
+	printf("INT NAME reconhecido\n");
+	}
 ;
 
 doubletype:
 	DOUBLE NAME
+	{
+	printf("DOUBLE NAME reconhecido\n");
+	}
+	| DOUBLE NAME DOTCOMMA
 	{
 	printf("DOUBLE NAME reconhecido\n");
 	}
@@ -182,10 +197,18 @@ chartype:
 	{
 	printf("CHAR NAME reconhecido\n");
 	}
+	| CHAR NAME DOTCOMMA
+	{
+	printf("CHAR NAME reconhecido\n");
+	}
 ;
 
 floattype:
 	FLOAT NAME
+	{
+	printf("FLOAT NAME reconhecido\n");
+	}
+	| FLOAT NAME DOTCOMMA
 	{
 	printf("FLOAT NAME reconhecido\n");
 	}
