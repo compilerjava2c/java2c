@@ -6,6 +6,7 @@
 
 
 WHITESPACE [ \n\r\t]+
+COMPARATOR		[\> \< >= <= != ==]?
 SYSTEMTOK 		"System"		
 OUTTOK 			"out"			
 PRINTLNTOK 		"println"			
@@ -15,6 +16,10 @@ DOUBLE			"double"
 CHAR			"char"
 FLOAT			"float"
 CLASS			"class"
+IF			"if"
+ELSE			"else"
+ELSEIF			"else if"
+NUMBER			[0-9]*
 NAME			[a-z][a-zA-Z0-9]*
 NAMECLASS		[A-Z][a-zA-Z0-9]*
 DOT			[.]
@@ -22,12 +27,16 @@ DOTCOMMA		[;]
 COMMA			[,]
 OPARENTHESES            [(]
 EPARENTHESES 		[)]
+OBRACKET		[{]
+EBRACKET		[}]
 QUOTEDTEXT		\"[^"\n]*["\n]
 
 %%
 
 {WHITESPACE} /* Ignore */ ;
-
+{COMPARATOR} {
+	return COMPARATOR;
+}
 {SYSTEMTOK} {
 	return SYSTEMTOK;
 }
@@ -55,8 +64,19 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 {CLASS} {
 	return CLASS;
 }
+{IF} {
+	return IF;
+}
+{ELSE} {
+	return ELSE;
+}
+{ELSEIF} {
+	return ELSEIF;
+}
+{NUMBER} {
+	return NUMBER;
+}
 {NAME} {
-	printf("carai\n");
 	return NAME;
 }
 {NAMECLASS} {
@@ -76,6 +96,12 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 }
 {EPARENTHESES} {
 	return EPARENTHESES;
+}
+{OBRACKET} {
+	return OBRACKET;
+}
+{EBRACKET} {
+	return EBRACKET;
 }
 {QUOTEDTEXT} {
 	return QUOTEDTEXT;

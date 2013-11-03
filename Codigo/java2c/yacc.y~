@@ -8,6 +8,7 @@ FILE *arq2;
 
 %}
 
+%token COMPARATOR
 %token SYSTEMTOK 				
 %token OUTTOK 						
 %token PRINTLNTOK 					
@@ -16,7 +17,11 @@ FILE *arq2;
 %token DOUBLE
 %token CHAR
 %token FLOAT
-%token CLASS	
+%token CLASS
+%token IF
+%token ELSE
+%token ELSEIF
+%token NUMBER
 %token NAME
 %token NAMECLASS
 %token QUOTEDTEXT
@@ -25,6 +30,8 @@ FILE *arq2;
 %token COMMA
 %token OPARENTHESES
 %token EPARENTHESES
+%token OBRACKET
+%token EBRACKET
 
 %{
 char str1 [1000];
@@ -43,6 +50,7 @@ inicio:
 	|inicio metodo
 	|inicio ready_parameters_list
 	|inicio type
+	|inicio name_recursive
 ;
 
 print:
@@ -55,12 +63,16 @@ print:
 ;
 
 class:
-	CLASS NAMECLASS
+	CLASS NAMECLASS OBRACKET class_content EBRACKET
 	{
 		printf("reconheceu o class");
 		strcpy(buffer, yytext);
 		fprintf(arq2,"typedef struct %s {}_%s",buffer,buffer);
 	}
+;
+
+class_content:
+	
 ;
 
 chamada_metodo_estatico:
@@ -70,6 +82,14 @@ chamada_metodo_estatico:
 	}
 ;
 
+if_rule:
+	IF OPARENTHESES id COMPARATOR id EPARENTHESES
+;
+
+id:
+	NAME
+	|NUMBER
+;
 
 chamada_metodo_parametro:
 	chamada_metodo ready_parameters_list
@@ -147,6 +167,7 @@ inttype:
 	{
 	printf("INT NAME reconhecido\n");
 	}
+	| INT name_recursive DOTCOMMA
 ;
 
 doubletype:
@@ -170,6 +191,11 @@ floattype:
 	}
 ;
 
+name_recursive:
+	NAME
+	|name_recursive COMMA NAME
+;
+
 %%
 
 int yywrap(void){
@@ -182,21 +208,31 @@ int yyerror(char *s){
 
 int main(int argc, char** argv){
 	
-	arq = fopen ("teste.c","w");//criar arquivo com permissão de escrita
-	arq2 = fopen ("teste.h","w");//criar arquivo com permissão de escrita
-	fflush (arq);//limpa o buffer 
-	fflush (arq2);//limpa o buffer 
+	FILE *input = fopen("Aluno.java", "r");
+	if(!input){
+		fprintf(stderr,"arquivo nao encontrado");
+		return -1;
+	}
+	yyin = input;
+	do{
+		arq = fopen ("teste.c","w");//criar arquivo com permissão de escrita
+		arq2 = fopen ("teste.h","w");//criar arquivo com permissão de escrita
+		fflush (arq);//limpa o buffer 
+		fflush (arq2);//limpa o buffer 
 	
-	fprintf(arq, "#include <stdio.h> \n");
-	fprintf(arq, "#include <stdio.h> \n");
-	fprintf(arq, "int main (){ \n");
+		fprintf(arq, "#include <stdio.h> \n");
+		fprintf(arq, "#include <stdio.h> \n");
+		fprintf(arq, "int main (){ \n");
 
-	yyparse();
+		yyparse();
 
-	fprintf(arq, "\n}");
+		fprintf(arq, "\n}");
 
-	fclose(arq);//nao pode mais escrever
-	fclose(arq2);//nao pode mais escrever
+		fclose(arq);//nao pode mais escrever
+		fclose(arq2);//nao pode mais escreve	
+
+	}while(!feof(yyin));
+
 	return 0;
 
 }

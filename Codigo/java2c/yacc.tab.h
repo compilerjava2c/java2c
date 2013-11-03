@@ -37,23 +37,30 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     SYSTEMTOK = 258,
-     OUTTOK = 259,
-     PRINTLNTOK = 260,
-     QUOTE = 261,
-     INT = 262,
-     DOUBLE = 263,
-     CHAR = 264,
-     FLOAT = 265,
-     CLASS = 266,
-     NAME = 267,
-     NAMECLASS = 268,
-     QUOTEDTEXT = 269,
-     DOT = 270,
-     DOTCOMMA = 271,
-     COMMA = 272,
-     OPARENTHESES = 273,
-     EPARENTHESES = 274
+     COMPARATOR = 258,
+     SYSTEMTOK = 259,
+     OUTTOK = 260,
+     PRINTLNTOK = 261,
+     QUOTE = 262,
+     INT = 263,
+     DOUBLE = 264,
+     CHAR = 265,
+     FLOAT = 266,
+     CLASS = 267,
+     IF = 268,
+     ELSE = 269,
+     ELSEIF = 270,
+     NUMBER = 271,
+     NAME = 272,
+     NAMECLASS = 273,
+     QUOTEDTEXT = 274,
+     DOT = 275,
+     DOTCOMMA = 276,
+     COMMA = 277,
+     OPARENTHESES = 278,
+     EPARENTHESES = 279,
+     OBRACKET = 280,
+     EBRACKET = 281
    };
 #endif
 
