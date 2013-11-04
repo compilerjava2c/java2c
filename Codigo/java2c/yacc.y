@@ -43,6 +43,7 @@ char buffer [1000];
 
 inicio:
 	
+<<<<<<< HEAD
 	|inicio print
 	|inicio class
 	|inicio chamada_metodo_estatico
@@ -54,6 +55,17 @@ inicio:
 	|inicio typeparameter
 	|inicio name_recursive
 
+=======
+	|print inicio
+	|class inicio
+	|chamada_method_estatico inicio
+	|chamada_method_parametro inicio
+	|chamada_method inicio
+	|method inicio
+	|ready_parameters_list inicio
+	|type inicio
+	|name_recursive inicio
+>>>>>>> 81d5d5233919d838a6e2d32ca82eef1cd0b18414
 ;
 
 print:
@@ -76,20 +88,29 @@ class:
 
 class_content:
 	variables 
+<<<<<<< HEAD
 	|metodo
 	| variables metodo
+=======
+	|method
+	| variables method
+>>>>>>> 81d5d5233919d838a6e2d32ca82eef1cd0b18414
 ;
 
 
 variables:
+<<<<<<< HEAD
 	typevariable
+=======
+	type
+>>>>>>> 81d5d5233919d838a6e2d32ca82eef1cd0b18414
 	| variables
 ;
 
-chamada_metodo_estatico:
-	NAMECLASS DOT chamada_metodo ready_parameters_list
+chamada_method_estatico:
+	NAMECLASS DOT chamada_method ready_parameters_list
 	{
-		printf("reconheceu a chamada de metodo estático com parametros");			
+		printf("reconheceu a chamada de method estático com parametros");			
 	}
 ;
 
@@ -102,21 +123,21 @@ id:
 	|NUMBER
 ;
 
-chamada_metodo_parametro:
-	chamada_metodo ready_parameters_list
+chamada_method_parametro:
+	chamada_method ready_parameters_list
 	{
-		printf("reconheceu a chamada de metodos com parametros");			
+		printf("reconheceu a chamada de methods com parametros");			
 	}
 ;
 
-chamada_metodo:
+chamada_method:
 	NAME DOT NAME 
 	{
-		printf("reconheceu a chamada de metodos");			
+		printf("reconheceu a chamada de methods");			
 	}
-	|NAME DOT chamada_metodo
+	|NAME DOT chamada_method
 	{
-		printf("reconheceu a chamada de metodos");			
+		printf("reconheceu a chamada de methods");			
 	}
 ;
 
@@ -128,16 +149,21 @@ String:
 	}
 ;
 
+<<<<<<< HEAD
 
 metodo:
 	typeparameter ready_parameters_list
 
+=======
+method:
+	type ready_parameters_list
+>>>>>>> 81d5d5233919d838a6e2d32ca82eef1cd0b18414
 	{
-		printf("metodo reconhecido\n");
+		printf("method reconhecido\n");
 	}
 	|NAME ready_parameters_list
 	{
-		printf("metodo reconhecido\n");
+		printf("method reconhecido\n");
 	}
 ;
 
@@ -215,10 +241,21 @@ inttypeparameter:
 	{
 	printf("%s %s ", $1,$2);
 	}
+<<<<<<< HEAD
+=======
+	| INT NAME DOTCOMMA
+	{
+	printf("INT NAME reconhecido\n");
+	}
+>>>>>>> 81d5d5233919d838a6e2d32ca82eef1cd0b18414
 ;
 
 doubletypeparameter:
 	DOUBLE NAME
+	{
+	printf("DOUBLE NAME reconhecido\n");
+	}
+	| DOUBLE NAME DOTCOMMA
 	{
 	printf("DOUBLE NAME reconhecido\n");
 	}
@@ -229,11 +266,22 @@ chartypeparameter:
 	{
 	printf("CHAR NAME reconhecido\n");
 	}
+<<<<<<< HEAD
 	
+=======
+	| CHAR NAME DOTCOMMA
+	{
+	printf("CHAR NAME reconhecido\n");
+	}
+>>>>>>> 81d5d5233919d838a6e2d32ca82eef1cd0b18414
 ;
 
 floattypeparameter:
 	FLOAT NAME
+	{
+	printf("FLOAT NAME reconhecido\n");
+	}
+	| FLOAT NAME DOTCOMMA
 	{
 	printf("FLOAT NAME reconhecido\n");
 	}
