@@ -2,11 +2,12 @@
 #include <stdio.h>
 #include <string.h>
 #include "yacc.tab.h"
+FILE *arq;
 %}
 
 
 WHITESPACE [ \n\r\t]+
-COMPARATOR		[> < >= <= != ==]?
+COMPARATOR		[\> \< >= <= != ==]?
 SYSTEMTOK 		"System"		
 OUTTOK 			"out"			
 PRINTLNTOK 		"println"			
@@ -50,7 +51,8 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 	return QUOTE;
 }
 {INT} {
-	return INT;
+	yylval = yytext;
+	return INT;	
 }
 {DOUBLE} {
 	return DOUBLE;
@@ -77,7 +79,8 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 	return NUMBER;
 }
 {NAME} {
-	return NAME;
+	yylval = yytext;
+	return NAME;	
 }
 {NAMECLASS} {
 	return NAMECLASS;
@@ -86,6 +89,7 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 	return DOT;
 }
 {DOTCOMMA} {
+	yylval = yytext;
 	return DOTCOMMA;
 }
 {COMMA} {

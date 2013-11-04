@@ -13,20 +13,20 @@ runWin:
 	a.exe
 
 run:
-	./a.out
+	./java2c.out
         
 cleanWin:
-        ${DELETE} yacc.output
-        ${DELETE} yacc.tab.c
-        ${DELETE} yacc.tab.h
-        ${DELETE} lex.yy.c
-        ${DELETE} teste.c
-        ${DELETE} a.exe
+	${DELETE} yacc.output
+	${DELETE} yacc.tab.c
+	${DELETE} yacc.tab.h
+	${DELETE} lex.yy.c
+	${DELETE} teste.c
+	${DELETE} a.exe
         
 clean:
-        rm yacc.output
-        rm yacc.tab.c
-        rm yacc.tab.h
-        rm lex.yy.c
-        rm a.out
-        rm teste.c
+	rm yacc.output
+	rm yacc.tab.c
+	rm yacc.tab.h
+	rm lex.yy.c
+	rm a.out
+	rm teste.c

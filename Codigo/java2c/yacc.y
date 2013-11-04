@@ -3,8 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "lex.yy.c"
-FILE *arq;
-FILE *arq2;
+#include "cleanBuffer.c"
+FILE *arqc;
+FILE *arqh;
 
 %}
 
@@ -49,8 +50,10 @@ inicio:
 	|inicio chamada_metodo
 	|inicio metodo
 	|inicio ready_parameters_list
-	|inicio type
+	|inicio typevariable
+	|inicio typeparameter
 	|inicio name_recursive
+
 ;
 
 print:
@@ -58,7 +61,7 @@ print:
 
 	{
 	printf("printf reconhecido");
-	fprintf(arq,"printf(%s);",str1);
+	fprintf(arqc,"printf(%s);",str1);
 	}
 ;
 
@@ -67,12 +70,20 @@ class:
 	{
 		printf("reconheceu o class");
 		strcpy(buffer, yytext);
-		fprintf(arq2,"typedef struct %s {}_%s",buffer,buffer);
+		fprintf(arqh,"typedef struct %s {}_%s",buffer,buffer);
 	}
 ;
 
 class_content:
-	
+	variables 
+	|metodo
+	| variables metodo
+;
+
+
+variables:
+	typevariable
+	| variables
 ;
 
 chamada_metodo_estatico:
@@ -117,8 +128,10 @@ String:
 	}
 ;
 
+
 metodo:
-	type ready_parameters_list
+	typeparameter ready_parameters_list
+
 	{
 		printf("metodo reconhecido\n");
 	}
@@ -145,7 +158,7 @@ parameters_list:
 
 parameters:
 
-	type
+	typeparameter
 	{
 	printf("type parameter reconhecido\n");
 	}
@@ -155,36 +168,71 @@ parameters:
 	}
 ;
 
-type:
-	inttype
-	|doubletype
-	|chartype
-	|floattype
+typevariable:
+	inttypevariable
+	|doubletypevariable
+	|chartypevariable
+	|floattypevariable
 ;
 
-inttype:
+inttypevariable:
+	INT NAME DOTCOMMA
+	{
+	 fprintf(arqc,"%s\n",$1);
+	}
+;
+
+doubletypevariable:
+	DOUBLE NAME DOTCOMMA
+	{
+	fprintf(arqc,"%s\n",$1);
+	}
+;
+
+chartypevariable:
+	CHAR NAME DOTCOMMA
+	{
+	fprintf(arqc,"%s\n",$1);
+	}
+;
+	
+floattypevariable:
+	FLOAT NAME DOTCOMMA
+	{
+	fprintf(arqc,"%s\n",$1);
+	}
+;
+
+typeparameter:
+	inttypeparameter
+	|doubletypeparameter
+	|chartypeparameter
+	|floattypeparameter
+;
+
+inttypeparameter:
 	INT NAME
 	{
-	printf("INT NAME reconhecido\n");
+	printf("%s %s ", $1,$2);
 	}
-	| INT name_recursive
 ;
 
-doubletype:
+doubletypeparameter:
 	DOUBLE NAME
 	{
 	printf("DOUBLE NAME reconhecido\n");
 	}
 ;
 
-chartype:
+chartypeparameter:
 	CHAR NAME
 	{
 	printf("CHAR NAME reconhecido\n");
 	}
+	
 ;
 
-floattype:
+floattypeparameter:
 	FLOAT NAME
 	{
 	printf("FLOAT NAME reconhecido\n");
@@ -215,21 +263,21 @@ int main(int argc, char** argv){
 	}
 	yyin = input;
 	do{
-		arq = fopen ("teste.c","w");//criar arquivo com permissão de escrita
-		arq2 = fopen ("teste.h","w");//criar arquivo com permissão de escrita
-		fflush (arq);//limpa o buffer 
-		fflush (arq2);//limpa o buffer 
+		arqc = fopen ("teste.c","w");//criar arquivo com permissão de escrita
+		arqh = fopen ("teste.h","w");//criar arquivo com permissão de escrita
+		fflush (arqc);//limpa o buffer 
+		fflush (arqh);//limpa o buffer 
 	
-		fprintf(arq, "#include <stdio.h> \n");
-		fprintf(arq, "#include <stdio.h> \n");
-		fprintf(arq, "int main (){ \n");
+		fprintf(arqc, "#include <stdio.h> \n");
+		fprintf(arqc, "#include <stdlib.h> \n");
+		fprintf(arqc, "int main (){ \n");
 
 		yyparse();
 
-		fprintf(arq, "\n}");
+		fprintf(arqc, "\n}");
 
-		fclose(arq);//nao pode mais escrever
-		fclose(arq2);//nao pode mais escreve	
+		fclose(arqc);//nao pode mais escrever
+		fclose(arqh);//nao pode mais escreve	
 
 	}while(!feof(yyin));
 

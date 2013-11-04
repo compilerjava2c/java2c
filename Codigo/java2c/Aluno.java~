@@ -1,3 +1,7 @@
-int a
-int b
+int a;
+<<<<<<< HEAD
+int b;
 int c
+aluno(int fodase, int z)
+=======
+>>>>>>> 81d5d5233919d838a6e2d32ca82eef1cd0b18414
