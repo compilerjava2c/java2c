@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "lex.yy.c"
+#include "cleanBuffer.c"
 FILE *arq;
 FILE *arq2;
 
@@ -49,7 +50,8 @@ inicio:
 	|inicio chamada_metodo
 	|inicio metodo
 	|inicio ready_parameters_list
-	|inicio type
+	|inicio typevariable
+	|inicio typeparameter
 	|inicio name_recursive
 ;
 
@@ -118,7 +120,7 @@ String:
 ;
 
 metodo:
-	type ready_parameters_list
+	typeparameter ready_parameters_list
 	{
 		printf("metodo reconhecido\n");
 	}
@@ -145,7 +147,7 @@ parameters_list:
 
 parameters:
 
-	type
+	typeparameter
 	{
 	printf("type parameter reconhecido\n");
 	}
@@ -155,39 +157,94 @@ parameters:
 	}
 ;
 
-type:
-	inttype
-	|doubletype
-	|chartype
-	|floattype
+typevariable:
+	inttypevariable
+	|doubletypevariable
+	|chartypevariable
+	|floattypevariable
 ;
 
-inttype:
+inttypevariable:
+	INT NAME DOTCOMMA
+	{
+	 fprintf(arq,"%s %s %s",$1, $2, $3);
+	}
+;
+
+doubletypevariable:
+	DOUBLE NAME DOTCOMMA
+	{
+	strcpy(buffer, yytext);
+	fprintf(arq,"%s",buffer);
+	cleanBuffer(buffer);
+	}
+;
+
+chartypevariable:
+	CHAR NAME DOTCOMMA
+	{
+	strcpy(buffer, yytext);
+	fprintf(arq,"%s",buffer);
+	cleanBuffer(buffer);
+	}
+;
+	
+floattypevariable:
+	FLOAT NAME DOTCOMMA
+	{
+	strcpy(buffer, yytext);
+	fprintf(arq,"%s",buffer);
+	cleanBuffer(buffer);
+	}
+;
+
+typeparameter:
+	inttypeparameter
+	|doubletypeparameter
+	|chartypeparameter
+	|floattypeparameter
+;
+
+inttypeparameter:
 	INT NAME
 	{
-	printf("INT NAME reconhecido\n");
+	
 	}
-	| INT name_recursive DOTCOMMA
+
 ;
 
-doubletype:
+doubletypeparameter:
 	DOUBLE NAME
 	{
 	printf("DOUBLE NAME reconhecido\n");
 	}
+	|DOUBLE NAME DOTCOMMA
+	
 ;
 
-chartype:
+chartypeparameter:
 	CHAR NAME
 	{
 	printf("CHAR NAME reconhecido\n");
 	}
+	|CHAR NAME DOTCOMMA
+	{
+	strcpy(buffer, yytext);
+	fprintf(arq,"printf(%s);",buffer);
+	cleanBuffer(buffer);
+	}
 ;
 
-floattype:
+floattypeparameter:
 	FLOAT NAME
 	{
 	printf("FLOAT NAME reconhecido\n");
+	}
+	|FLOAT NAME DOTCOMMA
+	{
+	strcpy(buffer, yytext);
+	fprintf(arq,"printf(%s);",buffer);
+	cleanBuffer(buffer);
 	}
 ;
 
