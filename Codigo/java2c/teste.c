@@ -1,5 +1,7 @@
 #include <stdio.h> 
-#include <stdio.h> 
+#include <stdlib.h> 
 int main (){ 
-int idade; idade; ;int ano; ano; ;
+int  a;
+int  b;
+
 }

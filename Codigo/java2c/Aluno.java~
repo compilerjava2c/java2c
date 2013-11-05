@@ -1,4 +1,9 @@
+class Andre{
 int a;
 int b;
-int c
-aluno(int fodase, int z)
+	int greg(int idade, int nome){
+		if(a>b){
+			System.out.println("Hello world");
+		}
+	}
+}

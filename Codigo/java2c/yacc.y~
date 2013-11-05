@@ -4,35 +4,38 @@
 #include <string.h>
 #include "lex.yy.c"
 #include "cleanBuffer.c"
-FILE *arq;
-FILE *arq2;
+FILE *arqc;
+FILE *arqh;
 
 %}
+%union {
+	char *strval;
+}
 
-%token COMPARATOR
-%token SYSTEMTOK 				
-%token OUTTOK 						
-%token PRINTLNTOK 					
-%token QUOTE 	
-%token INT
-%token DOUBLE
-%token CHAR
-%token FLOAT
-%token CLASS
-%token IF
-%token ELSE
-%token ELSEIF
-%token NUMBER
-%token NAME
-%token NAMECLASS
-%token QUOTEDTEXT
-%token DOT
-%token DOTCOMMA
-%token COMMA
-%token OPARENTHESES
-%token EPARENTHESES
-%token OBRACKET
-%token EBRACKET
+%token <strval>COMPARATOR
+%token <strval>SYSTEMTOK 				
+%token <strval>OUTTOK 						
+%token <strval>PRINTLNTOK 					
+%token <strval>QUOTE 	
+%token <strval>INT
+%token <strval>DOUBLE
+%token <strval>CHAR
+%token <strval>FLOAT
+%token <strval>CLASS
+%token <strval>IF
+%token <strval>ELSE
+%token <strval>ELSEIF
+%token <strval>NUMBER
+%token <strval> NAME
+%token <strval>NAMECLASS
+%token <strval>QUOTEDTEXT
+%token <strval>DOT
+%token <strval>DOTCOMMA
+%token <strval>COMMA
+%token <strval>OPARENTHESES
+%token <strval>EPARENTHESES
+%token <strval>OBRACKET
+%token <strval>EBRACKET
 
 %{
 char str1 [1000];
@@ -49,99 +52,221 @@ inicio:
 	|inicio chamada_metodo_parametro
 	|inicio chamada_metodo
 	|inicio metodo
+	|inicio if_rule
 	|inicio ready_parameters_list
 	|inicio typevariable
 	|inicio typeparameter
 	|inicio name_recursive
+	|inicio typeparameter //tem que ser tirado
+	|inicio parameters //tem que ser tirado
+	|inicio	parameters_list //tem que ser tirado
+	|inicio	string //tem que ser tirado
 ;
 
 print:
-	| SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK OPARENTHESES String EPARENTHESES //ver com o professor pra pegar o que tiver entre os parenteses
+	| SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK OPARENTHESES string EPARENTHESES DOTCOMMA//ver com o professor pra pegar o que tiver entre os parenteses
 
 	{
-	printf("printf reconhecido");
-	fprintf(arq,"printf(%s);",str1);
+	char *javaprint = (char *) malloc(1 + strlen($<strval>1)+ strlen($<strval>2)+ strlen($<strval>3)+
+	strlen($<strval>4)+ strlen($<strval>5)+ strlen($<strval>6)+ strlen($<strval>7)+ strlen($<strval>8)+
+	strlen($<strval>9));
+	strcpy(javaprint,$<strval>1);
+	strcat(javaprint,$<strval>2);
+	strcat(javaprint,$<strval>3);
+	strcat(javaprint,$<strval>4);
+	strcat(javaprint,$<strval>5);
+	strcat(javaprint,$<strval>6);
+	strcat(javaprint,$<strval>7);
+	strcat(javaprint,$<strval>8);
+	strcat(javaprint,$<strval>9);	
+	printf("javaprint reconhecido reconhecido %s\n", javaprint);
+	//fprintf(arqh,"%s\n", javaprint);
+	$<strval>$ = javaprint;
 	}
 ;
 
 class:
 	CLASS NAMECLASS OBRACKET class_content EBRACKET
 	{
-		printf("reconheceu o class");
+		printf("reconheceu o class\n");
 		strcpy(buffer, yytext);
-		fprintf(arq2,"typedef struct %s {}_%s",buffer,buffer);
+		fprintf(arqh,"typedef struct %s%s\n%s\n%s_%s\n",$2,$3,$<strval>4,$5,$2);
 	}
 ;
 
 class_content:
-	
+	variables 
+	{
+	$<strval>$ = $<strval>1;
+	}
+	|metodo
+	{
+	$<strval>$ = $<strval>1;	
+	}
+	|variables metodo
+	{
+	char *classcontent = (char *) malloc(1 + strlen($<strval>1)+ strlen($<strval>2) );
+	strcpy(classcontent,$<strval>1);
+	strcat(classcontent,$<strval>2);
+	printf("%s do classcontent\n",classcontent);
+	//fprintf(arqh,"%s ",parameterstr);
+	$<strval>$ = classcontent; 		
+	printf("classcontent reconhecido\n");	
+	}
+;
+
+
+variables:
+	typevariable
+	{
+	$<strval>$ = $<strval>1;
+	}	
+	|variables typevariable
+	{
+	char *variable = (char *) malloc(1 + strlen($<strval>1)+ strlen($<strval>2));
+	strcpy(variable,$<strval>1);
+	strcat(method,"\n");
+	strcat(variable,$<strval>2);	
+	strcat(method,"\n");
+	$<strval>$ = variable;
+	}
 ;
 
 chamada_metodo_estatico:
 	NAMECLASS DOT chamada_metodo ready_parameters_list
 	{
-		printf("reconheceu a chamada de metodo estático com parametros");			
+		printf("reconheceu a chamada de metodo estático com parametros\n");			
 	}
 ;
 
 if_rule:
-	IF OPARENTHESES id COMPARATOR id EPARENTHESES
+	IF OPARENTHESES id COMPARATOR id EPARENTHESES OBRACKET if_content EBRACKET
+	{
+	char *ifrule = (char *) malloc(1 + strlen($<strval>1)+ strlen($<strval>2)+ strlen($<strval>3)+
+	strlen($<strval>4)+ strlen($<strval>5)+ strlen($<strval>6)+ strlen($<strval>7)+ strlen($<strval>8)+
+	strlen($<strval>9));
+	strcpy(ifrule,$<strval>1);
+	strcat(ifrule,$<strval>2);
+	strcat(ifrule,$<strval>3);
+	strcat(ifrule,$<strval>4);
+	strcat(ifrule,$<strval>5);
+	strcat(ifrule,$<strval>6);
+	strcat(ifrule,$<strval>7);
+	strcat(ifrule,"\n");
+	strcat(ifrule,$<strval>8);
+	strcat(ifrule,"\n");
+	strcat(ifrule,$<strval>9);
+	printf("ifrule reconhecido reconhecido %s\n", ifrule);
+	//fprintf(arqh,"%s\n", ifrule);
+	$<strval>$ = ifrule;
+	}
+
+;
+
+if_content:
+	print
+	{
+	$<strval>$ = $<strval>1;
+	}
 ;
 
 id:
 	NAME
+	{
+	$<strval>$ = $1;
+	}
 	|NUMBER
+	{
+	$<strval>$ = $1;
+	}
 ;
 
 chamada_metodo_parametro:
 	chamada_metodo ready_parameters_list
 	{
-		printf("reconheceu a chamada de metodos com parametros");			
+		printf("reconheceu a chamada de metodos com parametros\n");			
 	}
 ;
 
 chamada_metodo:
 	NAME DOT NAME 
 	{
-		printf("reconheceu a chamada de metodos");			
+		printf("reconheceu a chamada de metodos\n");			
 	}
 	|NAME DOT chamada_metodo
 	{
-		printf("reconheceu a chamada de metodos");			
+		printf("reconheceu a chamada de metodos\n");			
 	}
 ;
 
-String:
+string:
 	QUOTEDTEXT 
 
-	{ strcpy(buffer, yytext);
-	  strcat(str1, buffer);
+	{ 
+	$<strval>$ = $1;
+	printf("string reconhecida %s\n",$1);
 	}
 ;
 
+
 metodo:
-	typeparameter ready_parameters_list
+	typeparameter ready_parameters_list OBRACKET if_rule EBRACKET
+	
 	{
-		printf("metodo reconhecido\n");
+	char *method = (char *) malloc(1 + strlen($<strval>1)+ strlen($<strval>2)+ strlen($<strval>3)+
+	strlen($<strval>4)+ strlen($<strval>5));
+	strcpy(method,$<strval>1);
+	strcat(method,$<strval>2);
+	strcat(method,"\n");
+	strcat(method,$<strval>3);
+	strcat(method,"\n");
+	strcat(method,$<strval>4);
+	strcat(method,"\n");
+	strcat(method,$<strval>5);
+	printf("metodo reconhecido reconhecido %s\n", method);
+	//fprintf(arqh,"%s\n", method);
+	$<strval>$ = method;
 	}
 	|NAME ready_parameters_list
 	{
-		printf("metodo reconhecido\n");
+	char *method = (char *) malloc(1 + strlen($<strval>1)+ strlen($<strval>2) );
+	strcpy(method,$<strval>1);
+	strcat(method,$<strval>2);
+	printf("%s do method\n",method);
+	//fprintf(arqh,"%s ",parameterstr);
+	$<strval>$ = method; 		
+	printf("metodo reconhecido\n");
 	}
 ;
 
 ready_parameters_list:
 	OPARENTHESES parameters_list EPARENTHESES
+	{
+	char *readyparameters = (char *) malloc(1 + strlen($<strval>1)+ strlen($<strval>2)+ strlen($<strval>3));
+	strcpy(readyparameters,$<strval>1);
+	strcat(readyparameters,$<strval>2);
+	strcat(readyparameters,$<strval>3);	
+	printf("multiple ready parameter list reconhecido %s\n", readyparameters);
+	//fprintf(arqh,"%s\n",readyparameters);
+	$<strval>$ = readyparameters;
+	}
 ;
 
 parameters_list:
 	parameters
 	{	
-	printf("parameter list reconhecido\n");
+	$<strval>$ = $<strval>1;
+	printf("parameter list reconhecido %s\n",$<strval>1);
 	}	
 	|parameters_list COMMA parameters
 	{
-	printf("multiple parameter list reconhecido\n");
+	char *recursiveparameters = (char *) malloc(1 + strlen($<strval>1)+ strlen($<strval>2)+ strlen($<strval>3));
+	strcpy(recursiveparameters,$<strval>1);
+	strcat(recursiveparameters,$<strval>2);
+	strcat(recursiveparameters,$<strval>3);	
+	printf("multiple parameter list reconhecido %s\n", $<strval>1);
+	//fprintf(arqh,"%s\n",recursiveparameters);
+	$<strval>$ = recursiveparameters;
 	}
 ;
 
@@ -149,57 +274,97 @@ parameters:
 
 	typeparameter
 	{
-	printf("type parameter reconhecido\n");
+	$<strval>$ = $<strval>1;
+	printf("type parameter reconhecido %s\n", $<strval>1);
 	}
 	|NAME
 	{
+	$<strval>$ = $<strval>1;
 	printf("NAME reconhecido\n");
 	}
 ;
 
 typevariable:
 	inttypevariable
+	{
+	$<strval>$ = $<strval>1;
+	}
 	|doubletypevariable
+	{
+	$<strval>$ = $<strval>1;
+	}	
 	|chartypevariable
+	{
+	$<strval>$ = $<strval>1;
+	}
 	|floattypevariable
+	{
+	$<strval>$ = $<strval>1;
+	}
 ;
 
 inttypevariable:
 	INT NAME DOTCOMMA
 	{
-	 fprintf(arq,"%s %s %s",$1, $2, $3);
+	 fprintf(arqc,"%s %s%s\n",$1,$2,$3);
+	char *variablestr = (char *) malloc(1 + strlen($1)+ strlen($2)+ strlen($3));
+	strcpy(variablestr,$1);
+	strcat(variablestr,$2);
+	strcat(variablestr,$3);
+	printf("%s do inttyvariables\n",variablestr);
+	//fprintf(arqh,"%s ",parameterstr);
+	$<strval>$ = variablestr; 
 	}
 ;
 
 doubletypevariable:
 	DOUBLE NAME DOTCOMMA
 	{
-	strcpy(buffer, yytext);
-	fprintf(arq,"%s",buffer);
-	cleanBuffer(buffer);
+	fprintf(arqc,"%s %s%s\n",$1,$2,$3);
+	char *variablestr = (char *) malloc(1 + strlen($1)+ strlen($2)+ strlen($3));
+	strcpy(variablestr,$1);
+	strcat(variablestr,$2);
+	strcat(variablestr,$3);
+	printf("%s do doubletyvariables\n",variablestr);
+	//fprintf(arqh,"%s ",parameterstr);
+	$<strval>$ = variablestr; 
 	}
 ;
 
 chartypevariable:
 	CHAR NAME DOTCOMMA
 	{
-	strcpy(buffer, yytext);
-	fprintf(arq,"%s",buffer);
-	cleanBuffer(buffer);
+	fprintf(arqc,"%s %s%s\n",$1,$2,$3);
+	char *variablestr = (char *) malloc(1 + strlen($1)+ strlen($2)+ strlen($3));
+	strcpy(variablestr,$1);
+	strcat(variablestr,$2);
+	strcat(variablestr,$3);
+	printf("%s do chartyvariables\n",variablestr);
+	//fprintf(arqh,"%s ",parameterstr);
+	$<strval>$ = variablestr;
 	}
 ;
 	
 floattypevariable:
 	FLOAT NAME DOTCOMMA
 	{
-	strcpy(buffer, yytext);
-	fprintf(arq,"%s",buffer);
-	cleanBuffer(buffer);
+	fprintf(arqc,"%s %s%s\n",$1,$2,$3);
+	char *variablestr = (char *) malloc(1 + strlen($1)+ strlen($2)+ strlen($3));
+	strcpy(variablestr,$1);
+	strcat(variablestr,$2);
+	strcat(variablestr,$3);
+	printf("%s do floattyvariables\n",variablestr);
+	//fprintf(arqh,"%s ",parameterstr);
+	$<strval>$ = variablestr;
 	}
 ;
 
 typeparameter:
 	inttypeparameter
+	{
+	$<strval>$ = $<strval>1;
+	printf("%s do typeparameter\n",$<strval>1);
+	}	
 	|doubletypeparameter
 	|chartypeparameter
 	|floattypeparameter
@@ -208,43 +373,53 @@ typeparameter:
 inttypeparameter:
 	INT NAME
 	{
-	
+	//printf("%s %s ", $1,$2);
+	char *parameterstr = (char *) malloc(1 + strlen($1)+ strlen($2) );
+	strcpy(parameterstr,$1);
+	strcat(parameterstr,$2);
+	printf("%s do inttypeparameter\n",parameterstr);
+	//fprintf(arqh,"%s ",parameterstr);
+	$<strval>$ = parameterstr; 
 	}
-
 ;
 
 doubletypeparameter:
 	DOUBLE NAME
 	{
 	printf("DOUBLE NAME reconhecido\n");
+	char *parameterstr = (char *) malloc(1 + strlen($1)+ strlen($2) );
+	strcpy(parameterstr,$1);
+	strcat(parameterstr,$2);
+	printf("%s\n",parameterstr);
+	//fprintf(arqh,"%s ",parameterstr);
+	$<strval>$ = parameterstr; 	
 	}
-	|DOUBLE NAME DOTCOMMA
-	
 ;
 
 chartypeparameter:
 	CHAR NAME
 	{
 	printf("CHAR NAME reconhecido\n");
+	char *parameterstr = (char *) malloc(1 + strlen($1)+ strlen($2) );
+	strcpy(parameterstr,$1);
+	strcat(parameterstr,$2);
+	printf("%s\n",parameterstr);
+	//fprintf(arqh,"%s ",parameterstr);
+	$<strval>$ = parameterstr; 
 	}
-	|CHAR NAME DOTCOMMA
-	{
-	strcpy(buffer, yytext);
-	fprintf(arq,"printf(%s);",buffer);
-	cleanBuffer(buffer);
-	}
+	
 ;
 
 floattypeparameter:
 	FLOAT NAME
 	{
 	printf("FLOAT NAME reconhecido\n");
-	}
-	|FLOAT NAME DOTCOMMA
-	{
-	strcpy(buffer, yytext);
-	fprintf(arq,"printf(%s);",buffer);
-	cleanBuffer(buffer);
+	char *parameterstr = (char *) malloc(1 + strlen($1)+ strlen($2) );
+	strcpy(parameterstr,$1);
+	strcat(parameterstr,$2);
+	printf("%s\n",parameterstr);
+	//fprintf(arqh,"%s ",parameterstr);
+	$<strval>$ = parameterstr; 
 	}
 ;
 
@@ -272,21 +447,21 @@ int main(int argc, char** argv){
 	}
 	yyin = input;
 	do{
-		arq = fopen ("teste.c","w");//criar arquivo com permissão de escrita
-		arq2 = fopen ("teste.h","w");//criar arquivo com permissão de escrita
-		fflush (arq);//limpa o buffer 
-		fflush (arq2);//limpa o buffer 
+		arqc = fopen ("teste.c","w");//criar arquivo com permissão de escrita
+		arqh = fopen ("teste.h","w");//criar arquivo com permissão de escrita
+		fflush (arqc);//limpa o buffer 
+		fflush (arqh);//limpa o buffer 
 	
-		fprintf(arq, "#include <stdio.h> \n");
-		fprintf(arq, "#include <stdio.h> \n");
-		fprintf(arq, "int main (){ \n");
+		fprintf(arqc, "#include <stdio.h> \n");
+		fprintf(arqc, "#include <stdlib.h> \n");
+		fprintf(arqc, "int main (){ \n");
 
 		yyparse();
 
-		fprintf(arq, "\n}");
+		fprintf(arqc, "\n}");
 
-		fclose(arq);//nao pode mais escrever
-		fclose(arq2);//nao pode mais escreve	
+		fclose(arqc);//nao pode mais escrever
+		fclose(arqh);//nao pode mais escreve	
 
 	}while(!feof(yyin));
 
