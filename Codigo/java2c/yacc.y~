@@ -73,11 +73,11 @@ print:
 	strcat(javaprint,$<strval>2);
 	strcat(javaprint,$<strval>3);
 	strcat(javaprint,$<strval>4);
-	strcat(javaprint,$<strval>5);
-	strcat(javaprint,$<strval>6);
-	strcat(javaprint,$<strval>7);
-	strcat(javaprint,$<strval>8);
-	strcat(javaprint,$<strval>9);	
+	//strcat(javaprint,$<strval>5);
+	//strcat(javaprint,$<strval>6);
+	//strcat(javaprint,$<strval>7);
+	//strcat(javaprint,$<strval>8);
+	//strcat(javaprint,$<strval>9);	
 	printf("javaprint reconhecido reconhecido %s\n", javaprint);
 	//fprintf(arqh,"%s\n", javaprint);
 	$<strval>$ = javaprint;

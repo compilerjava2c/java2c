@@ -7,16 +7,16 @@ FILE *arq;
 
 
 WHITESPACE [ \n\r\t]+
-COMPARATOR		[\> \< >= <= != ==]?
+COMPARATOR		[\> \< >= <= != == =]?
 SYSTEMTOK 		"System"		
 OUTTOK 			"out"			
 PRINTLNTOK 		"println"			
 QUOTE 			[\"]
-INT			"int"
-DOUBLE			"double"
-CHAR			"char"
-FLOAT			"float"
-CLASS			"class"
+INT			"int "
+DOUBLE			"double "
+CHAR			"char "
+FLOAT			"float "
+CLASS			"class "
 IF			"if"
 ELSE			"else"
 ELSEIF			"else if"
@@ -36,97 +36,98 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 
 {WHITESPACE} /* Ignore */ ;
 {COMPARATOR} {
+	yylval.strval = strdup(yytext);
 	return COMPARATOR;
-}
+}			
 {SYSTEMTOK} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return SYSTEMTOK;
 }
 {OUTTOK} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return OUTTOK;
 }
 {PRINTLNTOK} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return PRINTLNTOK;
 }
 {QUOTE} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return QUOTE;
 }
 {INT} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return INT;	
 }
 {DOUBLE} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return DOUBLE;
 }
 {CHAR} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return CHAR;
 }
 {FLOAT} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return FLOAT;
 }
 {CLASS} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return CLASS;
 }
 {IF} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return IF;
 }
 {ELSE} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return ELSE;
 }
 {ELSEIF} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return ELSEIF;
 }
 {NUMBER} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return NUMBER;
 }
 {NAME} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return NAME;	
 }
 {NAMECLASS} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return NAMECLASS;
 }
 {DOT} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return DOT;
 }
 {DOTCOMMA} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return DOTCOMMA;
 }
 {COMMA} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return COMMA;
 }
 {OPARENTHESES} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return OPARENTHESES;
 }
 {EPARENTHESES} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return EPARENTHESES;
 }
 {OBRACKET} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return OBRACKET;
 }
 {EBRACKET} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return EBRACKET;
 }
 {QUOTEDTEXT} {
-	yylval = yytext;
+	yylval.strval = strdup(yytext);
 	return QUOTEDTEXT;
 }
