@@ -478,10 +478,10 @@ static const yytype_uint16 yyrline[] =
 {
        0,    47,    47,    49,    50,    51,    52,    53,    54,    55,
       56,    57,    58,    59,    60,    61,    62,    63,    66,    67,
-      89,    98,   102,   106,   120,   124,   136,   143,   167,   174,
-     178,   185,   192,   196,   203,   213,   230,   243,   256,   261,
-     275,   280,   288,   292,   296,   300,   307,   321,   335,   349,
-     363,   368,   369,   370,   374,   387,   400,   414,   427,   428
+      82,    91,    95,    99,   113,   117,   129,   136,   160,   167,
+     171,   178,   185,   189,   196,   206,   228,   241,   254,   259,
+     273,   278,   286,   290,   294,   298,   305,   319,   333,   347,
+     361,   366,   367,   368,   372,   385,   398,   412,   425,   426
 };
 #endif
 
@@ -1479,16 +1479,10 @@ yyreduce:
         case 19:
 
 /* Line 1806 of yacc.c  */
-#line 69 "yacc.y"
+#line 68 "yacc.y"
     {
-	char *javaprint = (char *) malloc(1 + strlen((yyvsp[(1) - (9)].strval))+ strlen((yyvsp[(2) - (9)].strval))+ strlen((yyvsp[(3) - (9)].strval))+
-	strlen((yyvsp[(4) - (9)].strval))+ strlen((yyvsp[(5) - (9)].strval))+ strlen((yyvsp[(6) - (9)].strval))+ strlen((yyvsp[(7) - (9)].strval))+ strlen((yyvsp[(8) - (9)].strval))+
-	strlen((yyvsp[(9) - (9)].strval)));
-	strcpy(javaprint,(yyvsp[(1) - (9)].strval));
-	strcat(javaprint,(yyvsp[(2) - (9)].strval));
-	strcat(javaprint,(yyvsp[(3) - (9)].strval));
-	strcat(javaprint,(yyvsp[(4) - (9)].strval));
-	strcat(javaprint,(yyvsp[(5) - (9)].strval));
+	char *javaprint = (char *) malloc(1 + strlen((yyvsp[(6) - (9)].strval))+ strlen((yyvsp[(7) - (9)].strval))+ strlen((yyvsp[(8) - (9)].strval))+ strlen((yyvsp[(9) - (9)].strval)) );
+	strcpy(javaprint,"printf");	
 	strcat(javaprint,(yyvsp[(6) - (9)].strval));
 	strcat(javaprint,(yyvsp[(7) - (9)].strval));
 	strcat(javaprint,(yyvsp[(8) - (9)].strval));
@@ -1502,7 +1496,7 @@ yyreduce:
   case 20:
 
 /* Line 1806 of yacc.c  */
-#line 90 "yacc.y"
+#line 83 "yacc.y"
     {
 		printf("reconheceu o class\n");
 		strcpy(buffer, yytext);
@@ -1513,7 +1507,7 @@ yyreduce:
   case 21:
 
 /* Line 1806 of yacc.c  */
-#line 99 "yacc.y"
+#line 92 "yacc.y"
     {
 	(yyval.strval) = (yyvsp[(1) - (1)].strval);
 	}
@@ -1522,7 +1516,7 @@ yyreduce:
   case 22:
 
 /* Line 1806 of yacc.c  */
-#line 103 "yacc.y"
+#line 96 "yacc.y"
     {
 	(yyval.strval) = (yyvsp[(1) - (1)].strval);	
 	}
@@ -1531,7 +1525,7 @@ yyreduce:
   case 23:
 
 /* Line 1806 of yacc.c  */
-#line 107 "yacc.y"
+#line 100 "yacc.y"
     {
 	char *classcontent = (char *) malloc(1 + strlen((yyvsp[(1) - (2)].strval))+ strlen((yyvsp[(2) - (2)].strval)) );
 	strcpy(classcontent,(yyvsp[(1) - (2)].strval));
@@ -1546,7 +1540,7 @@ yyreduce:
   case 24:
 
 /* Line 1806 of yacc.c  */
-#line 121 "yacc.y"
+#line 114 "yacc.y"
     {
 	(yyval.strval) = (yyvsp[(1) - (1)].strval);
 	}
@@ -1555,7 +1549,7 @@ yyreduce:
   case 25:
 
 /* Line 1806 of yacc.c  */
-#line 125 "yacc.y"
+#line 118 "yacc.y"
     {
 	char *variable = (char *) malloc(1 + strlen((yyvsp[(1) - (2)].strval))+ strlen((yyvsp[(2) - (2)].strval)));
 	strcpy(variable,(yyvsp[(1) - (2)].strval));
@@ -1569,7 +1563,7 @@ yyreduce:
   case 26:
 
 /* Line 1806 of yacc.c  */
-#line 137 "yacc.y"
+#line 130 "yacc.y"
     {
 		printf("reconheceu a chamada de metodo estático com parametros\n");			
 	}
@@ -1578,7 +1572,7 @@ yyreduce:
   case 27:
 
 /* Line 1806 of yacc.c  */
-#line 144 "yacc.y"
+#line 137 "yacc.y"
     {
 	char *ifrule = (char *) malloc(1 + strlen((yyvsp[(1) - (9)].strval))+ strlen((yyvsp[(2) - (9)].strval))+ strlen((yyvsp[(3) - (9)].strval))+
 	strlen((yyvsp[(4) - (9)].strval))+ strlen((yyvsp[(5) - (9)].strval))+ strlen((yyvsp[(6) - (9)].strval))+ strlen((yyvsp[(7) - (9)].strval))+ strlen((yyvsp[(8) - (9)].strval))+
@@ -1603,7 +1597,7 @@ yyreduce:
   case 28:
 
 /* Line 1806 of yacc.c  */
-#line 168 "yacc.y"
+#line 161 "yacc.y"
     {
 	(yyval.strval) = (yyvsp[(1) - (1)].strval);
 	}
@@ -1612,7 +1606,7 @@ yyreduce:
   case 29:
 
 /* Line 1806 of yacc.c  */
-#line 175 "yacc.y"
+#line 168 "yacc.y"
     {
 	(yyval.strval) = (yyvsp[(1) - (1)].strval);
 	}
@@ -1621,7 +1615,7 @@ yyreduce:
   case 30:
 
 /* Line 1806 of yacc.c  */
-#line 179 "yacc.y"
+#line 172 "yacc.y"
     {
 	(yyval.strval) = (yyvsp[(1) - (1)].strval);
 	}
@@ -1630,7 +1624,7 @@ yyreduce:
   case 31:
 
 /* Line 1806 of yacc.c  */
-#line 186 "yacc.y"
+#line 179 "yacc.y"
     {
 		printf("reconheceu a chamada de metodos com parametros\n");			
 	}
@@ -1639,7 +1633,7 @@ yyreduce:
   case 32:
 
 /* Line 1806 of yacc.c  */
-#line 193 "yacc.y"
+#line 186 "yacc.y"
     {
 		printf("reconheceu a chamada de metodos\n");			
 	}
@@ -1648,7 +1642,7 @@ yyreduce:
   case 33:
 
 /* Line 1806 of yacc.c  */
-#line 197 "yacc.y"
+#line 190 "yacc.y"
     {
 		printf("reconheceu a chamada de metodos\n");			
 	}
@@ -1657,7 +1651,7 @@ yyreduce:
   case 34:
 
 /* Line 1806 of yacc.c  */
-#line 205 "yacc.y"
+#line 198 "yacc.y"
     { 
 	(yyval.strval) = (yyvsp[(1) - (1)].strval);
 	printf("string reconhecida %s\n",(yyvsp[(1) - (1)].strval));
@@ -1667,34 +1661,39 @@ yyreduce:
   case 35:
 
 /* Line 1806 of yacc.c  */
-#line 215 "yacc.y"
+#line 208 "yacc.y"
     {
-	char *method = (char *) malloc(1 + strlen((yyvsp[(1) - (5)].strval))+ strlen((yyvsp[(2) - (5)].strval))+ strlen((yyvsp[(3) - (5)].strval))+
+	char *methodc = (char *) malloc(1 + strlen((yyvsp[(1) - (5)].strval))+ strlen((yyvsp[(2) - (5)].strval))+ strlen((yyvsp[(3) - (5)].strval))+
 	strlen((yyvsp[(4) - (5)].strval))+ strlen((yyvsp[(5) - (5)].strval)));
-	strcpy(method,(yyvsp[(1) - (5)].strval));
-	strcat(method,(yyvsp[(2) - (5)].strval));
-	strcat(method,"\n");
-	strcat(method,(yyvsp[(3) - (5)].strval));
-	strcat(method,"\n");
-	strcat(method,(yyvsp[(4) - (5)].strval));
-	strcat(method,"\n");
-	strcat(method,(yyvsp[(5) - (5)].strval));
-	printf("metodo reconhecido reconhecido %s\n", method);
-	//fprintf(arqh,"%s\n", method);
-	(yyval.strval) = method;
+	strcpy(methodc,(yyvsp[(1) - (5)].strval));
+	strcat(methodc,(yyvsp[(2) - (5)].strval));
+	strcat(methodc,"\n");
+	strcat(methodc,(yyvsp[(3) - (5)].strval));
+	strcat(methodc,"\n");
+	strcat(methodc,(yyvsp[(4) - (5)].strval));
+	strcat(methodc,"\n");
+	strcat(methodc,(yyvsp[(5) - (5)].strval));
+	printf("metodo reconhecido reconhecido %s\n", methodc);
+	fprintf(arqc,"%s\n", methodc);
+	(yyval.strval) = methodc;
+	//inserir no .h
+	char *methodh = (char *) malloc(1 + strlen((yyvsp[(1) - (5)].strval))+ strlen((yyvsp[(2) - (5)].strval)));
+	strcpy(methodh,(yyvsp[(1) - (5)].strval));
+	strcat(methodh,(yyvsp[(2) - (5)].strval));
+	fprintf(arqh,"%s\n", methodh);	
 	}
     break;
 
   case 36:
 
 /* Line 1806 of yacc.c  */
-#line 231 "yacc.y"
+#line 229 "yacc.y"
     {
 	char *method = (char *) malloc(1 + strlen((yyvsp[(1) - (2)].strval))+ strlen((yyvsp[(2) - (2)].strval)) );
 	strcpy(method,(yyvsp[(1) - (2)].strval));
 	strcat(method,(yyvsp[(2) - (2)].strval));
 	printf("%s do method\n",method);
-	//fprintf(arqh,"%s ",parameterstr);
+	fprintf(arqh,"%s ",method);
 	(yyval.strval) = method; 		
 	printf("metodo reconhecido\n");
 	}
@@ -1703,7 +1702,7 @@ yyreduce:
   case 37:
 
 /* Line 1806 of yacc.c  */
-#line 244 "yacc.y"
+#line 242 "yacc.y"
     {
 	char *readyparameters = (char *) malloc(1 + strlen((yyvsp[(1) - (3)].strval))+ strlen((yyvsp[(2) - (3)].strval))+ strlen((yyvsp[(3) - (3)].strval)));
 	strcpy(readyparameters,(yyvsp[(1) - (3)].strval));
@@ -1718,7 +1717,7 @@ yyreduce:
   case 38:
 
 /* Line 1806 of yacc.c  */
-#line 257 "yacc.y"
+#line 255 "yacc.y"
     {	
 	(yyval.strval) = (yyvsp[(1) - (1)].strval);
 	printf("parameter list reconhecido %s\n",(yyvsp[(1) - (1)].strval));
@@ -1728,7 +1727,7 @@ yyreduce:
   case 39:
 
 /* Line 1806 of yacc.c  */
-#line 262 "yacc.y"
+#line 260 "yacc.y"
     {
 	char *recursiveparameters = (char *) malloc(1 + strlen((yyvsp[(1) - (3)].strval))+ strlen((yyvsp[(2) - (3)].strval))+ strlen((yyvsp[(3) - (3)].strval)));
 	strcpy(recursiveparameters,(yyvsp[(1) - (3)].strval));
@@ -1743,7 +1742,7 @@ yyreduce:
   case 40:
 
 /* Line 1806 of yacc.c  */
-#line 276 "yacc.y"
+#line 274 "yacc.y"
     {
 	(yyval.strval) = (yyvsp[(1) - (1)].strval);
 	printf("type parameter reconhecido %s\n", (yyvsp[(1) - (1)].strval));
@@ -1753,7 +1752,7 @@ yyreduce:
   case 41:
 
 /* Line 1806 of yacc.c  */
-#line 281 "yacc.y"
+#line 279 "yacc.y"
     {
 	(yyval.strval) = (yyvsp[(1) - (1)].strval);
 	printf("NAME reconhecido\n");
@@ -1763,7 +1762,7 @@ yyreduce:
   case 42:
 
 /* Line 1806 of yacc.c  */
-#line 289 "yacc.y"
+#line 287 "yacc.y"
     {
 	(yyval.strval) = (yyvsp[(1) - (1)].strval);
 	}
@@ -1772,7 +1771,7 @@ yyreduce:
   case 43:
 
 /* Line 1806 of yacc.c  */
-#line 293 "yacc.y"
+#line 291 "yacc.y"
     {
 	(yyval.strval) = (yyvsp[(1) - (1)].strval);
 	}
@@ -1781,7 +1780,7 @@ yyreduce:
   case 44:
 
 /* Line 1806 of yacc.c  */
-#line 297 "yacc.y"
+#line 295 "yacc.y"
     {
 	(yyval.strval) = (yyvsp[(1) - (1)].strval);
 	}
@@ -1790,7 +1789,7 @@ yyreduce:
   case 45:
 
 /* Line 1806 of yacc.c  */
-#line 301 "yacc.y"
+#line 299 "yacc.y"
     {
 	(yyval.strval) = (yyvsp[(1) - (1)].strval);
 	}
@@ -1799,7 +1798,7 @@ yyreduce:
   case 46:
 
 /* Line 1806 of yacc.c  */
-#line 308 "yacc.y"
+#line 306 "yacc.y"
     {
 	 fprintf(arqc,"%s %s%s\n",(yyvsp[(1) - (3)].strval),(yyvsp[(2) - (3)].strval),(yyvsp[(3) - (3)].strval));
 	char *variablestr = (char *) malloc(1 + strlen((yyvsp[(1) - (3)].strval))+ strlen((yyvsp[(2) - (3)].strval))+ strlen((yyvsp[(3) - (3)].strval)));
@@ -1815,7 +1814,7 @@ yyreduce:
   case 47:
 
 /* Line 1806 of yacc.c  */
-#line 322 "yacc.y"
+#line 320 "yacc.y"
     {
 	fprintf(arqc,"%s %s%s\n",(yyvsp[(1) - (3)].strval),(yyvsp[(2) - (3)].strval),(yyvsp[(3) - (3)].strval));
 	char *variablestr = (char *) malloc(1 + strlen((yyvsp[(1) - (3)].strval))+ strlen((yyvsp[(2) - (3)].strval))+ strlen((yyvsp[(3) - (3)].strval)));
@@ -1831,7 +1830,7 @@ yyreduce:
   case 48:
 
 /* Line 1806 of yacc.c  */
-#line 336 "yacc.y"
+#line 334 "yacc.y"
     {
 	fprintf(arqc,"%s %s%s\n",(yyvsp[(1) - (3)].strval),(yyvsp[(2) - (3)].strval),(yyvsp[(3) - (3)].strval));
 	char *variablestr = (char *) malloc(1 + strlen((yyvsp[(1) - (3)].strval))+ strlen((yyvsp[(2) - (3)].strval))+ strlen((yyvsp[(3) - (3)].strval)));
@@ -1847,7 +1846,7 @@ yyreduce:
   case 49:
 
 /* Line 1806 of yacc.c  */
-#line 350 "yacc.y"
+#line 348 "yacc.y"
     {
 	fprintf(arqc,"%s %s%s\n",(yyvsp[(1) - (3)].strval),(yyvsp[(2) - (3)].strval),(yyvsp[(3) - (3)].strval));
 	char *variablestr = (char *) malloc(1 + strlen((yyvsp[(1) - (3)].strval))+ strlen((yyvsp[(2) - (3)].strval))+ strlen((yyvsp[(3) - (3)].strval)));
@@ -1863,7 +1862,7 @@ yyreduce:
   case 50:
 
 /* Line 1806 of yacc.c  */
-#line 364 "yacc.y"
+#line 362 "yacc.y"
     {
 	(yyval.strval) = (yyvsp[(1) - (1)].strval);
 	printf("%s do typeparameter\n",(yyvsp[(1) - (1)].strval));
@@ -1873,7 +1872,7 @@ yyreduce:
   case 54:
 
 /* Line 1806 of yacc.c  */
-#line 375 "yacc.y"
+#line 373 "yacc.y"
     {
 	//printf("%s %s ", $1,$2);
 	char *parameterstr = (char *) malloc(1 + strlen((yyvsp[(1) - (2)].strval))+ strlen((yyvsp[(2) - (2)].strval)) );
@@ -1888,7 +1887,7 @@ yyreduce:
   case 55:
 
 /* Line 1806 of yacc.c  */
-#line 388 "yacc.y"
+#line 386 "yacc.y"
     {
 	printf("DOUBLE NAME reconhecido\n");
 	char *parameterstr = (char *) malloc(1 + strlen((yyvsp[(1) - (2)].strval))+ strlen((yyvsp[(2) - (2)].strval)) );
@@ -1903,7 +1902,7 @@ yyreduce:
   case 56:
 
 /* Line 1806 of yacc.c  */
-#line 401 "yacc.y"
+#line 399 "yacc.y"
     {
 	printf("CHAR NAME reconhecido\n");
 	char *parameterstr = (char *) malloc(1 + strlen((yyvsp[(1) - (2)].strval))+ strlen((yyvsp[(2) - (2)].strval)) );
@@ -1918,7 +1917,7 @@ yyreduce:
   case 57:
 
 /* Line 1806 of yacc.c  */
-#line 415 "yacc.y"
+#line 413 "yacc.y"
     {
 	printf("FLOAT NAME reconhecido\n");
 	char *parameterstr = (char *) malloc(1 + strlen((yyvsp[(1) - (2)].strval))+ strlen((yyvsp[(2) - (2)].strval)) );
@@ -1933,7 +1932,7 @@ yyreduce:
 
 
 /* Line 1806 of yacc.c  */
-#line 1937 "yacc.tab.c"
+#line 1936 "yacc.tab.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2164,7 +2163,7 @@ yyreturn:
 
 
 /* Line 2067 of yacc.c  */
-#line 431 "yacc.y"
+#line 429 "yacc.y"
 
 
 int yywrap(void){
