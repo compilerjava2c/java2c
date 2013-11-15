@@ -46,10 +46,10 @@ char buffer [1000];
 
 inicio:
 	
+	|inicio object	
 	|inicio print
 	|inicio class
 	|inicio class_content
-	|inicio chamada_metodo_estatico
 	|inicio chamada_metodo_parametro
 	|inicio chamada_metodo
 	|inicio metodo
@@ -62,6 +62,18 @@ inicio:
 	|inicio parameters //tem que ser tirado
 	|inicio	parameters_list //tem que ser tirado
 	|inicio	string //tem que ser tirado
+;
+
+object:
+	NAMECLASS NAME DOTCOMMA
+	{
+	char *objects = (char *) malloc(1 + strlen($1)+ strlen($2)+ strlen($3));
+	strcat(objects,$1);
+	strcat(objects," ");
+	strcat(objects,$2);
+	strcat(objects,$3);
+	$<strval>$ = objects;	
+	}	
 ;
 
 print:
@@ -84,9 +96,16 @@ print:
 class:
 	CLASS NAMECLASS OBRACKET variables class_content EBRACKET
 	{
-		printf("reconheceu o class\n");
-		strcpy(buffer, yytext);
-		fprintf(arqh,"typedef struct %s%s\n%s\n%s_%s;\n%s;",$2,$3,$<strval>4,$6,$2,$<strval>5);
+		
+		char *nameclass = (char *) malloc(1 + strlen($2));
+		strcpy(nameclass,$2);
+		nameclass = toupper(nameclass);
+		fprintf(arqh, "#ifndef %s_H\n", nameclass);
+		fprintf(arqh, "#define %s_H\n\n", nameclass);
+				
+		fprintf(arqh,"typedef struct %s%s\n%s\n%s_%s;\n%s;\n\n",$2,$3,$<strval>4,$6,$2,$<strval>5);
+
+		fprintf(arqh,"#endif");
 	}
 ;
 
@@ -111,13 +130,6 @@ variables:
 	strcat(variable,n);
 	strcat(variable,$<strval>2);	
 	$<strval>$ = variable;
-	}
-;
-
-chamada_metodo_estatico:
-	NAMECLASS DOT chamada_metodo ready_parameters_list
-	{
-		printf("reconheceu a chamada de metodo estÃ¡tico com parametros\n");			
 	}
 ;
 
@@ -196,11 +208,10 @@ string:
 
 
 metodo:
-	typeparameter ready_parameters_list OBRACKET if_rule EBRACKET
+	typeparameter ready_parameters_list OBRACKET object if_rule EBRACKET
 	
 	{
-	char *methodc = (char *) malloc(1 + strlen($<strval>1)+ strlen($<strval>2)+ strlen($<strval>3)+	
-	strlen($<strval>4)+ strlen($<strval>5));
+	char *methodc = (char *) malloc(1 + strlen($<strval>1)+ strlen($<strval>2)+ strlen($<strval>3)+	strlen($<strval>4)+ strlen($<strval>5)+ strlen($<strval>6));
 	char *n = strdup("\n");
 	char *t = strdup("\t");
 	
@@ -212,7 +223,10 @@ metodo:
 	strcat(methodc,t);
 	strcat(methodc,$<strval>4);
 	strcat(methodc,n);
+	strcat(methodc,t);
 	strcat(methodc,$<strval>5);
+	strcat(methodc,n);
+	strcat(methodc,$<strval>6);
 	printf("metodo reconhecido reconhecido %s\n", methodc);
 	fprintf(arqc,"%s\n", methodc);
 	
@@ -448,6 +462,7 @@ int main(int argc, char** argv){
 	
 		fprintf(arqc, "#include <stdio.h> \n");
 		fprintf(arqc, "#include <stdlib.h> \n");
+		fprintf(arqc, "include \"teste.h\"\n\n");
 		fprintf(arqc, "int main (){ \n");
 
 		yyparse();

@@ -1,4 +1,13 @@
 #include <stdio.h> 
-#include <stdio.h> 
+#include <stdlib.h> 
 int main (){ 
-printf("alotenso");}
+int  a;
+int  b;
+int greg(int idade,int nome)
+{
+	if(a>b){
+		printf("Hello world");
+}
+}
+
+}
