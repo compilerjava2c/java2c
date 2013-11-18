@@ -494,9 +494,9 @@ static const char *const yytname[] =
   "PRINTLNTOK", "QUOTE", "INT", "DOUBLE", "CHAR", "FLOAT", "CLASS", "IF",
   "ELSE", "ELSEIF", "NUMBER", "NAME", "NAMECLASS", "QUOTEDTEXT", "DOT",
   "DOTCOMMA", "COMMA", "OPARENTHESES", "EPARENTHESES", "OBRACKET",
-  "EBRACKET", "$accept", "inicio", "object", "print", "class",
+  "EBRACKET", "$accept", "start", "object", "print", "class",
   "class_content", "variables", "if_rule", "if_content", "id",
-  "chamada_metodo_parametro", "chamada_metodo", "string", "metodo",
+  "parameters_method_call", "method_call", "string", "method",
   "ready_parameters_list", "parameters_list", "parameters", "typevariable",
   "inttypevariable", "doubletypevariable", "chartypevariable",
   "floattypevariable", "typeparameter", "inttypeparameter",
@@ -1679,7 +1679,7 @@ yyreduce:
 	strcat(methodc,(yyvsp[(5) - (6)].strval));
 	strcat(methodc,n);
 	strcat(methodc,(yyvsp[(6) - (6)].strval));
-	printf("metodo reconhecido reconhecido %s\n", methodc);
+	printf("method reconhecido reconhecido %s\n", methodc);
 	fprintf(arqc,"%s\n", methodc);
 	
 	char *methodh = (char *) malloc(1 + strlen((yyvsp[(1) - (6)].strval))+ strlen((yyvsp[(2) - (6)].strval)));

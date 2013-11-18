@@ -44,24 +44,24 @@ char buffer [1000];
 
 %%
 
-inicio:
+start:
 	
-	|inicio object	
-	|inicio print
-	|inicio class
-	|inicio class_content
-	|inicio chamada_metodo_parametro
-	|inicio chamada_metodo
-	|inicio metodo
-	|inicio if_rule
-	|inicio ready_parameters_list
-	|inicio typevariable
-	|inicio typeparameter
-	|inicio name_recursive
-	|inicio typeparameter //tem que ser tirado
-	|inicio parameters //tem que ser tirado
-	|inicio	parameters_list //tem que ser tirado
-	|inicio	string //tem que ser tirado
+	|start object	
+	|start print
+	|start class
+	|start class_content
+	|start parameters_method_call
+	|start method_call
+	|start method
+	|start if_rule
+	|start ready_parameters_list
+	|start typevariable
+	|start typeparameter
+	|start name_recursive
+	|start typeparameter //tem que ser tirado
+	|start parameters //tem que ser tirado
+	|start	parameters_list //tem que ser tirado
+	|start	string //tem que ser tirado
 ;
 
 object:
@@ -110,7 +110,7 @@ class:
 ;
 
 class_content:
-	metodo 
+	method 
 	{
 	$<strval>$ = $<strval>1;
 	}
@@ -179,19 +179,19 @@ id:
 	}
 ;
 
-chamada_metodo_parametro:
-	chamada_metodo ready_parameters_list
+parameters_method_call:
+	method_call ready_parameters_list
 	{
 		printf("reconheceu a chamada de metodos com parametros\n");			
 	}
 ;
 
-chamada_metodo:
+method_call:
 	NAME DOT NAME 
 	{
 		printf("reconheceu a chamada de metodos\n");			
 	}
-	|NAME DOT chamada_metodo
+	|NAME DOT method_call
 	{
 		printf("reconheceu a chamada de metodos\n");			
 	}
@@ -207,7 +207,7 @@ string:
 ;
 
 
-metodo:
+method:
 	typeparameter ready_parameters_list OBRACKET object if_rule EBRACKET
 	
 	{
@@ -227,7 +227,7 @@ metodo:
 	strcat(methodc,$<strval>5);
 	strcat(methodc,n);
 	strcat(methodc,$<strval>6);
-	printf("metodo reconhecido reconhecido %s\n", methodc);
+	printf("method reconhecido reconhecido %s\n", methodc);
 	fprintf(arqc,"%s\n", methodc);
 	
 	char *methodh = (char *) malloc(1 + strlen($<strval>1)+ strlen($<strval>2));
