@@ -1,0 +1,1282 @@
+Terminals unused in grammar
+
+   QUOTE
+   ELSE
+   ELSEIF
+
+
+Rules useless in parser due to conflicts
+
+   14 inicio: inicio typeparameter
+
+   56 name_recursive: NAME
+
+
+State 1 conflicts: 12 shift/reduce
+State 10 conflicts: 1 shift/reduce, 13 reduce/reduce
+State 20 conflicts: 1 shift/reduce
+State 22 conflicts: 12 reduce/reduce
+State 25 conflicts: 12 reduce/reduce
+State 31 conflicts: 1 shift/reduce, 12 reduce/reduce
+
+
+Grammar
+
+    0 $accept: inicio $end
+
+    1 inicio: /* empty */
+    2       | inicio object
+    3       | inicio print
+    4       | inicio class
+    5       | inicio class_content
+    6       | inicio chamada_metodo_parametro
+    7       | inicio chamada_metodo
+    8       | inicio metodo
+    9       | inicio if_rule
+   10       | inicio ready_parameters_list
+   11       | inicio typevariable
+   12       | inicio typeparameter
+   13       | inicio name_recursive
+   14       | inicio typeparameter
+   15       | inicio parameters
+   16       | inicio parameters_list
+   17       | inicio string
+
+   18 object: NAMECLASS NAME DOTCOMMA
+
+   19 print: /* empty */
+   20      | SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK OPARENTHESES string EPARENTHESES DOTCOMMA
+
+   21 class: CLASS NAMECLASS OBRACKET variables class_content EBRACKET
+
+   22 class_content: metodo
+
+   23 variables: typevariable
+   24          | variables typevariable
+
+   25 if_rule: IF OPARENTHESES id COMPARATOR id EPARENTHESES OBRACKET if_content EBRACKET
+
+   26 if_content: print
+
+   27 id: NAME
+   28   | NUMBER
+
+   29 chamada_metodo_parametro: chamada_metodo ready_parameters_list
+
+   30 chamada_metodo: NAME DOT NAME
+   31               | NAME DOT chamada_metodo
+
+   32 string: QUOTEDTEXT
+
+   33 metodo: typeparameter ready_parameters_list OBRACKET object if_rule EBRACKET
+   34       | NAME ready_parameters_list
+
+   35 ready_parameters_list: OPARENTHESES parameters_list EPARENTHESES
+
+   36 parameters_list: parameters
+   37                | parameters_list COMMA parameters
+
+   38 parameters: typeparameter
+   39           | NAME
+
+   40 typevariable: inttypevariable
+   41             | doubletypevariable
+   42             | chartypevariable
+   43             | floattypevariable
+
+   44 inttypevariable: INT NAME DOTCOMMA
+
+   45 doubletypevariable: DOUBLE NAME DOTCOMMA
+
+   46 chartypevariable: CHAR NAME DOTCOMMA
+
+   47 floattypevariable: FLOAT NAME DOTCOMMA
+
+   48 typeparameter: inttypeparameter
+   49              | doubletypeparameter
+   50              | chartypeparameter
+   51              | floattypeparameter
+
+   52 inttypeparameter: INT NAME
+
+   53 doubletypeparameter: DOUBLE NAME
+
+   54 chartypeparameter: CHAR NAME
+
+   55 floattypeparameter: FLOAT NAME
+
+   56 name_recursive: NAME
+   57               | name_recursive COMMA NAME
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+COMPARATOR (258) 25
+SYSTEMTOK (259) 20
+OUTTOK (260) 20
+PRINTLNTOK (261) 20
+QUOTE (262)
+INT (263) 44 52
+DOUBLE (264) 45 53
+CHAR (265) 46 54
+FLOAT (266) 47 55
+CLASS (267) 21
+IF (268) 25
+ELSE (269)
+ELSEIF (270)
+NUMBER (271) 28
+NAME (272) 18 27 30 31 34 39 44 45 46 47 52 53 54 55 56 57
+NAMECLASS (273) 18 21
+QUOTEDTEXT (274) 32
+DOT (275) 20 30 31
+DOTCOMMA (276) 18 20 44 45 46 47
+COMMA (277) 37 57
+OPARENTHESES (278) 20 25 35
+EPARENTHESES (279) 20 25 35
+OBRACKET (280) 21 25 33
+EBRACKET (281) 21 25 33
+
+
+Nonterminals, with rules where they appear
+
+$accept (27)
+    on left: 0
+inicio (28)
+    on left: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17, on right: 0
+    2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17
+object (29)
+    on left: 18, on right: 2 33
+print (30)
+    on left: 19 20, on right: 3 26
+class (31)
+    on left: 21, on right: 4
+class_content (32)
+    on left: 22, on right: 5 21
+variables (33)
+    on left: 23 24, on right: 21 24
+if_rule (34)
+    on left: 25, on right: 9 33
+if_content (35)
+    on left: 26, on right: 25
+id (36)
+    on left: 27 28, on right: 25
+chamada_metodo_parametro (37)
+    on left: 29, on right: 6
+chamada_metodo (38)
+    on left: 30 31, on right: 7 29 31
+string (39)
+    on left: 32, on right: 17 20
+metodo (40)
+    on left: 33 34, on right: 8 22
+ready_parameters_list (41)
+    on left: 35, on right: 10 29 33 34
+parameters_list (42)
+    on left: 36 37, on right: 16 35 37
+parameters (43)
+    on left: 38 39, on right: 15 36 37
+typevariable (44)
+    on left: 40 41 42 43, on right: 11 23 24
+inttypevariable (45)
+    on left: 44, on right: 40
+doubletypevariable (46)
+    on left: 45, on right: 41
+chartypevariable (47)
+    on left: 46, on right: 42
+floattypevariable (48)
+    on left: 47, on right: 43
+typeparameter (49)
+    on left: 48 49 50 51, on right: 12 14 33 38
+inttypeparameter (50)
+    on left: 52, on right: 48
+doubletypeparameter (51)
+    on left: 53, on right: 49
+chartypeparameter (52)
+    on left: 54, on right: 50
+floattypeparameter (53)
+    on left: 55, on right: 51
+name_recursive (54)
+    on left: 56 57, on right: 13 57
+
+
+state 0
+
+    0 $accept: . inicio $end
+
+    $default  reduce using rule 1 (inicio)
+
+    inicio  go to state 1
+
+
+state 1
+
+    0 $accept: inicio . $end
+    2 inicio: inicio . object
+    3       | inicio . print
+    4       | inicio . class
+    5       | inicio . class_content
+    6       | inicio . chamada_metodo_parametro
+    7       | inicio . chamada_metodo
+    8       | inicio . metodo
+    9       | inicio . if_rule
+   10       | inicio . ready_parameters_list
+   11       | inicio . typevariable
+   12       | inicio . typeparameter
+   13       | inicio . name_recursive
+   14       | inicio . typeparameter
+   15       | inicio . parameters
+   16       | inicio . parameters_list
+   17       | inicio . string
+
+    $end          shift, and go to state 2
+    SYSTEMTOK     shift, and go to state 3
+    INT           shift, and go to state 4
+    DOUBLE        shift, and go to state 5
+    CHAR          shift, and go to state 6
+    FLOAT         shift, and go to state 7
+    CLASS         shift, and go to state 8
+    IF            shift, and go to state 9
+    NAME          shift, and go to state 10
+    NAMECLASS     shift, and go to state 11
+    QUOTEDTEXT    shift, and go to state 12
+    OPARENTHESES  shift, and go to state 13
+
+    $end          [reduce using rule 19 (print)]
+    SYSTEMTOK     [reduce using rule 19 (print)]
+    INT           [reduce using rule 19 (print)]
+    DOUBLE        [reduce using rule 19 (print)]
+    CHAR          [reduce using rule 19 (print)]
+    FLOAT         [reduce using rule 19 (print)]
+    CLASS         [reduce using rule 19 (print)]
+    IF            [reduce using rule 19 (print)]
+    NAME          [reduce using rule 19 (print)]
+    NAMECLASS     [reduce using rule 19 (print)]
+    QUOTEDTEXT    [reduce using rule 19 (print)]
+    OPARENTHESES  [reduce using rule 19 (print)]
+
+    object                    go to state 14
+    print                     go to state 15
+    class                     go to state 16
+    class_content             go to state 17
+    if_rule                   go to state 18
+    chamada_metodo_parametro  go to state 19
+    chamada_metodo            go to state 20
+    string                    go to state 21
+    metodo                    go to state 22
+    ready_parameters_list     go to state 23
+    parameters_list           go to state 24
+    parameters                go to state 25
+    typevariable              go to state 26
+    inttypevariable           go to state 27
+    doubletypevariable        go to state 28
+    chartypevariable          go to state 29
+    floattypevariable         go to state 30
+    typeparameter             go to state 31
+    inttypeparameter          go to state 32
+    doubletypeparameter       go to state 33
+    chartypeparameter         go to state 34
+    floattypeparameter        go to state 35
+    name_recursive            go to state 36
+
+
+state 2
+
+    0 $accept: inicio $end .
+
+    $default  accept
+
+
+state 3
+
+   20 print: SYSTEMTOK . DOT OUTTOK DOT PRINTLNTOK OPARENTHESES string EPARENTHESES DOTCOMMA
+
+    DOT  shift, and go to state 37
+
+
+state 4
+
+   44 inttypevariable: INT . NAME DOTCOMMA
+   52 inttypeparameter: INT . NAME
+
+    NAME  shift, and go to state 38
+
+
+state 5
+
+   45 doubletypevariable: DOUBLE . NAME DOTCOMMA
+   53 doubletypeparameter: DOUBLE . NAME
+
+    NAME  shift, and go to state 39
+
+
+state 6
+
+   46 chartypevariable: CHAR . NAME DOTCOMMA
+   54 chartypeparameter: CHAR . NAME
+
+    NAME  shift, and go to state 40
+
+
+state 7
+
+   47 floattypevariable: FLOAT . NAME DOTCOMMA
+   55 floattypeparameter: FLOAT . NAME
+
+    NAME  shift, and go to state 41
+
+
+state 8
+
+   21 class: CLASS . NAMECLASS OBRACKET variables class_content EBRACKET
+
+    NAMECLASS  shift, and go to state 42
+
+
+state 9
+
+   25 if_rule: IF . OPARENTHESES id COMPARATOR id EPARENTHESES OBRACKET if_content EBRACKET
+
+    OPARENTHESES  shift, and go to state 43
+
+
+state 10
+
+   30 chamada_metodo: NAME . DOT NAME
+   31               | NAME . DOT chamada_metodo
+   34 metodo: NAME . ready_parameters_list
+   39 parameters: NAME .
+   56 name_recursive: NAME .
+
+    DOT           shift, and go to state 44
+    OPARENTHESES  shift, and go to state 13
+
+    $end          reduce using rule 39 (parameters)
+    $end          [reduce using rule 56 (name_recursive)]
+    SYSTEMTOK     reduce using rule 39 (parameters)
+    SYSTEMTOK     [reduce using rule 56 (name_recursive)]
+    INT           reduce using rule 39 (parameters)
+    INT           [reduce using rule 56 (name_recursive)]
+    DOUBLE        reduce using rule 39 (parameters)
+    DOUBLE        [reduce using rule 56 (name_recursive)]
+    CHAR          reduce using rule 39 (parameters)
+    CHAR          [reduce using rule 56 (name_recursive)]
+    FLOAT         reduce using rule 39 (parameters)
+    FLOAT         [reduce using rule 56 (name_recursive)]
+    CLASS         reduce using rule 39 (parameters)
+    CLASS         [reduce using rule 56 (name_recursive)]
+    IF            reduce using rule 39 (parameters)
+    IF            [reduce using rule 56 (name_recursive)]
+    NAME          reduce using rule 39 (parameters)
+    NAME          [reduce using rule 56 (name_recursive)]
+    NAMECLASS     reduce using rule 39 (parameters)
+    NAMECLASS     [reduce using rule 56 (name_recursive)]
+    QUOTEDTEXT    reduce using rule 39 (parameters)
+    QUOTEDTEXT    [reduce using rule 56 (name_recursive)]
+    COMMA         reduce using rule 39 (parameters)
+    COMMA         [reduce using rule 56 (name_recursive)]
+    OPARENTHESES  [reduce using rule 39 (parameters)]
+    OPARENTHESES  [reduce using rule 56 (name_recursive)]
+    $default      reduce using rule 39 (parameters)
+
+    ready_parameters_list  go to state 45
+
+
+state 11
+
+   18 object: NAMECLASS . NAME DOTCOMMA
+
+    NAME  shift, and go to state 46
+
+
+state 12
+
+   32 string: QUOTEDTEXT .
+
+    $default  reduce using rule 32 (string)
+
+
+state 13
+
+   35 ready_parameters_list: OPARENTHESES . parameters_list EPARENTHESES
+
+    INT     shift, and go to state 47
+    DOUBLE  shift, and go to state 48
+    CHAR    shift, and go to state 49
+    FLOAT   shift, and go to state 50
+    NAME    shift, and go to state 51
+
+    parameters_list      go to state 52
+    parameters           go to state 53
+    typeparameter        go to state 54
+    inttypeparameter     go to state 32
+    doubletypeparameter  go to state 33
+    chartypeparameter    go to state 34
+    floattypeparameter   go to state 35
+
+
+state 14
+
+    2 inicio: inicio object .
+
+    $default  reduce using rule 2 (inicio)
+
+
+state 15
+
+    3 inicio: inicio print .
+
+    $default  reduce using rule 3 (inicio)
+
+
+state 16
+
+    4 inicio: inicio class .
+
+    $default  reduce using rule 4 (inicio)
+
+
+state 17
+
+    5 inicio: inicio class_content .
+
+    $default  reduce using rule 5 (inicio)
+
+
+state 18
+
+    9 inicio: inicio if_rule .
+
+    $default  reduce using rule 9 (inicio)
+
+
+state 19
+
+    6 inicio: inicio chamada_metodo_parametro .
+
+    $default  reduce using rule 6 (inicio)
+
+
+state 20
+
+    7 inicio: inicio chamada_metodo .
+   29 chamada_metodo_parametro: chamada_metodo . ready_parameters_list
+
+    OPARENTHESES  shift, and go to state 13
+
+    OPARENTHESES  [reduce using rule 7 (inicio)]
+    $default      reduce using rule 7 (inicio)
+
+    ready_parameters_list  go to state 55
+
+
+state 21
+
+   17 inicio: inicio string .
+
+    $default  reduce using rule 17 (inicio)
+
+
+state 22
+
+    8 inicio: inicio metodo .
+   22 class_content: metodo .
+
+    $end          reduce using rule 8 (inicio)
+    $end          [reduce using rule 22 (class_content)]
+    SYSTEMTOK     reduce using rule 8 (inicio)
+    SYSTEMTOK     [reduce using rule 22 (class_content)]
+    INT           reduce using rule 8 (inicio)
+    INT           [reduce using rule 22 (class_content)]
+    DOUBLE        reduce using rule 8 (inicio)
+    DOUBLE        [reduce using rule 22 (class_content)]
+    CHAR          reduce using rule 8 (inicio)
+    CHAR          [reduce using rule 22 (class_content)]
+    FLOAT         reduce using rule 8 (inicio)
+    FLOAT         [reduce using rule 22 (class_content)]
+    CLASS         reduce using rule 8 (inicio)
+    CLASS         [reduce using rule 22 (class_content)]
+    IF            reduce using rule 8 (inicio)
+    IF            [reduce using rule 22 (class_content)]
+    NAME          reduce using rule 8 (inicio)
+    NAME          [reduce using rule 22 (class_content)]
+    NAMECLASS     reduce using rule 8 (inicio)
+    NAMECLASS     [reduce using rule 22 (class_content)]
+    QUOTEDTEXT    reduce using rule 8 (inicio)
+    QUOTEDTEXT    [reduce using rule 22 (class_content)]
+    OPARENTHESES  reduce using rule 8 (inicio)
+    OPARENTHESES  [reduce using rule 22 (class_content)]
+    $default      reduce using rule 8 (inicio)
+
+
+state 23
+
+   10 inicio: inicio ready_parameters_list .
+
+    $default  reduce using rule 10 (inicio)
+
+
+state 24
+
+   16 inicio: inicio parameters_list .
+   37 parameters_list: parameters_list . COMMA parameters
+
+    COMMA  shift, and go to state 56
+
+    $default  reduce using rule 16 (inicio)
+
+
+state 25
+
+   15 inicio: inicio parameters .
+   36 parameters_list: parameters .
+
+    $end          reduce using rule 15 (inicio)
+    $end          [reduce using rule 36 (parameters_list)]
+    SYSTEMTOK     reduce using rule 15 (inicio)
+    SYSTEMTOK     [reduce using rule 36 (parameters_list)]
+    INT           reduce using rule 15 (inicio)
+    INT           [reduce using rule 36 (parameters_list)]
+    DOUBLE        reduce using rule 15 (inicio)
+    DOUBLE        [reduce using rule 36 (parameters_list)]
+    CHAR          reduce using rule 15 (inicio)
+    CHAR          [reduce using rule 36 (parameters_list)]
+    FLOAT         reduce using rule 15 (inicio)
+    FLOAT         [reduce using rule 36 (parameters_list)]
+    CLASS         reduce using rule 15 (inicio)
+    CLASS         [reduce using rule 36 (parameters_list)]
+    IF            reduce using rule 15 (inicio)
+    IF            [reduce using rule 36 (parameters_list)]
+    NAME          reduce using rule 15 (inicio)
+    NAME          [reduce using rule 36 (parameters_list)]
+    NAMECLASS     reduce using rule 15 (inicio)
+    NAMECLASS     [reduce using rule 36 (parameters_list)]
+    QUOTEDTEXT    reduce using rule 15 (inicio)
+    QUOTEDTEXT    [reduce using rule 36 (parameters_list)]
+    COMMA         reduce using rule 36 (parameters_list)
+    OPARENTHESES  reduce using rule 15 (inicio)
+    OPARENTHESES  [reduce using rule 36 (parameters_list)]
+    $default      reduce using rule 15 (inicio)
+
+
+state 26
+
+   11 inicio: inicio typevariable .
+
+    $default  reduce using rule 11 (inicio)
+
+
+state 27
+
+   40 typevariable: inttypevariable .
+
+    $default  reduce using rule 40 (typevariable)
+
+
+state 28
+
+   41 typevariable: doubletypevariable .
+
+    $default  reduce using rule 41 (typevariable)
+
+
+state 29
+
+   42 typevariable: chartypevariable .
+
+    $default  reduce using rule 42 (typevariable)
+
+
+state 30
+
+   43 typevariable: floattypevariable .
+
+    $default  reduce using rule 43 (typevariable)
+
+
+state 31
+
+   12 inicio: inicio typeparameter .
+   14       | inicio typeparameter .
+   33 metodo: typeparameter . ready_parameters_list OBRACKET object if_rule EBRACKET
+   38 parameters: typeparameter .
+
+    OPARENTHESES  shift, and go to state 13
+
+    $end          reduce using rule 12 (inicio)
+    $end          [reduce using rule 14 (inicio)]
+    $end          [reduce using rule 38 (parameters)]
+    SYSTEMTOK     reduce using rule 12 (inicio)
+    SYSTEMTOK     [reduce using rule 14 (inicio)]
+    SYSTEMTOK     [reduce using rule 38 (parameters)]
+    INT           reduce using rule 12 (inicio)
+    INT           [reduce using rule 14 (inicio)]
+    INT           [reduce using rule 38 (parameters)]
+    DOUBLE        reduce using rule 12 (inicio)
+    DOUBLE        [reduce using rule 14 (inicio)]
+    DOUBLE        [reduce using rule 38 (parameters)]
+    CHAR          reduce using rule 12 (inicio)
+    CHAR          [reduce using rule 14 (inicio)]
+    CHAR          [reduce using rule 38 (parameters)]
+    FLOAT         reduce using rule 12 (inicio)
+    FLOAT         [reduce using rule 14 (inicio)]
+    FLOAT         [reduce using rule 38 (parameters)]
+    CLASS         reduce using rule 12 (inicio)
+    CLASS         [reduce using rule 14 (inicio)]
+    CLASS         [reduce using rule 38 (parameters)]
+    IF            reduce using rule 12 (inicio)
+    IF            [reduce using rule 14 (inicio)]
+    IF            [reduce using rule 38 (parameters)]
+    NAME          reduce using rule 12 (inicio)
+    NAME          [reduce using rule 14 (inicio)]
+    NAME          [reduce using rule 38 (parameters)]
+    NAMECLASS     reduce using rule 12 (inicio)
+    NAMECLASS     [reduce using rule 14 (inicio)]
+    NAMECLASS     [reduce using rule 38 (parameters)]
+    QUOTEDTEXT    reduce using rule 12 (inicio)
+    QUOTEDTEXT    [reduce using rule 14 (inicio)]
+    QUOTEDTEXT    [reduce using rule 38 (parameters)]
+    COMMA         reduce using rule 38 (parameters)
+    OPARENTHESES  [reduce using rule 12 (inicio)]
+    OPARENTHESES  [reduce using rule 14 (inicio)]
+    OPARENTHESES  [reduce using rule 38 (parameters)]
+    $default      reduce using rule 12 (inicio)
+
+    ready_parameters_list  go to state 57
+
+
+state 32
+
+   48 typeparameter: inttypeparameter .
+
+    $default  reduce using rule 48 (typeparameter)
+
+
+state 33
+
+   49 typeparameter: doubletypeparameter .
+
+    $default  reduce using rule 49 (typeparameter)
+
+
+state 34
+
+   50 typeparameter: chartypeparameter .
+
+    $default  reduce using rule 50 (typeparameter)
+
+
+state 35
+
+   51 typeparameter: floattypeparameter .
+
+    $default  reduce using rule 51 (typeparameter)
+
+
+state 36
+
+   13 inicio: inicio name_recursive .
+   57 name_recursive: name_recursive . COMMA NAME
+
+    COMMA  shift, and go to state 58
+
+    $default  reduce using rule 13 (inicio)
+
+
+state 37
+
+   20 print: SYSTEMTOK DOT . OUTTOK DOT PRINTLNTOK OPARENTHESES string EPARENTHESES DOTCOMMA
+
+    OUTTOK  shift, and go to state 59
+
+
+state 38
+
+   44 inttypevariable: INT NAME . DOTCOMMA
+   52 inttypeparameter: INT NAME .
+
+    DOTCOMMA  shift, and go to state 60
+
+    $default  reduce using rule 52 (inttypeparameter)
+
+
+state 39
+
+   45 doubletypevariable: DOUBLE NAME . DOTCOMMA
+   53 doubletypeparameter: DOUBLE NAME .
+
+    DOTCOMMA  shift, and go to state 61
+
+    $default  reduce using rule 53 (doubletypeparameter)
+
+
+state 40
+
+   46 chartypevariable: CHAR NAME . DOTCOMMA
+   54 chartypeparameter: CHAR NAME .
+
+    DOTCOMMA  shift, and go to state 62
+
+    $default  reduce using rule 54 (chartypeparameter)
+
+
+state 41
+
+   47 floattypevariable: FLOAT NAME . DOTCOMMA
+   55 floattypeparameter: FLOAT NAME .
+
+    DOTCOMMA  shift, and go to state 63
+
+    $default  reduce using rule 55 (floattypeparameter)
+
+
+state 42
+
+   21 class: CLASS NAMECLASS . OBRACKET variables class_content EBRACKET
+
+    OBRACKET  shift, and go to state 64
+
+
+state 43
+
+   25 if_rule: IF OPARENTHESES . id COMPARATOR id EPARENTHESES OBRACKET if_content EBRACKET
+
+    NUMBER  shift, and go to state 65
+    NAME    shift, and go to state 66
+
+    id  go to state 67
+
+
+state 44
+
+   30 chamada_metodo: NAME DOT . NAME
+   31               | NAME DOT . chamada_metodo
+
+    NAME  shift, and go to state 68
+
+    chamada_metodo  go to state 69
+
+
+state 45
+
+   34 metodo: NAME ready_parameters_list .
+
+    $default  reduce using rule 34 (metodo)
+
+
+state 46
+
+   18 object: NAMECLASS NAME . DOTCOMMA
+
+    DOTCOMMA  shift, and go to state 70
+
+
+state 47
+
+   52 inttypeparameter: INT . NAME
+
+    NAME  shift, and go to state 71
+
+
+state 48
+
+   53 doubletypeparameter: DOUBLE . NAME
+
+    NAME  shift, and go to state 72
+
+
+state 49
+
+   54 chartypeparameter: CHAR . NAME
+
+    NAME  shift, and go to state 73
+
+
+state 50
+
+   55 floattypeparameter: FLOAT . NAME
+
+    NAME  shift, and go to state 74
+
+
+state 51
+
+   39 parameters: NAME .
+
+    $default  reduce using rule 39 (parameters)
+
+
+state 52
+
+   35 ready_parameters_list: OPARENTHESES parameters_list . EPARENTHESES
+   37 parameters_list: parameters_list . COMMA parameters
+
+    COMMA         shift, and go to state 56
+    EPARENTHESES  shift, and go to state 75
+
+
+state 53
+
+   36 parameters_list: parameters .
+
+    $default  reduce using rule 36 (parameters_list)
+
+
+state 54
+
+   38 parameters: typeparameter .
+
+    $default  reduce using rule 38 (parameters)
+
+
+state 55
+
+   29 chamada_metodo_parametro: chamada_metodo ready_parameters_list .
+
+    $default  reduce using rule 29 (chamada_metodo_parametro)
+
+
+state 56
+
+   37 parameters_list: parameters_list COMMA . parameters
+
+    INT     shift, and go to state 47
+    DOUBLE  shift, and go to state 48
+    CHAR    shift, and go to state 49
+    FLOAT   shift, and go to state 50
+    NAME    shift, and go to state 51
+
+    parameters           go to state 76
+    typeparameter        go to state 54
+    inttypeparameter     go to state 32
+    doubletypeparameter  go to state 33
+    chartypeparameter    go to state 34
+    floattypeparameter   go to state 35
+
+
+state 57
+
+   33 metodo: typeparameter ready_parameters_list . OBRACKET object if_rule EBRACKET
+
+    OBRACKET  shift, and go to state 77
+
+
+state 58
+
+   57 name_recursive: name_recursive COMMA . NAME
+
+    NAME  shift, and go to state 78
+
+
+state 59
+
+   20 print: SYSTEMTOK DOT OUTTOK . DOT PRINTLNTOK OPARENTHESES string EPARENTHESES DOTCOMMA
+
+    DOT  shift, and go to state 79
+
+
+state 60
+
+   44 inttypevariable: INT NAME DOTCOMMA .
+
+    $default  reduce using rule 44 (inttypevariable)
+
+
+state 61
+
+   45 doubletypevariable: DOUBLE NAME DOTCOMMA .
+
+    $default  reduce using rule 45 (doubletypevariable)
+
+
+state 62
+
+   46 chartypevariable: CHAR NAME DOTCOMMA .
+
+    $default  reduce using rule 46 (chartypevariable)
+
+
+state 63
+
+   47 floattypevariable: FLOAT NAME DOTCOMMA .
+
+    $default  reduce using rule 47 (floattypevariable)
+
+
+state 64
+
+   21 class: CLASS NAMECLASS OBRACKET . variables class_content EBRACKET
+
+    INT     shift, and go to state 80
+    DOUBLE  shift, and go to state 81
+    CHAR    shift, and go to state 82
+    FLOAT   shift, and go to state 83
+
+    variables           go to state 84
+    typevariable        go to state 85
+    inttypevariable     go to state 27
+    doubletypevariable  go to state 28
+    chartypevariable    go to state 29
+    floattypevariable   go to state 30
+
+
+state 65
+
+   28 id: NUMBER .
+
+    $default  reduce using rule 28 (id)
+
+
+state 66
+
+   27 id: NAME .
+
+    $default  reduce using rule 27 (id)
+
+
+state 67
+
+   25 if_rule: IF OPARENTHESES id . COMPARATOR id EPARENTHESES OBRACKET if_content EBRACKET
+
+    COMPARATOR  shift, and go to state 86
+
+
+state 68
+
+   30 chamada_metodo: NAME . DOT NAME
+   30               | NAME DOT NAME .
+   31               | NAME . DOT chamada_metodo
+
+    DOT  shift, and go to state 44
+
+    $default  reduce using rule 30 (chamada_metodo)
+
+
+state 69
+
+   31 chamada_metodo: NAME DOT chamada_metodo .
+
+    $default  reduce using rule 31 (chamada_metodo)
+
+
+state 70
+
+   18 object: NAMECLASS NAME DOTCOMMA .
+
+    $default  reduce using rule 18 (object)
+
+
+state 71
+
+   52 inttypeparameter: INT NAME .
+
+    $default  reduce using rule 52 (inttypeparameter)
+
+
+state 72
+
+   53 doubletypeparameter: DOUBLE NAME .
+
+    $default  reduce using rule 53 (doubletypeparameter)
+
+
+state 73
+
+   54 chartypeparameter: CHAR NAME .
+
+    $default  reduce using rule 54 (chartypeparameter)
+
+
+state 74
+
+   55 floattypeparameter: FLOAT NAME .
+
+    $default  reduce using rule 55 (floattypeparameter)
+
+
+state 75
+
+   35 ready_parameters_list: OPARENTHESES parameters_list EPARENTHESES .
+
+    $default  reduce using rule 35 (ready_parameters_list)
+
+
+state 76
+
+   37 parameters_list: parameters_list COMMA parameters .
+
+    $default  reduce using rule 37 (parameters_list)
+
+
+state 77
+
+   33 metodo: typeparameter ready_parameters_list OBRACKET . object if_rule EBRACKET
+
+    NAMECLASS  shift, and go to state 11
+
+    object  go to state 87
+
+
+state 78
+
+   57 name_recursive: name_recursive COMMA NAME .
+
+    $default  reduce using rule 57 (name_recursive)
+
+
+state 79
+
+   20 print: SYSTEMTOK DOT OUTTOK DOT . PRINTLNTOK OPARENTHESES string EPARENTHESES DOTCOMMA
+
+    PRINTLNTOK  shift, and go to state 88
+
+
+state 80
+
+   44 inttypevariable: INT . NAME DOTCOMMA
+
+    NAME  shift, and go to state 89
+
+
+state 81
+
+   45 doubletypevariable: DOUBLE . NAME DOTCOMMA
+
+    NAME  shift, and go to state 90
+
+
+state 82
+
+   46 chartypevariable: CHAR . NAME DOTCOMMA
+
+    NAME  shift, and go to state 91
+
+
+state 83
+
+   47 floattypevariable: FLOAT . NAME DOTCOMMA
+
+    NAME  shift, and go to state 92
+
+
+state 84
+
+   21 class: CLASS NAMECLASS OBRACKET variables . class_content EBRACKET
+   24 variables: variables . typevariable
+
+    INT     shift, and go to state 4
+    DOUBLE  shift, and go to state 5
+    CHAR    shift, and go to state 6
+    FLOAT   shift, and go to state 7
+    NAME    shift, and go to state 93
+
+    class_content        go to state 94
+    metodo               go to state 95
+    typevariable         go to state 96
+    inttypevariable      go to state 27
+    doubletypevariable   go to state 28
+    chartypevariable     go to state 29
+    floattypevariable    go to state 30
+    typeparameter        go to state 97
+    inttypeparameter     go to state 32
+    doubletypeparameter  go to state 33
+    chartypeparameter    go to state 34
+    floattypeparameter   go to state 35
+
+
+state 85
+
+   23 variables: typevariable .
+
+    $default  reduce using rule 23 (variables)
+
+
+state 86
+
+   25 if_rule: IF OPARENTHESES id COMPARATOR . id EPARENTHESES OBRACKET if_content EBRACKET
+
+    NUMBER  shift, and go to state 65
+    NAME    shift, and go to state 66
+
+    id  go to state 98
+
+
+state 87
+
+   33 metodo: typeparameter ready_parameters_list OBRACKET object . if_rule EBRACKET
+
+    IF  shift, and go to state 9
+
+    if_rule  go to state 99
+
+
+state 88
+
+   20 print: SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK . OPARENTHESES string EPARENTHESES DOTCOMMA
+
+    OPARENTHESES  shift, and go to state 100
+
+
+state 89
+
+   44 inttypevariable: INT NAME . DOTCOMMA
+
+    DOTCOMMA  shift, and go to state 60
+
+
+state 90
+
+   45 doubletypevariable: DOUBLE NAME . DOTCOMMA
+
+    DOTCOMMA  shift, and go to state 61
+
+
+state 91
+
+   46 chartypevariable: CHAR NAME . DOTCOMMA
+
+    DOTCOMMA  shift, and go to state 62
+
+
+state 92
+
+   47 floattypevariable: FLOAT NAME . DOTCOMMA
+
+    DOTCOMMA  shift, and go to state 63
+
+
+state 93
+
+   34 metodo: NAME . ready_parameters_list
+
+    OPARENTHESES  shift, and go to state 13
+
+    ready_parameters_list  go to state 45
+
+
+state 94
+
+   21 class: CLASS NAMECLASS OBRACKET variables class_content . EBRACKET
+
+    EBRACKET  shift, and go to state 101
+
+
+state 95
+
+   22 class_content: metodo .
+
+    $default  reduce using rule 22 (class_content)
+
+
+state 96
+
+   24 variables: variables typevariable .
+
+    $default  reduce using rule 24 (variables)
+
+
+state 97
+
+   33 metodo: typeparameter . ready_parameters_list OBRACKET object if_rule EBRACKET
+
+    OPARENTHESES  shift, and go to state 13
+
+    ready_parameters_list  go to state 57
+
+
+state 98
+
+   25 if_rule: IF OPARENTHESES id COMPARATOR id . EPARENTHESES OBRACKET if_content EBRACKET
+
+    EPARENTHESES  shift, and go to state 102
+
+
+state 99
+
+   33 metodo: typeparameter ready_parameters_list OBRACKET object if_rule . EBRACKET
+
+    EBRACKET  shift, and go to state 103
+
+
+state 100
+
+   20 print: SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK OPARENTHESES . string EPARENTHESES DOTCOMMA
+
+    QUOTEDTEXT  shift, and go to state 12
+
+    string  go to state 104
+
+
+state 101
+
+   21 class: CLASS NAMECLASS OBRACKET variables class_content EBRACKET .
+
+    $default  reduce using rule 21 (class)
+
+
+state 102
+
+   25 if_rule: IF OPARENTHESES id COMPARATOR id EPARENTHESES . OBRACKET if_content EBRACKET
+
+    OBRACKET  shift, and go to state 105
+
+
+state 103
+
+   33 metodo: typeparameter ready_parameters_list OBRACKET object if_rule EBRACKET .
+
+    $default  reduce using rule 33 (metodo)
+
+
+state 104
+
+   20 print: SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK OPARENTHESES string . EPARENTHESES DOTCOMMA
+
+    EPARENTHESES  shift, and go to state 106
+
+
+state 105
+
+   25 if_rule: IF OPARENTHESES id COMPARATOR id EPARENTHESES OBRACKET . if_content EBRACKET
+
+    SYSTEMTOK  shift, and go to state 3
+
+    $default  reduce using rule 19 (print)
+
+    print       go to state 107
+    if_content  go to state 108
+
+
+state 106
+
+   20 print: SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK OPARENTHESES string EPARENTHESES . DOTCOMMA
+
+    DOTCOMMA  shift, and go to state 109
+
+
+state 107
+
+   26 if_content: print .
+
+    $default  reduce using rule 26 (if_content)
+
+
+state 108
+
+   25 if_rule: IF OPARENTHESES id COMPARATOR id EPARENTHESES OBRACKET if_content . EBRACKET
+
+    EBRACKET  shift, and go to state 110
+
+
+state 109
+
+   20 print: SYSTEMTOK DOT OUTTOK DOT PRINTLNTOK OPARENTHESES string EPARENTHESES DOTCOMMA .
+
+    $default  reduce using rule 20 (print)
+
+
+state 110
+
+   25 if_rule: IF OPARENTHESES id COMPARATOR id EPARENTHESES OBRACKET if_content EBRACKET .
+
+    $default  reduce using rule 25 (if_rule)
