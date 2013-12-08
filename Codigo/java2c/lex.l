@@ -20,6 +20,7 @@ CLASS			"class "
 IF			"if"
 ELSE			"else"
 ELSEIF			"else if"
+NEW			"= new"
 NUMBER			[0-9]*
 NAME			[a-z][a-zA-Z0-9]*
 NAMECLASS		[A-Z][a-zA-Z0-9]*
@@ -86,6 +87,10 @@ QUOTEDTEXT		\"[^"\n]*["\n]
 {ELSEIF} {
 	yylval.strval = strdup(yytext);
 	return ELSEIF;
+}
+{NEW} {
+	yylval.strval = strdup(yytext);
+	return NEW;
 }
 {NUMBER} {
 	yylval.strval = strdup(yytext);

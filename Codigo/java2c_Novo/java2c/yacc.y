@@ -65,6 +65,8 @@ inicio:
 	|inicio	string //tem que ser tirado
 ;
 
+
+
 list_object:
 	object
 	{

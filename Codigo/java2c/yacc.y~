@@ -25,7 +25,6 @@ FILE *arqh;
 %token <strval>IF
 %token <strval>ELSE
 %token <strval>ELSEIF
-%token <strval>NEW
 %token <strval>NUMBER
 %token <strval>NAME
 %token <strval>NAMECLASS
@@ -84,7 +83,7 @@ list_object:
 ;
 
 object:
-	NAMECLASS NAME NEW NAMECLASS ready_parameters_list DOTCOMMA	
+	NAMECLASS NAME "= new" NAMECLASS ready_parameters_list DOTCOMMA	
 	{
 	char *objects = (char *) malloc(1 + strlen($1)+ strlen($2)+ strlen($<strval>3)+ strlen($4)+ strlen($<strval>5)+ strlen($6));
 	strcat(objects,$1);

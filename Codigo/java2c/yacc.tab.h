@@ -50,17 +50,18 @@
      IF = 268,
      ELSE = 269,
      ELSEIF = 270,
-     NUMBER = 271,
-     NAME = 272,
-     NAMECLASS = 273,
-     QUOTEDTEXT = 274,
-     DOT = 275,
-     DOTCOMMA = 276,
-     COMMA = 277,
-     OPARENTHESES = 278,
-     EPARENTHESES = 279,
-     OBRACKET = 280,
-     EBRACKET = 281
+     NEW = 271,
+     NUMBER = 272,
+     NAME = 273,
+     NAMECLASS = 274,
+     QUOTEDTEXT = 275,
+     DOT = 276,
+     DOTCOMMA = 277,
+     COMMA = 278,
+     OPARENTHESES = 279,
+     EPARENTHESES = 280,
+     OBRACKET = 281,
+     EBRACKET = 282
    };
 #endif
 
@@ -78,7 +79,7 @@ typedef union YYSTYPE
 
 
 /* Line 2068 of yacc.c  */
-#line 82 "yacc.tab.h"
+#line 83 "yacc.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
