@@ -366,8 +366,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 27
-#define YY_END_OF_BUFFER 28
+#define YY_NUM_RULES 28
+#define YY_END_OF_BUFFER 29
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -377,14 +377,14 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[82] =
     {   0,
-        2,    2,   28,   27,    1,    1,    2,    6,   22,   23,
-       21,   19,   16,   20,    2,   18,   18,   17,   17,   17,
-       17,   17,   17,   17,   17,   24,   25,    1,    0,   26,
-       16,    0,   18,   18,   17,   17,   17,   17,   17,   17,
-       12,   17,   17,   17,    0,   18,   17,   17,   17,   17,
-       17,   17,    4,   17,    0,   18,   17,   17,   17,   13,
-       17,    7,   17,   15,   18,    9,   17,   17,    0,   17,
-       17,    3,   11,   17,    0,   10,   17,    8,   14,    5,
+        2,    2,   29,   28,    1,    1,    2,    6,   23,   24,
+       22,   20,   17,   21,    2,   19,   19,   18,   18,   18,
+       18,   18,   18,   18,   18,   25,   26,    1,    0,   27,
+       17,    0,   19,   19,   18,   18,   18,   18,   18,   18,
+       12,   18,   18,   18,    0,   19,   18,   18,   18,   18,
+       18,   18,    4,   18,    0,   19,   18,   18,   18,   13,
+       18,    7,   18,   15,   19,    9,   18,   18,    0,   18,
+       18,    3,   11,   18,    0,   10,   18,    8,   14,    5,
         0
     } ;
 
@@ -701,7 +701,7 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 36 "lex.l"
+#line 37 "lex.l"
 
 
 #line 708 "lex.yy.c"
@@ -790,12 +790,12 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 38 "lex.l"
+#line 39 "lex.l"
 /* Ignore */ ;
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 39 "lex.l"
+#line 40 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return COMPARATOR;
@@ -803,7 +803,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 43 "lex.l"
+#line 44 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return SYSTEMTOK;
@@ -811,7 +811,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 47 "lex.l"
+#line 48 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return OUTTOK;
@@ -819,7 +819,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 51 "lex.l"
+#line 52 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return PRINTLNTOK;
@@ -827,7 +827,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 55 "lex.l"
+#line 56 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return QUOTE;
@@ -835,7 +835,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 59 "lex.l"
+#line 60 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return INT;	
@@ -843,7 +843,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 63 "lex.l"
+#line 64 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return DOUBLE;
@@ -851,7 +851,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 67 "lex.l"
+#line 68 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return CHAR;
@@ -859,7 +859,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 71 "lex.l"
+#line 72 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return FLOAT;
@@ -867,7 +867,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 75 "lex.l"
+#line 76 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return CLASS;
@@ -875,7 +875,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 79 "lex.l"
+#line 80 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return IF;
@@ -883,7 +883,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 83 "lex.l"
+#line 84 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return ELSE;
@@ -891,7 +891,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 87 "lex.l"
+#line 89 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return ELSEIF;
@@ -899,7 +899,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 91 "lex.l"
+#line 93 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return NEW;
@@ -907,99 +907,107 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 95 "lex.l"
+#line 97 "lex.l"
+{
+	yylval.strval = strdup(yytext);
+	return EQUALS;
+}
+	YY_BREAK
+case 17:
+YY_RULE_SETUP
+#line 101 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return NUMBER;
 }
 	YY_BREAK
-case 17:
+case 18:
 YY_RULE_SETUP
-#line 99 "lex.l"
+#line 105 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return NAME;	
 }
 	YY_BREAK
-case 18:
+case 19:
 YY_RULE_SETUP
-#line 103 "lex.l"
+#line 109 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return NAMECLASS;
 }
 	YY_BREAK
-case 19:
+case 20:
 YY_RULE_SETUP
-#line 107 "lex.l"
+#line 113 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return DOT;
 }
 	YY_BREAK
-case 20:
+case 21:
 YY_RULE_SETUP
-#line 111 "lex.l"
+#line 117 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return DOTCOMMA;
 }
 	YY_BREAK
-case 21:
+case 22:
 YY_RULE_SETUP
-#line 115 "lex.l"
+#line 121 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return COMMA;
 }
 	YY_BREAK
-case 22:
+case 23:
 YY_RULE_SETUP
-#line 119 "lex.l"
+#line 125 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return OPARENTHESES;
 }
 	YY_BREAK
-case 23:
+case 24:
 YY_RULE_SETUP
-#line 123 "lex.l"
+#line 129 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return EPARENTHESES;
 }
 	YY_BREAK
-case 24:
+case 25:
 YY_RULE_SETUP
-#line 127 "lex.l"
+#line 133 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return OBRACKET;
 }
 	YY_BREAK
-case 25:
+case 26:
 YY_RULE_SETUP
-#line 131 "lex.l"
+#line 137 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return EBRACKET;
 }
 	YY_BREAK
-case 26:
-/* rule 26 can match eol */
+case 27:
+/* rule 27 can match eol */
 YY_RULE_SETUP
-#line 135 "lex.l"
+#line 141 "lex.l"
 {
 	yylval.strval = strdup(yytext);
 	return QUOTEDTEXT;
 }
 	YY_BREAK
-case 27:
+case 28:
 YY_RULE_SETUP
-#line 139 "lex.l"
+#line 145 "lex.l"
 ECHO;
 	YY_BREAK
-#line 1003 "lex.yy.c"
+#line 1011 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1997,4 +2005,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 139 "lex.l"
+#line 145 "lex.l"

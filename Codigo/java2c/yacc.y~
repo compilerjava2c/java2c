@@ -25,6 +25,8 @@ FILE *arqh;
 %token <strval>IF
 %token <strval>ELSE
 %token <strval>ELSEIF
+%token <strval>NEW
+%token <strval>EQUALS
 %token <strval>NUMBER
 %token <strval>NAME
 %token <strval>NAMECLASS
@@ -60,6 +62,7 @@ start:
 	|start typevariable
 	|start typeparameter
 	|start name_recursive
+	|start atributes_value_list
 	|start typeparameter //tem que ser tirado
 	|start parameters //tem que ser tirado
 	|start	parameters_list //tem que ser tirado
@@ -83,21 +86,23 @@ list_object:
 ;
 
 object:
-	NAMECLASS NAME "= new" NAMECLASS ready_parameters_list DOTCOMMA	
+	NAMECLASS NAME NEW NAMECLASS OPARENTHESES class_parameter EPARENTHESES DOTCOMMA	
 	{
-	char *objects = (char *) malloc(1 + strlen($1)+ strlen($2)+ strlen($<strval>3)+ strlen($4)+ strlen($<strval>5)+ strlen($6));
-	strcat(objects,$1);
+	char *objects = (char *) malloc(1 + strlen($1)+ strlen($2)+ strlen($3)+ strlen($4)+ strlen($<strval>5)+ strlen($<strval>6) + strlen($7) + strlen($8));
+	strcpy(objects,$1);
 	strcat(objects," ");
 	strcat(objects,$2);
+	strcat(objects,$8);
+	$<strval>$ = objects;	
+	}
+	|NAMECLASS NAME NEW NAMECLASS OPARENTHESES EPARENTHESES DOTCOMMA	
+	{
+	char *objects = (char *) malloc(1 + strlen($1)+ strlen($2)+ strlen($3)+ strlen($4)+ strlen($<strval>5)+ strlen($6) + strlen($7));
+	strcpy(objects,$1);
 	strcat(objects," ");
-	strcat(objects,$<strval>3);
-	strcat(objects," ");
-	strcat(objects,$4);
-	strcat(objects," ");
-	strcat(objects,$<strval>5);
-	strcat(objects,$6);
+	strcat(objects,$2);
+	strcat(objects,$7);
 	$<strval>$ = objects;
-	fprintf(arqc,"%s %s %s",$1,$2,$6);	
 	}
 ;
 
@@ -128,9 +133,11 @@ class:
 		fprintf(arqh, "#ifndef %s_H\n", nameclass);
 		fprintf(arqh, "#define %s_H\n\n", nameclass);
 				
-		fprintf(arqh,"typedef struct %s%s\n%s\n%s_%s;\n%s;\n\n",$2,$3,$<strval>4,$6,$2,$<strval>5);
+		fprintf(arqh,"typedef struct %s%s\n%s\n%s_%s;\n%s;\n\n",$2,$3,$<strval>4,$<strval>6,$2,$<strval>5);
 
 		fprintf(arqh,"#endif");
+
+		fprintf(arqc,"%s", $<strval>5);
 	}
 ;
 
@@ -193,12 +200,54 @@ if_content:
 	}
 ;
 
+atributes_value:
+	id COMPARATOR id DOTCOMMA
+	{
+	char *atributes = (char *) malloc(1 + strlen($<strval>1)+ strlen($2)+strlen($<strval>3) + strlen($4));
+	strcpy(atributes,$<strval>1);
+	strcat(atributes,$2);
+	strcat(atributes,$<strval>3);
+	strcat(atributes,$4);
+	$<strval>$ = atributes;
+	}
+;
+
+atributes_value_list:
+	atributes_value
+	{
+	$<strval>$ = $<strval>1;
+	}
+	| atributes_value_list atributes_value
+	{
+	char *n = strdup("\n");
+	char *t = strdup("\t");
+	char *atributes = (char *) malloc(1 + strlen($<strval>1)+ strlen($<strval>2));
+	strcpy(atributes,$<strval>1);
+	strcat(atributes,n);
+	strcat(atributes,t);
+	strcat(atributes,$<strval>2);
+	$<strval>$ = atributes;
+	}
+;
+
 id:
 	NAME
 	{
 	$<strval>$ = $1;
 	}
 	|NUMBER
+	{
+	$<strval>$ = $1;
+	}
+	|NAME DOT NAME 
+	{
+	char *object = (char *) malloc(1 + strlen($1)+ strlen($2)+ strlen($3));
+	strcpy(object,$1);
+	strcat(object,$2);
+	strcat(object,$3);	
+	$<strval>$ = object;
+	}
+	|QUOTEDTEXT
 	{
 	$<strval>$ = $1;
 	}
@@ -233,9 +282,9 @@ string:
 
 
 method:
-	typeparameter ready_parameters_list OBRACKET object if_rule EBRACKET
+	typeparameter ready_parameters_list OBRACKET object atributes_value_list if_rule EBRACKET
 	{
-	char *methodc = (char *) malloc(1 + strlen($<strval>1)+ strlen($<strval>2)+ strlen($<strval>3)+	strlen($<strval>4)+ strlen($<strval>5)+ strlen($<strval>6));
+	char *methodc = (char *) malloc(1 + strlen($<strval>1)+ strlen($<strval>2)+ strlen($<strval>3)+	strlen($<strval>4)+ strlen($<strval>5)+ strlen($<strval>6) + strlen($7));
 	char *n = strdup("\n");
 	char *t = strdup("\t");
 	
@@ -309,6 +358,25 @@ ready_parameters_list:
 	//fprintf(arqh,"%s\n",readyparameters);
 	$<strval>$ = readyparameters;
 	}
+;
+
+class_parameter:
+	parameters
+	{	
+	$<strval>$ = $<strval>1;
+	printf("parameter list reconhecido %s\n",$<strval>1);
+	}	
+	|parameters_list COMMA parameters
+	{
+	char *recursiveparameters = (char *) malloc(1 + strlen($<strval>1)+ strlen($<strval>2)+ strlen($<strval>3));
+	strcpy(recursiveparameters,$<strval>1);
+	strcat(recursiveparameters,$<strval>2);
+	strcat(recursiveparameters,$<strval>3);	
+	printf("multiple parameter list reconhecido %s\n", $<strval>1);
+	//fprintf(arqh,"%s\n",recursiveparameters);
+	$<strval>$ = recursiveparameters;
+	}
+
 ;
 
 parameters_list:
